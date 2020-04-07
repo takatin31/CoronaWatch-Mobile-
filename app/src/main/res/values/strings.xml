@@ -18,7 +18,12 @@
     <string-array name="menu">
         <item>الصفحة الرئيسية</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="current_stats">احصائيات حالية</string>
+    <string name="nbr_deaths">عدد\nالوفيات </string>
+    <string name="nbr_infected">عدد\nالاصابات</string>
+    <string name="nbr_cared">عدد حالات\nالشفاء</string>
+    <string name="postion_state">حالة موقعك</string>
+    <string name="recordVideo">تسجيل فيديو</string>
+    <string name="takePhoto">اخذ صورة</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

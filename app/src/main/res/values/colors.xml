@@ -9,5 +9,9 @@
     <color name="dark_grey">#95989A</color>
     <color name="light_grey">#9DAAB7</color>
     <color name="bottom_icons_gret">#434B56</color>
+    <color name="redLighter">#FD7680</color>
+    <color name="greyLighter">#EAE5EB</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
 
 </resources>

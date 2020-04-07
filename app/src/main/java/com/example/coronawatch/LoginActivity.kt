@@ -27,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
         var google_btn = google_login
 
         google_btn.setOnClickListener {
-            //var home_intent = Intent(this, HomeActivity::class.java)
-            //startActivity(home_intent)
+            var home_intent = Intent(this, HomeActivity::class.java)
+            startActivity(home_intent)
         }
 
 
@@ -39,9 +39,8 @@ class LoginActivity : AppCompatActivity() {
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
-                        // var home_intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                        // startActivity(home_intent)
-                    }
+                        var home_intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                        startActivity(home_intent)                    }
 
                     override fun onCancel() {
                         Log.d("MainActivity", "Facebook onCancel.")
