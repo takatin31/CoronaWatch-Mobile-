@@ -43,7 +43,9 @@ class HomeActivity : AppCompatActivity() {
                     transaction.replace(R.id.homeFragmentView, homeFr)
                     transaction.commit()
                 }
+                currentIndex = 0
             }
+
         }
 
         signalBtnView.setOnClickListener {
@@ -63,6 +65,7 @@ class HomeActivity : AppCompatActivity() {
                     transaction.commit()
                 }
             }
+            currentIndex = 3
         }
     }
 
