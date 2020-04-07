@@ -36,8 +36,7 @@ class HomeActivity : AppCompatActivity() {
 
         homeBtn.setOnClickListener {
             if (currentIndex != 0) {
-                var homeFr: Fragment? = null
-                homeFr = HomeFragment()
+                var homeFr: Fragment = HomeFragment()
                 if (homeFr != null) {
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.homeFragmentView, homeFr)
