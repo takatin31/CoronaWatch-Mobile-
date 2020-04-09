@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
                 transaction.replace(R.id.homeFragmentView, homeFr)
                 transaction.commit()
             }
-            currentIndex = 0
+            changeIndex(0)
 
         }
 
@@ -73,7 +73,7 @@ class HomeActivity : AppCompatActivity() {
                     transaction.commit()
                 }
             }
-            currentIndex = 3
+            changeIndex(3)
         }
 
         mapBtn.setOnClickListener {
@@ -83,7 +83,7 @@ class HomeActivity : AppCompatActivity() {
                 transaction.replace(R.id.homeFragmentView, mapFr)
                 transaction.commit()
             }
-            currentIndex = 1
+            changeIndex(1)
 
         }
     }
@@ -131,6 +131,12 @@ class HomeActivity : AppCompatActivity() {
             }
             false
         }
+    }
+
+    fun changeIndex(newIndex: Int){
+        currentIndex = newIndex
+        var titleTextView = fragmentTitleView
+        titleTextView.text = resources.getStringArray(R.array.menu)[newIndex]
     }
 
 

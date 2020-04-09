@@ -17,6 +17,9 @@
     <string name="home">الرئيسية</string>
     <string-array name="menu">
         <item>الصفحة الرئيسية</item>
+        <item>الخريطة</item>
+        <item>الابلاغ</item>
+        <item>المحتوى</item>
     </string-array>
     <string name="current_stats">احصائيات حالية</string>
     <string name="nbr_deaths">عدد\nالوفيات </string>

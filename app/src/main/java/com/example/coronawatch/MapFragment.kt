@@ -2,6 +2,7 @@ package com.example.coronawatch
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : Fragment() {
@@ -34,12 +36,12 @@ class MapFragment : Fragment() {
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync { mapboxMap ->
 
-            mapboxMap.setStyle(Style.MAPBOX_STREETS) {
+            mapboxMap.setStyle(Style.Builder().fromUri("mapbox://styles/ali31/ck8sx67n92lia1io8cl38v9fi")) {
 
-                // Map is set up and the style has loaded. Now you can add data or make other map adjustments
-
-
+                // Custom map style has been loaded and map is now ready
+                Log.i("Succes", "Map loaded Succefully")
             }
+
 
         }
     }
