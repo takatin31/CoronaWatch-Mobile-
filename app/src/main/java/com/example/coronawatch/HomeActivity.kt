@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
@@ -24,30 +25,38 @@ class HomeActivity : AppCompatActivity() {
         var titleTextView = fragmentTitleView
         titleTextView.text = resources.getStringArray(R.array.menu)[0]
 
+
+        var homeFr: Fragment = HomeFragment()
+        if (homeFr != null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.homeFragmentView, homeFr)
+            transaction.commit()
+        }
+        currentIndex = 0
+
         buttonEffect(homeBtnView)
         buttonEffect(mapBtnView)
         buttonEffect(signalBtnView)
         buttonEffect(contentBtnView)
 
         var homeBtn = homeBtnView
-        var SignalBtn = signalBtnView
+        var signalBtn = signalBtnView
         var mapBtn = mapBtnView
         var contentBtn = contentBtnView
 
         homeBtn.setOnClickListener {
-            if (currentIndex != 0) {
-                var homeFr: Fragment = HomeFragment()
-                if (homeFr != null) {
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.homeFragmentView, homeFr)
-                    transaction.commit()
-                }
-                currentIndex = 0
+
+            var homeFr: Fragment = HomeFragment()
+            if (homeFr != null) {
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.homeFragmentView, homeFr)
+                transaction.commit()
             }
+            currentIndex = 0
 
         }
 
-        signalBtnView.setOnClickListener {
+        signalBtn.setOnClickListener {
             //if system os if Marshmellow or Above, we need to request runtime permission
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED ||
@@ -65,6 +74,17 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
             currentIndex = 3
+        }
+
+        mapBtn.setOnClickListener {
+            var mapFr: Fragment = MapFragment()
+            if (mapFr != null) {
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.homeFragmentView, mapFr)
+                transaction.commit()
+            }
+            currentIndex = 1
+
         }
     }
 

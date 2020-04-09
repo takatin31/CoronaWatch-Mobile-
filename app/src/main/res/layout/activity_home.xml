@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    android:elevation="2dp"
-    android:gravity="bottom|start"
-    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".HomeActivity">
 
     <LinearLayout
+        android:id="@+id/topNAvigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -54,22 +55,22 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/homeFragmentView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation"
+        android:layout_below="@id/topNAvigation"
+        android:layout_centerHorizontal="true">
 
-        <fragment
-            android:id="@+id/homeFragmentView"
-            android:name="com.example.coronawatch.HomeFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout="@layout/fragment_home" />
-    </RelativeLayout>
+    </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:background="@color/white"
         android:gravity="bottom"
         android:orientation="horizontal">
@@ -139,7 +140,6 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:drawableTop="@drawable/ic_home"
-            android:focusableInTouchMode="true"
             android:fontFamily="@font/almarai_bold"
             android:paddingTop="10dp"
             android:text="@string/home"
@@ -148,4 +148,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

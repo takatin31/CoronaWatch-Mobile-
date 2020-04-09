@@ -13,7 +13,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
-
 class HomeFragment : Fragment() {
 
     lateinit var mContext:Context
@@ -22,6 +21,10 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     override fun onCreateView(
@@ -41,8 +44,10 @@ class HomeFragment : Fragment() {
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths =JsonObjectRequest(Request.Method.GET, urlNbrDeaths, null,
             Response.Listener { response ->
-                progressBarNbrDeaths.visibility = View.INVISIBLE
-                nbrDeathsView.text = response.get("count").toString()
+                if (progressBarNbrCared != null && nbrCaredView != null){
+                    progressBarNbrDeaths.visibility = View.INVISIBLE
+                    nbrDeathsView.text = response.get("count").toString()
+                }
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
@@ -51,8 +56,10 @@ class HomeFragment : Fragment() {
         // Request a string response from the provided URL.
         val jsonRequestNbrInfected = JsonObjectRequest(Request.Method.GET, urlNbrInfected, null,
             Response.Listener { response ->
-                progressBarNbrInfected.visibility = View.INVISIBLE
-                nbrInfectedView.text = response.get("count").toString()
+                if (progressBarNbrInfected != null && nbrInfectedView != null) {
+                    progressBarNbrInfected.visibility = View.INVISIBLE
+                    nbrInfectedView.text = response.get("count").toString()
+                }
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
@@ -60,8 +67,10 @@ class HomeFragment : Fragment() {
         // Request a string response from the provided URL.
         val jsonRequestNbrCared = JsonObjectRequest(Request.Method.GET, urlNbrCared, null,
             Response.Listener { response ->
-                progressBarNbrCared.visibility = View.INVISIBLE
-                nbrCaredView.text = response.get("count").toString()
+                if (progressBarNbrCared != null && nbrCaredView != null) {
+                    progressBarNbrCared.visibility = View.INVISIBLE
+                    nbrCaredView.text = response.get("count").toString()
+                }
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
@@ -72,6 +81,8 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
 
 
     override fun onAttach(context: Context) {
