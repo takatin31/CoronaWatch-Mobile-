@@ -13,5 +13,6 @@
     <color name="greyLighter">#EAE5EB</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
+    <color name="mapboxPosition">#3F51B5</color>
 
 </resources>
