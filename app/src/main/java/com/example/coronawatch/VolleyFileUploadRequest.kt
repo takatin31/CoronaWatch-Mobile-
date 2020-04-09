@@ -1,5 +1,6 @@
 package com.example.coronawatch
 
+import android.util.Log
 import com.android.volley.*
 import com.android.volley.toolbox.HttpHeaderParser
 import java.io.*
@@ -67,10 +68,12 @@ open class VolleyFileUploadRequest(
 
     override fun deliverResponse(response: NetworkResponse) {
         responseListener?.onResponse(response)
+        Log.i("test", response.toString())
     }
 
     override fun deliverError(error: VolleyError) {
         errorListener?.onErrorResponse(error)
+        Log.i("test", error.toString())
     }
 
     @Throws(IOException::class)

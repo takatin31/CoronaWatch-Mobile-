@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,8 @@ class SignalFragment : Fragment() {
     var uri: Uri? = null
     private val IMAGE_CAPTURE_CODE = 1001
     private var imageData: ByteArray? = null
-    private val postURL: String = "https://ptsv2.com/t/54odo-1576291398/post" // Voici l'adresse de l'api qu'on utilise pour l'upload
+    // Voici l'adresse de l'api qu'on utilise pour l'upload
+    private val postURL: String = "https://coronawatch-api-v0.herokuapp.com/api/v0/signalement/image"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +98,7 @@ class SignalFragment : Fragment() {
         ) {
             override fun getByteData(): MutableMap<String, FileDataPart> {
                 var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart("image", imageData!!, "jpeg")
+                params["imageFile"] = FileDataPart("image", imageData!!, "mp4")
                 return params
             }
         }
@@ -110,5 +112,7 @@ class SignalFragment : Fragment() {
             imageData = it.readBytes()
         }
     }
+
+
 
 }
