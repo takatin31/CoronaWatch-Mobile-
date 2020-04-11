@@ -1,28 +1,41 @@
 package com.example.coronawatch
 
 
+
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
-import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.geojson.Feature
+import com.mapbox.geojson.Geometry
+import com.mapbox.geojson.Point
+import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.mapbox.mapboxsdk.maps.MapView
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.style.expressions.Expression
+import com.mapbox.mapboxsdk.style.expressions.Expression.*
+import com.mapbox.mapboxsdk.style.layers.CircleLayer
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer
+import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import kotlinx.android.synthetic.main.fragment_map.*
+import java.net.URI
+import java.net.URISyntaxException
+
 
 class MapFragment : Fragment(), PermissionsListener {
 
@@ -51,10 +64,38 @@ class MapFragment : Fragment(), PermissionsListener {
                 // Custom map style has been loaded and map is now ready
                 Log.i("Succes", "Map loaded Succefully")
                 enableLocationComponent(it)
+
+                addClusteredGeoJsonSource(mapboxMap.style!!)
             }
 
-
         }
+
+    }
+
+    private fun addClusteredGeoJsonSource(loadedMapStyle: Style) { // Add a new source from the GeoJSON data and set the 'cluster' option to true.
+
+        var geometry : Point = Point.fromLngLat( -0.228193, 35.446351)
+
+        var feature : Feature = Feature.fromGeometry(geometry)
+        try {
+            loadedMapStyle.addSource(
+                GeoJsonSource(
+                    "testing",
+                    feature
+
+                )
+            )
+        } catch (uriSyntaxException: URISyntaxException) {
+            Log.i("Check the URL %s", uriSyntaxException.message)
+        }
+
+        val circles = CircleLayer("id", "testing")
+        circles.setProperties(
+            circleColor(Color.parseColor("#FF2196F3")),
+            circleRadius(2f)
+        )
+
+        loadedMapStyle.addLayer(circles)
 
     }
 
@@ -68,7 +109,7 @@ class MapFragment : Fragment(), PermissionsListener {
             // Create and customize the LocationComponent's options
             val customLocationComponentOptions = LocationComponentOptions.builder(context!!)
                 .trackingGesturesManagement(true)
-                .accuracyColor(ContextCompat.getColor(context!!, R.color.mapboxPosition))
+                .accuracyColor(ContextCompat.getColor(context!!, R.color.darkblue))
                 .build()
 
             val locationComponentActivationOptions = LocationComponentActivationOptions.builder(context!!, loadedMapStyle)
@@ -154,7 +195,5 @@ class MapFragment : Fragment(), PermissionsListener {
         super.onLowMemory()
         mapView?.onLowMemory()
     }
-
-
 
 }
