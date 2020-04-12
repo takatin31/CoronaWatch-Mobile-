@@ -5,6 +5,7 @@ package com.example.coronawatch
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +39,7 @@ import kotlinx.android.synthetic.main.fragment_map.*
 import java.io.InputStream
 import java.net.URI
 import java.net.URISyntaxException
+import java.util.*
 
 
 class MapFragment : Fragment(), PermissionsListener {
@@ -76,6 +78,13 @@ class MapFragment : Fragment(), PermissionsListener {
                 addClusteredGeoJsonSource(mapboxMap.style!!)
             }
 
+            mapboxMap.addOnMapClickListener {
+                var geocoder : Geocoder = Geocoder(activity, Locale.getDefault())
+                var adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+                Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
+                true
+            }
+
         }
 
     }
@@ -97,8 +106,6 @@ class MapFragment : Fragment(), PermissionsListener {
             var feature : Feature = Feature.fromGeometry(geometry)
             feature.addNumberProperty("cases", listCases[i])
             features1.add(feature)
-
-            radiusList.add(casesToRadius(listCases[i]))
         }
 
         var features = FeatureCollection.fromFeatures(features1)
@@ -128,16 +135,14 @@ class MapFragment : Fragment(), PermissionsListener {
             )
         )
 
-
-
         loadedMapStyle.addLayer(circles)
 
     }
 
 
-    fun casesToRadius(cases : Long):Float{
-        return cases.toFloat()/1000
-    }
+
+
+
 
     @SuppressLint("MissingPermission")
     private fun enableLocationComponent(loadedMapStyle: Style) {
