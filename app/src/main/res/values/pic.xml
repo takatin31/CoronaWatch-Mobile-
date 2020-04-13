@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="images">
+        <item>@drawable/belguim</item>
+
+        <item>@drawable/chaina</item>
+        <item>@drawable/france</item>
+        <item>@drawable/germany</item>
+
+
+
+    </integer-array>
+</resources>
