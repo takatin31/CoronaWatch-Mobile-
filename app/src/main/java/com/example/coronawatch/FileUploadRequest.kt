@@ -7,11 +7,11 @@ import java.io.*
 import kotlin.math.min
 
 
-open class VolleyFileUploadRequest(
-    method: Int,
-    url: String,
-    listener: Response.Listener<NetworkResponse>,
-    errorListener: Response.ErrorListener) : Request<NetworkResponse>(method, url, errorListener) {
+open class FileUploadRequest(
+        method: Int,
+        url: String,
+        listener: Response.Listener<NetworkResponse>,
+        errorListener: Response.ErrorListener) : Request<NetworkResponse>(method, url, errorListener) {
     private var responseListener: Response.Listener<NetworkResponse>? = null
     init {
         this.responseListener = listener
@@ -24,10 +24,10 @@ open class VolleyFileUploadRequest(
 
 
     override fun getHeaders(): MutableMap<String, String> =
-        when(headers) {
-            null -> super.getHeaders()
-            else -> headers!!.toMutableMap()
-        }
+            when(headers) {
+                null -> super.getHeaders()
+                else -> headers!!.toMutableMap()
+            }
 
     override fun getBodyContentType() = "multipart/form-data;boundary=$boundary"
 

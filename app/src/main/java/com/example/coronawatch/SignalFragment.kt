@@ -86,7 +86,7 @@ class SignalFragment : Fragment() {
 
     private fun uploadImage() {
         imageData?: return
-        val request = object : VolleyFileUploadRequest(
+        val request = object : FileUploadRequest(
             Method.POST,
             postURL,
             Response.Listener {

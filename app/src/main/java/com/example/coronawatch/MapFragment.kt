@@ -4,6 +4,7 @@ package com.example.coronawatch
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.location.Geocoder
 import android.os.Bundle
@@ -86,7 +87,14 @@ class MapFragment : Fragment(), PermissionsListener {
             mapboxMap.addOnMapClickListener {
                 var geocoder = Geocoder(activity, Locale.getDefault())
                 var adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
+                if (!adresses.isEmpty()){
+                    Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
+                    val intent = Intent(activity, StatsActivity::class.java)
+                    intent.putExtra("Id", 0)
+                    intent.putExtra("countryName", adresses[0].countryName)
+                    startActivity(intent)
+                }
+
                 true
             }
 
