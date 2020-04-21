@@ -31,4 +31,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mapbox_access_token">pk.eyJ1IjoiYWxpMzEiLCJhIjoiY2s4cHRucGg1MDRkOTNkbXRtZzQ0b2QxdiJ9.IbO-ne07C-2YP_Wlj1BkOg</string>
     <string name="searchBarHint">البحث عن منطقة...</string>
+    <string name="place_nbr_deaths">حالات الوفاة </string>
+    <string name="place_nbr_infected">إصابات مؤكدة</string>
+    <string name="place_nbr_cared">حالات العلاج</string>
+    <string-array name="graph_menu">
+        <item>حالات الاصابة</item>
+        <item>حالات الوفاة</item>
+        <item>حالات العلاج</item>
+    </string-array>
+    <string name="host">http://192.168.1.55:8081</string>
 </resources>

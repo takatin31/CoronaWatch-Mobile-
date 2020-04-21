@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // this is just a test because there is no data
-        val urlNbrDeaths = "http://coronawatch-api-v0.herokuapp.com/api/v0/dataZone"
+        val urlNbrDeaths = "${resources.getString(R.string.host)}/api/v0/dataZone"
 
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths =JsonObjectRequest(Request.Method.GET, urlNbrDeaths, null,
@@ -74,15 +74,35 @@ class HomeFragment : Fragment() {
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
+        val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/groupByCountry"
+
+
+        // Request a string response from the provided URL.
+        val jsonRequestNbrDeaths2 = JsonObjectRequest(
+            Request.Method.GET, urlCountriesData, null,
+            Response.Listener { response ->
+                Log.i("yadra??", response.toString())
+                var count : Int = response.getInt("count")
+                var items = response.getJSONArray("items")
+                Log.i("yadra??", count.toString())
+                for (i in 0 until count){
+                    var item = items.getJSONObject(i)
+                    var nbrCases : Int = item.getInt("totalActive")
+                    Log.i("casesss", nbrCases.toString())
+                }
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") })
+
+
+
         if (!detached){
             RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
             RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrInfected)
             RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrCared)
+            RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths2)
         }
 
     }
-
-
 
 
     override fun onAttach(context: Context) {

@@ -6,6 +6,68 @@
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     tools:context=".MapFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/search_rounded_layout"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="5dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/searchCountryView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toStartOf="@id/filterIconView"
+            android:layout_toEndOf="@id/menuBtnView"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="@string/searchBarHint"
+            android:inputType="textPersonName"
+            android:textDirection="rtl" />
+
+        <ImageView
+            android:id="@+id/filterIconView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/ic_filter" />
+
+        <ImageView
+            android:id="@+id/menuBtnView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/ic_menu" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/redLight"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/home" />
+
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapBoxView"
         android:layout_width="match_parent"
@@ -14,49 +76,6 @@
         mapbox:mapbox_cameraTargetLng = "2.0"
         mapbox:mapbox_cameraZoom = "3.5">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/search_bar_layout_layout_shadow"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp">
-
-            <AutoCompleteTextView
-                android:id="@+id/searchCountryView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_toStartOf="@id/filterIconView"
-                android:layout_toEndOf="@id/menuBtnView"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:hint="@string/searchBarHint"
-                android:inputType="textPersonName"
-                android:textDirection="rtl" />
-
-            <ImageView
-                android:id="@+id/filterIconView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_filter" />
-
-            <ImageView
-                android:id="@+id/menuBtnView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_menu" />
-        </RelativeLayout>
     </com.mapbox.mapboxsdk.maps.MapView>
 
 </RelativeLayout>
