@@ -86,10 +86,6 @@ class StatsActivity : AppCompatActivity() {
                     nbrCared = dataHistory.last().recovered
                 }
 
-
-
-
-
                 nbrCasesView.text = nbrCases.toString()
                 nbrDeathsView.text = nbrDeaths.toString()
                 nbrCaredView.text = nbrCared.toString()

@@ -12,18 +12,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.google.gson.JsonObject
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.FeatureCollection
-import com.mapbox.geojson.Geometry
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
@@ -36,20 +37,13 @@ import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.style.expressions.Expression
 import com.mapbox.mapboxsdk.style.expressions.Expression.*
 import com.mapbox.mapboxsdk.style.layers.CircleLayer
 import com.mapbox.mapboxsdk.style.layers.Property.NONE
 import com.mapbox.mapboxsdk.style.layers.Property.VISIBLE
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
-import kotlinx.android.synthetic.main.activity_stats.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_map.*
-import java.io.InputStream
-import java.net.URI
 import java.net.URISyntaxException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -65,6 +59,7 @@ class MapFragment : Fragment(), PermissionsListener {
     var countriesData = true
     var features = arrayListOf<Feature>()
     var layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered")
+    var zonesAlgeriaData = arrayListOf<ZoneData>()
 
     var listGeoId = arrayListOf("AD","AE","AF","AG","AI","AL","AM","AO","AR","AT","AU","AW","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BM","BN","BO","BR","BS","BT","BW","BY","BZ","CA","CD","CF","CG","CH","CI","CL","CM","CN","CO","CR","CU","CV","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","ER","ES","ET","FI","FJ","FK","FO","FR","GA","GD","GE","GG","GH","GI","GL","GM","GN","GQ","GT","GU","GW","GY","HN","HR","HT","HU","ID","IE","IL","IM","IN","IQ","IR","IS","IT","JE","JM","JO","JP","KE","KG","KH","KN","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LT","LU","LV","LY","MA","MC","MD","ME","MG","MK","ML","MM","MN","MP","MR","MS","MT","MU","MV","MW","MX","MY","MZ","NC","NE","NG","NI","NL","NO","NP","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PR","PS","PT","PY","QA","RO","RS","RU","RW","SA","SC","SD","SE","SG","SI","SK","SL","SM","SN","SO","SR","ST","SV","SY","SZ","TC","TD","TG","TH","TL","TN","TR","TT","TW","TZ","UA","UG","US","UY","UZ","VA","VC","VE","VG","VI","VN","XK","YE","ZA","ZM","ZW")
     var listLat = arrayListOf(42.546245,23.424076,33.93911,17.060816,18.220554,41.153332,40.069099,-11.202691999999999,-38.416097,47.516231,-25.274398,12.52111,40.143105,43.915886,13.193887,23.684994,50.503887,12.238333,42.733883,25.930414000000003,-3.3730559999999996,9.30769,32.321384,4.535277,-16.290154,-14.235004,25.03428,27.514162,-22.328474,53.709807,17.189877,56.130366,-4.038333000000001,6.611111,-0.228021,46.818188,7.539989,-35.675146999999996,7.369722,35.86166,4.570868,9.748917,21.521757,16.002082,35.126413,49.817492,51.165690999999995,11.825138,56.26392,15.414999,18.735692999999998,28.033886,-1.8312389999999998,58.595271999999994,26.820553000000004,15.179383999999999,40.463667,9.145,61.92411,-16.578193,-51.796253,61.892635,46.227638,-0.803689,12.262775999999999,42.315407,49.465691,7.946527000000001,36.137741,71.706936,13.443182,9.945587,1.6508009999999997,15.783470999999999,13.444304,11.803749,4.860416000000001,15.199998999999998,45.1,18.971187,47.162494,-0.789275,53.41291,31.046051000000002,54.236107,20.593684,33.223191,32.427908,64.96305100000001,41.87194,49.214439,18.109581,30.585164000000002,36.204824,-0.023559,41.20438,12.565679,17.357822,35.907757000000004,29.311659999999996,19.513469,48.019573,19.856270000000002,33.854721000000005,13.909444,47.166000000000004,7.873054,6.4280550000000005,55.169438,49.815273,56.879635,26.3351,31.791702,43.750298,47.411631,42.708678000000006,-18.766947000000002,41.608635,17.570692,21.913965,46.862496,17.33083,21.00789,16.742498,35.937496,-20.348404000000002,3.202778,-13.254307999999998,23.634501,4.210483999999999,-18.665695,-20.904304999999997,17.607789,9.081999,12.865416,52.132633,60.472024,28.394857000000002,-40.900557,21.512583,8.537981,-9.189967,-17.679742,-6.314993,12.879721,30.375321000000003,51.919438,18.220833,31.952162,39.399871999999995,-23.442503,25.354826,45.943160999999996,44.016521000000004,61.52401,-1.940278,23.885942,-4.679574,12.862807,60.128161,1.352083,46.151241,48.669026,8.460555000000001,43.94236,14.497401000000002,5.152149,3.9193050000000005,0.18636,13.794185,34.802075,-26.522503000000004,21.694025,15.454166,8.619543,15.870032,-8.874217,33.886917,38.963745,10.691803,23.69781,-6.369028,48.379433,1.373333,37.09024,-32.522779,41.377491,41.902916,12.984305,6.42375,18.420695000000002,18.335765,14.058323999999999,42.602636,15.552726999999999,-30.559482,-13.133897,-19.015438)
@@ -98,22 +93,27 @@ class MapFragment : Fragment(), PermissionsListener {
             getCountriesData(it)
             getCountryData("DZ", it)
 
-
-
-
         }
 
             mapboxMap.addOnMapClickListener {
-                var geocoder = Geocoder(activity, Locale.getDefault())
-                var adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                Log.i("adresses", adresses.toString())
-                if (!adresses.isEmpty() && adresses[0].countryCode != null){
-                    Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
-                    val intent = Intent(activity, StatsActivity::class.java)
-                    intent.putExtra("countryCode", adresses[0].countryCode)
-                    intent.putExtra("countryName", adresses[0].countryName)
-                    startActivity(intent)
+                if (countriesData){
+                    var geocoder = Geocoder(activity, Locale.getDefault())
+                    var adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+                    Log.i("adresses", adresses.toString())
+                    if (!adresses.isEmpty() && adresses[0].countryCode != null){
+                        Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
+                        val intent = Intent(activity, StatsActivity::class.java)
+                        intent.putExtra("countryCode", adresses[0].countryCode)
+                        intent.putExtra("countryName", adresses[0].countryName)
+                        startActivity(intent)
+                    }
+                }else{
+                    val zoneClicked : Int = zoneClicked(it)
+                    if (zoneClicked != -1){
+                        Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
+                    }
                 }
+
 
                 true
             }
@@ -312,23 +312,26 @@ class MapFragment : Fragment(), PermissionsListener {
 
     private fun getCountryData(countryCode : String, loadedMapStyle: Style){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/country?cc=$countryCode"
-        var features = arrayListOf<Feature>()
+        val features = arrayListOf<Feature>()
 
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = JsonObjectRequest(
             Request.Method.GET, urlCountriesData, null,
             Response.Listener { response ->
-                var count : Int = response.getInt("count")
-                var items = response.getJSONArray("rows")
+                val count : Int = response.getInt("count")
+                val items = response.getJSONArray("rows")
                 for (i in 0 until count){
-                    var item = items.getJSONObject(i)
-                    var datazone = item.getJSONArray("dataZones").getJSONObject(0)
-                    var nbrCases : Int = datazone.getInt("totalConfirmed")
-                    var nbrDeaths : Int = datazone.getInt("totalDead")
-                    var nbrRecovered : Int = datazone.getInt("totalRecovered")
-                    var latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
-                    var geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
-                    var feature : Feature = Feature.fromGeometry(geometry)
+                    val item = items.getJSONObject(i)
+                    val id = item.getInt("zoneId")
+                    val datazone = item.getJSONArray("dataZones").getJSONObject(0)
+                    val nbrCases : Int = datazone.getInt("totalConfirmed")
+                    val nbrDeaths : Int = datazone.getInt("totalDead")
+                    val nbrRecovered : Int = datazone.getInt("totalRecovered")
+                    val latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
+                    val zoneData = ZoneData(id, latLng, nbrCases, nbrDeaths, nbrRecovered)
+                    zonesAlgeriaData.add(zoneData)
+                    val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
+                    val feature : Feature = Feature.fromGeometry(geometry)
                     feature.addNumberProperty(layers[0], nbrCases)
                     feature.addNumberProperty(layers[1], nbrDeaths)
                     feature.addNumberProperty(layers[2], nbrRecovered)
@@ -374,7 +377,7 @@ class MapFragment : Fragment(), PermissionsListener {
         val layer = layers[3]
 
 
-        var features = FeatureCollection.fromFeatures(features)
+        val features = FeatureCollection.fromFeatures(features)
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -409,7 +412,7 @@ class MapFragment : Fragment(), PermissionsListener {
         val layer = layers[4]
 
 
-        var features = FeatureCollection.fromFeatures(features)
+        val features = FeatureCollection.fromFeatures(features)
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -474,6 +477,21 @@ class MapFragment : Fragment(), PermissionsListener {
 
         loadedMapStyle.addLayer(circles)
     }
+
+
+    private fun zoneClicked(clickLatLng : LatLng) : Int{
+        var closestZone : Int = -1
+        var closestDistance : Double = Double.MAX_VALUE
+        for (zone in zonesAlgeriaData){
+            val d = zone.latLng.distanceTo(clickLatLng) / 1000
+            if (d < 15 && d < closestDistance){
+                closestZone = zone.id
+            }
+        }
+
+        return closestZone
+    }
+
 
 
     @SuppressLint("MissingPermission")
