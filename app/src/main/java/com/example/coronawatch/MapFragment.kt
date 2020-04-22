@@ -89,16 +89,19 @@ class MapFragment : Fragment(), PermissionsListener {
             this.mapboxMap = mapboxMap
             mapboxMap.setStyle(Style.Builder().fromUri("mapbox://styles/ali31/ck8sx67n92lia1io8cl38v9fi")) {
 
-                // Custom map style has been loaded and map is now ready
-                Log.i("Succes", "Map loaded Succefully")
-                enableLocationComponent(it)
-
-                getCountriesData(mapboxMap.style!!)
-                getCountryData("DZ")
 
 
+        // Custom map style has been loaded and map is now ready
+            Log.i("Succes", "Map loaded Succefully")
+            enableLocationComponent(it)
 
-            }
+            getCountriesData(it)
+            getCountryData("DZ", it)
+
+
+
+
+        }
 
             mapboxMap.addOnMapClickListener {
                 var geocoder = Geocoder(activity, Locale.getDefault())
@@ -133,12 +136,13 @@ class MapFragment : Fragment(), PermissionsListener {
         showAlgeriaData.setOnClickListener{
             countriesData = !countriesData
             if (countriesData){
-                showDataOnMap(layers[0])
+                showDataOnMap(layers[0], mapboxMap.style!!)
             }else{
-                showDataOnMap(layers[3])
+                showDataOnMap(layers[3], mapboxMap.style!!)
             }
-
         }
+
+
 
         var searchCountry = searchCountryView
         var adapter = ArrayAdapter<String>(activity!!, android.R.layout.simple_list_item_1, listCountries)
@@ -159,14 +163,14 @@ class MapFragment : Fragment(), PermissionsListener {
 
     }
 
-    private fun showDataOnMap(type : String){
-        Log.i("mmlayer", mapboxMap.style!!.layers.toString())
+    private fun showDataOnMap(type : String, loadedMapStyle : Style){
+        Log.i("mmlayer", loadedMapStyle.layers.toString())
         for (layer in layers){
             Log.i("mmlayer", layer)
-            mapboxMap.style!!.getLayer(layer)!!.setProperties(visibility(NONE))
+            loadedMapStyle.getLayer(layer)!!.setProperties(visibility(NONE))
         }
 
-        mapboxMap.style!!.getLayer(type)!!.setProperties(visibility(VISIBLE))
+        loadedMapStyle.getLayer(type)!!.setProperties(visibility(VISIBLE))
     }
 
 
@@ -274,7 +278,7 @@ class MapFragment : Fragment(), PermissionsListener {
     private fun getCountriesData(loadedMapStyle: Style){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/groupByCountry"
 
-
+        Log.i("getting data", urlCountriesData)
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = JsonObjectRequest(
             Request.Method.GET, urlCountriesData, null,
@@ -306,7 +310,7 @@ class MapFragment : Fragment(), PermissionsListener {
         RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
-    private fun getCountryData(countryCode : String){
+    private fun getCountryData(countryCode : String, loadedMapStyle: Style){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/country?cc=$countryCode"
         var features = arrayListOf<Feature>()
 
@@ -331,9 +335,9 @@ class MapFragment : Fragment(), PermissionsListener {
                     features.add(feature)
                 }
 
-                addCountryCasesOnMap(features)
-                addCountryDeathsOnMap(features)
-                addCountryRecoveredOnMap(features)
+                addCountryCasesOnMap(features, loadedMapStyle)
+                addCountryDeathsOnMap(features, loadedMapStyle)
+                addCountryRecoveredOnMap(features, loadedMapStyle)
 
                 val filterIcon: Spinner = filterIconView
 
@@ -344,22 +348,21 @@ class MapFragment : Fragment(), PermissionsListener {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         if (countriesData){
                             when(position){
-                                0 -> showDataOnMap(layers[0])
-                                1 -> showDataOnMap(layers[1])
-                                2 -> showDataOnMap(layers[2])
+                                0 -> showDataOnMap(layers[0], loadedMapStyle)
+                                1 -> showDataOnMap(layers[1], loadedMapStyle)
+                                2 -> showDataOnMap(layers[2], loadedMapStyle)
                             }
                         }else{
                             when(position){
-                                0 -> showDataOnMap(layers[3])
-                                1 -> showDataOnMap(layers[4])
-                                2 -> showDataOnMap(layers[5])
+                                0 -> showDataOnMap(layers[3], loadedMapStyle)
+                                1 -> showDataOnMap(layers[4], loadedMapStyle)
+                                2 -> showDataOnMap(layers[5], loadedMapStyle)
                             }
                         }
                     }
                 }
 
-
-                showDataOnMap(layers[0])
+                showDataOnMap(layers[0], loadedMapStyle)
 
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
@@ -367,9 +370,9 @@ class MapFragment : Fragment(), PermissionsListener {
         RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
-    private fun addCountryCasesOnMap(features: ArrayList<Feature>) {
+    private fun addCountryCasesOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
         val layer = layers[3]
-        val loadedMapStyle = mapboxMap.style!!
+
 
         var features = FeatureCollection.fromFeatures(features)
         try {
@@ -401,10 +404,10 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
-    private fun addCountryDeathsOnMap(features: ArrayList<Feature>) {
+    private fun addCountryDeathsOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
 
         val layer = layers[4]
-        val loadedMapStyle = mapboxMap.style!!
+
 
         var features = FeatureCollection.fromFeatures(features)
         try {
@@ -436,11 +439,11 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
-    private fun addCountryRecoveredOnMap(features: ArrayList<Feature>) {
+    private fun addCountryRecoveredOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
 
 
         val layer = layers[5]
-        val loadedMapStyle = mapboxMap.style!!
+
 
         var features = FeatureCollection.fromFeatures(features)
         try {
@@ -529,6 +532,7 @@ class MapFragment : Fragment(), PermissionsListener {
     override fun onStart() {
         super.onStart()
         mapView?.onStart()
+        Log.i("life cycle", "start")
     }
 
 
@@ -536,21 +540,25 @@ class MapFragment : Fragment(), PermissionsListener {
     override fun onDestroyView() {
         super.onDestroyView()
         mapView?.onDestroy()
+        Log.i("life cycle", "destroy view")
     }
 
     override fun onResume() {
         super.onResume()
         mapView?.onResume()
+        Log.i("life cycle", "resume")
     }
 
     override fun onPause() {
         super.onPause()
         mapView?.onPause()
+        Log.i("life cycle", "pause")
     }
 
     override fun onStop() {
         super.onStop()
         mapView?.onStop()
+        Log.i("life cycle", "stop")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -561,6 +569,7 @@ class MapFragment : Fragment(), PermissionsListener {
     override fun onDestroy() {
         super.onDestroy()
         mapView?.onDestroy()
+        Log.i("life cycle", "destroy")
     }
 
     override fun onLowMemory() {

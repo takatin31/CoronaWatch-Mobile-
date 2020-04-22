@@ -77,14 +77,15 @@ class HomeActivity : AppCompatActivity() {
         }
 
         mapBtn.setOnClickListener {
-            var mapFr: Fragment = MapFragment()
-            if (mapFr != null) {
-                val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.homeFragmentView, mapFr)
-                transaction.commit()
+            if (currentIndex != 1){
+                var mapFr: Fragment = MapFragment()
+                if (mapFr != null) {
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.homeFragmentView, mapFr)
+                    transaction.commit()
+                }
+                changeIndex(1)
             }
-            changeIndex(1)
-
         }
     }
 
