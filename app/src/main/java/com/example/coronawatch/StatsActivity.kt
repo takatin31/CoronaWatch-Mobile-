@@ -33,14 +33,23 @@ class StatsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
 
-        var countryCode = intent.getStringExtra("countryCode")
-        var countryName = intent.getStringExtra("countryName")
+        var isCountry = intent.getBooleanExtra("isCountry", false)
 
 
 
-        getCountryData(countryCode)
 
-        countryNameView.text = countryName
+        if (isCountry){
+            var countryCode = intent.getStringExtra("countryCode")
+            var countryName = intent.getStringExtra("countryName")
+            countryNameView.text = countryName
+            getCountryData(countryCode)
+        }else{
+            var zoneId = intent.getIntExtra("zoneId", -1)
+            getZoneData(zoneId)
+        }
+
+
+
 
 
         initComoboxes()
@@ -68,6 +77,52 @@ class StatsActivity : AppCompatActivity() {
                     var nbrCases = data.getInt("totalConfirmed")
                     var nbrDeaths = data.getInt("totalDead")
                     var nbrRecovered = data.getInt("totalRecovered")
+                    var dailyData = DailyData(date, nbrCases, nbrDeaths, nbrRecovered)
+                    dataHistory.add(dailyData)
+                }
+
+                dataHistory.sort()
+                setCharts(options[0], 0)
+                setCharts(options[0], 1)
+
+                var nbrCases = 0
+                var nbrDeaths = 0
+                var nbrCared = 0
+
+                if (dataHistory.size > 0){
+                    nbrCases = dataHistory.last().cases
+                    nbrDeaths = dataHistory.last().deads
+                    nbrCared = dataHistory.last().recovered
+                }
+
+                nbrCasesView.text = nbrCases.toString()
+                nbrDeathsView.text = nbrDeaths.toString()
+                nbrCaredView.text = nbrCared.toString()
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") })
+
+        RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
+    }
+
+
+    private fun getZoneData(zoneId : Int){
+        val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/$zoneId"
+
+
+        // Request a string response from the provided URL.
+        val jsonRequestNbrDeaths = JsonObjectRequest(
+            Request.Method.GET, urlCountriesData, null,
+            Response.Listener { response ->
+                var items = response.getJSONArray("dataZones")
+                countryNameView.text = response.getString("city")
+                val count = items.length()
+                for (i in 0 until count){
+                    var item = items.getJSONObject(i)
+                    var stringDate = item.getString("dateDataZone").split("T")[0].split("-")
+                    var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
+                    var nbrCases = item.getInt("totalConfirmed")
+                    var nbrDeaths = item.getInt("totalDead")
+                    var nbrRecovered = item.getInt("totalRecovered")
                     var dailyData = DailyData(date, nbrCases, nbrDeaths, nbrRecovered)
                     dataHistory.add(dailyData)
                 }
@@ -142,6 +197,7 @@ class StatsActivity : AppCompatActivity() {
         }else{
 
             val Lentries = ArrayList<Entry>()
+            Lentries.add(BarEntry(0f, 0f))
             val labels = ArrayList<String>()
             var i = 2f
             for (data in dataHistory){
@@ -199,7 +255,7 @@ class StatsActivity : AppCompatActivity() {
 
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                setCharts(options[position], 0)
             }
         }
 
@@ -208,7 +264,7 @@ class StatsActivity : AppCompatActivity() {
 
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+                setCharts(options[position], 1)
             }
         }
     }

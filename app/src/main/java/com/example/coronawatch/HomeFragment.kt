@@ -1,5 +1,6 @@
 package com.example.coronawatch
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,11 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.mapbox.android.core.location.LocationEngine
+import com.mapbox.android.core.location.LocationEngineCallback
+import com.mapbox.android.core.location.LocationEngineProvider
+import com.mapbox.android.core.location.LocationEngineResult
+import com.mapbox.mapboxsdk.geometry.LatLng
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDate
 
@@ -98,6 +104,30 @@ class HomeFragment : Fragment() {
 
     }
 
+
+    /*@SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+
+                mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
+                    var location: Location? = task.result
+                    if (location == null) {
+                        requestNewLocationData()
+                    } else {
+                        findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
+                        findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else {
+            requestPermissions()
+        }
+    }*/
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

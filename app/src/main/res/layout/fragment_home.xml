@@ -173,16 +173,152 @@
         android:textColor="@color/darkblue"
         android:textSize="19sp" />
 
-    <ImageView
-        android:id="@+id/imageView3"
+    <RelativeLayout
+        android:id="@+id/dangerInfoView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="0.3"
-        android:contentDescription="@string/logo"
-        android:src="@drawable/text_group" />
+        android:layout_weight="0.3">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/almarai_bold"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView6"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/almarai_bold"
+            android:text="على اقرب منطقة خطر"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView7"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:id="@+id/dangerIconView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/ic_danger" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/dangerIconView"
+                android:fontFamily="@font/almarai_bold"
+                android:text="حذاري"
+                android:textColor="@color/redLight"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/drawView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/positionLabelView"
+            android:layout_alignBottom="@id/closestZoneLabelView"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@id/closestZoneLabelView">
+
+            <ImageView
+                android:id="@+id/pointBottomView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/circle" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_above="@id/pointBottomView"
+                android:layout_below="@id/pointTopView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/pointTopView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/circle" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/positionLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toStartOf="@id/drawView"
+            android:fontFamily="@font/almarai_bold"
+            android:text="موقعك"
+            android:textColor="@color/darkblue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/closestZoneLabelView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/closestZoneTextView"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/almarai_bold"
+            android:text="اقرب منطقة خطر"
+            android:textColor="@color/darkblue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/closestZoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/closestZoneLabelView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/almarai_bold"
+            android:text="البليدة"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
 </LinearLayout>

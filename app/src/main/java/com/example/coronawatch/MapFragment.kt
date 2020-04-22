@@ -103,6 +103,7 @@ class MapFragment : Fragment(), PermissionsListener {
                     if (!adresses.isEmpty() && adresses[0].countryCode != null){
                         Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
                         val intent = Intent(activity, StatsActivity::class.java)
+                        intent.putExtra("isCountry", true)
                         intent.putExtra("countryCode", adresses[0].countryCode)
                         intent.putExtra("countryName", adresses[0].countryName)
                         startActivity(intent)
@@ -111,6 +112,10 @@ class MapFragment : Fragment(), PermissionsListener {
                     val zoneClicked : Int = zoneClicked(it)
                     if (zoneClicked != -1){
                         Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
+                        val intent = Intent(activity, StatsActivity::class.java)
+                        intent.putExtra("zoneId", zoneClicked)
+                        intent.putExtra("isCountry", false)
+                        startActivity(intent)
                     }
                 }
 
