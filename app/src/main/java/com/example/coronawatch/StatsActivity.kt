@@ -60,8 +60,10 @@ class StatsActivity : AppCompatActivity() {
 
                 for (i in 0 until count){
                     var item = items.getJSONObject(i)
-                    var stringDate = item.getString("date").split("-")
+                    var stringDate = item.getString("date").replace("O", "").split("-")
+                    Log.i("stringDate", item.getString("date"))
                     var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
+                    Log.i("date date", date.toString())
                     var data = item.getJSONArray("items").getJSONObject(0)
                     var nbrCases = data.getInt("totalConfirmed")
                     var nbrDeaths = data.getInt("totalDead")
@@ -74,9 +76,17 @@ class StatsActivity : AppCompatActivity() {
                 setCharts(options[0], 0)
                 setCharts(options[0], 1)
 
-                var nbrCases = dataHistory.last().cases
-                var nbrDeaths = dataHistory.last().deads
-                var nbrCared = dataHistory.last().recovered
+                var nbrCases = 0
+                var nbrDeaths = 0
+                var nbrCared = 0
+
+                if (dataHistory.size > 0){
+                    nbrCases = dataHistory.last().cases
+                    nbrDeaths = dataHistory.last().deads
+                    nbrCared = dataHistory.last().recovered
+                }
+
+
 
 
 
