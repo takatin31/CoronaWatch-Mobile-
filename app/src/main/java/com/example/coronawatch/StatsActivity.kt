@@ -172,14 +172,12 @@ class StatsActivity : AppCompatActivity() {
 
             barChart.setDrawGridBackground(false)
 
-
             val data = BarData(barDataSet)
 
             barChart.data = data // set the data and list of lables into chart
 
             //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
             barDataSet.color = ContextCompat.getColor(this, idColor)
-
 
             barChart.animateY(1000)
 
@@ -236,12 +234,16 @@ class StatsActivity : AppCompatActivity() {
 
 
     private fun getOptionColor(option : String) : Int {
-        if (option == "cases"){
-            return R.color.cases_color
-        }else if (option == "deaths"){
-            return R.color.deaths_color
-        }else{
-            return R.color.recovered_color
+        return when (option) {
+            "cases" -> {
+                R.color.cases_color
+            }
+            "deaths" -> {
+                R.color.deaths_color
+            }
+            else -> {
+                R.color.recovered_color
+            }
         }
     }
 

@@ -12,6 +12,7 @@
 
 
     <TextView
+        android:id="@+id/currentStatsTextView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
@@ -58,6 +59,7 @@
             android:indeterminateTint="@color/darkblue" />
 
         <TextView
+            android:id="@+id/nbrDeathsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -81,6 +83,7 @@
         android:background="@drawable/home_back_2">
 
         <TextView
+            android:id="@+id/nbrCasesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -151,6 +154,7 @@
             android:indeterminateTint="@color/darkblue" />
 
         <TextView
+            android:id="@+id/nbrRecoveredTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -164,6 +168,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/positionStateTextView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginLeft="10dp"
@@ -181,7 +186,7 @@
         android:layout_weight="0.3">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/closestDistanceView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -195,24 +200,24 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/closestDistanceLabelView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView6"
+            android:layout_below="@id/closestDistanceView"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/almarai_bold"
-            android:text="على اقرب منطقة خطر"
+            android:text="@string/closestDistanceLabel"
             android:textColor="@color/dark_grey"
             android:textSize="16sp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView7"
+            android:layout_below="@id/closestDistanceLabelView"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
@@ -228,6 +233,7 @@
                 android:src="@drawable/ic_danger" />
 
             <TextView
+                android:id="@+id/dangerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -235,7 +241,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@id/dangerIconView"
                 android:fontFamily="@font/almarai_bold"
-                android:text="حذاري"
+                android:text="@string/dangerLabel"
                 android:textColor="@color/redLight"
                 android:textSize="16sp" />
         </RelativeLayout>
@@ -259,6 +265,7 @@
                 android:src="@drawable/circle" />
 
             <View
+                android:id="@+id/deviderView"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_above="@id/pointBottomView"
@@ -287,7 +294,7 @@
             android:layout_marginBottom="5dp"
             android:layout_toStartOf="@id/drawView"
             android:fontFamily="@font/almarai_bold"
-            android:text="موقعك"
+            android:text="@string/yourPositionLabel"
             android:textColor="@color/darkblue"
             android:textSize="16sp" />
 
@@ -300,7 +307,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/almarai_bold"
-            android:text="اقرب منطقة خطر"
+            android:text="@string/closestDangerZoneLabel"
             android:textColor="@color/darkblue"
             android:textSize="16sp" />
 
@@ -316,7 +323,6 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/almarai_bold"
-            android:text="البليدة"
             android:textColor="@color/dark_grey"
             android:textSize="16sp" />
 

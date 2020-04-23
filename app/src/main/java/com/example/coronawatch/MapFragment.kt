@@ -125,7 +125,7 @@ class MapFragment : Fragment(), PermissionsListener {
             filterIcon.adapter = adapter
         }
 
-        var showAlgeriaData = floatingActionButton
+        var showAlgeriaData = changeDataDisplayView
 
         showAlgeriaData.setOnClickListener{
             countriesData = !countriesData
@@ -158,9 +158,9 @@ class MapFragment : Fragment(), PermissionsListener {
     }
 
     private fun showDataOnMap(type : String, loadedMapStyle : Style){
-        Log.i("mmlayer", loadedMapStyle.layers.toString())
+
         for (layer in layers){
-            Log.i("mmlayer", layer)
+
             loadedMapStyle.getLayer(layer)!!.setProperties(visibility(NONE))
         }
 
