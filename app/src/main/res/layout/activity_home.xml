@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
+    android:id="@+id/homeActivity"
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -21,7 +22,7 @@
         android:paddingBottom="3dp">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/notificationIconView"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginLeft="5dp"
@@ -56,7 +57,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/homeFragmentView"
+        android:id="@+id/mainFragmentView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigation"
@@ -104,7 +105,7 @@
             android:textSize="12sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+            android:id="@+id/btnAddContentView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"

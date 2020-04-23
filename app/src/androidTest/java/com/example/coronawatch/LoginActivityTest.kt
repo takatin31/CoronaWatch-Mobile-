@@ -5,6 +5,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.rule.GrantPermissionRule
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -16,6 +17,7 @@ class LoginActivityTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(LoginActivity::class.java)
+
 
 
     @Test
@@ -46,4 +48,6 @@ class LoginActivityTest {
         onView(withId(R.id.googleTextView)).
             check(matches(withText(R.string.gmail)))
     }
+
+
 }

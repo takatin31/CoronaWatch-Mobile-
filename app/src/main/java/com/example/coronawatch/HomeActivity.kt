@@ -29,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
         var homeFr: Fragment = HomeFragment()
         if (homeFr != null) {
             val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.homeFragmentView, homeFr)
+            transaction.replace(R.id.mainFragmentView, homeFr)
             transaction.commit()
         }
         currentIndex = 0
@@ -49,7 +49,7 @@ class HomeActivity : AppCompatActivity() {
             var homeFr: Fragment = HomeFragment()
             if (homeFr != null) {
                 val transaction = supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.homeFragmentView, homeFr)
+                transaction.replace(R.id.mainFragmentView, homeFr)
                 transaction.commit()
             }
             changeIndex(0)
@@ -69,7 +69,7 @@ class HomeActivity : AppCompatActivity() {
                 signalFr = SignalFragment()
                 if (signalFr != null) {
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.homeFragmentView, signalFr)
+                    transaction.replace(R.id.mainFragmentView, signalFr)
                     transaction.commit()
                 }
             }
@@ -82,7 +82,7 @@ class HomeActivity : AppCompatActivity() {
                 var mapFr: Fragment = MapFragment()
                 if (mapFr != null) {
                     val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.homeFragmentView, mapFr)
+                    transaction.replace(R.id.mainFragmentView, mapFr)
                     transaction.commit()
                 }
                 changeIndex(1)
@@ -101,7 +101,7 @@ class HomeActivity : AppCompatActivity() {
                     signalFr = SignalFragment()
                     if (signalFr != null) {
                         val transaction = supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.homeFragmentView, signalFr)
+                        transaction.replace(R.id.mainFragmentView, signalFr)
                         transaction.commit()
                     }
                 } else {
