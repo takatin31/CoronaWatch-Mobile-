@@ -3,37 +3,42 @@ package com.example.coronawatch
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.facebook.internal.Mutable
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.mapbox.geojson.Feature
+import com.mapbox.geojson.Point
 import kotlinx.android.synthetic.main.activity_stats.*
+import kotlinx.android.synthetic.main.fragment_map.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 class StatsActivity : AppCompatActivity() {
 
-    var countryId : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
 
-        countryId = intent.getIntExtra("Id", 0)
+        var countryCode = intent.getStringExtra("countryCode")
         var countryName = intent.getStringExtra("countryName")
 
-        var nbrCases = 0
-        var nbrDeaths = 0
-        var nbrCared = 0
+
+
+        getCountryData(countryCode)
 
         countryNameView.text = countryName
-
-        nbrCasesView.text = nbrCases.toString()
-        nbrDeathsView.text = nbrDeaths.toString()
-        nbrCaredView.text = nbrCared.toString()
 
         setBarChart()
 
@@ -41,6 +46,47 @@ class StatsActivity : AppCompatActivity() {
 
     }
 
+    private fun getCountryData(countryCode : String){
+        val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/historyByCountry?cc=$countryCode"
+        var dataHistory = mutableListOf<DailyData>()
+
+        // Request a string response from the provided URL.
+        val jsonRequestNbrDeaths = JsonObjectRequest(
+            Request.Method.GET, urlCountriesData, null,
+            Response.Listener { response ->
+                var count : Int = response.getInt("count")
+                var items = response.getJSONArray("items")
+
+                for (i in 0 until count){
+                    var item = items.getJSONObject(i)
+                    Log.i("daaaate", item.get("date").toString())
+                    var stringDate = item.getString("date").split("-")
+                    var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
+
+                    var data = item.getJSONArray("items").getJSONObject(0)
+                    var nbrCases = data.getInt("totalConfirmed")
+                    var nbrDeaths = data.getInt("totalDead")
+                    var nbrRecovered = data.getInt("totalRecovered")
+                    var dailyData = DailyData(date, nbrCases, nbrDeaths, nbrRecovered)
+                    dataHistory.add(dailyData)
+                }
+
+                dataHistory.sort()
+
+                var nbrCases = dataHistory.last().cases
+                var nbrDeaths = dataHistory.last().deads
+                var nbrCared = dataHistory.last().recovered
+
+
+
+                nbrCasesView.text = nbrCases.toString()
+                nbrDeathsView.text = nbrDeaths.toString()
+                nbrCaredView.text = nbrCared.toString()
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") })
+
+        RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
+    }
 
     private fun setBarChart() {
         val entries = ArrayList<BarEntry>()
