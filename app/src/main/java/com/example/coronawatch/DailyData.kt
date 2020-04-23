@@ -15,12 +15,14 @@ class DailyData (date : LocalDate, cases : Int, deads : Int, recovered : Int) : 
     }
 
     fun getOptionData(option : String) : Int {
-        if (option.equals("cases")){
+        if (option == "cases"){
             return cases
-        }else if (option.equals("deaths")){
+        }else if (option == "deaths"){
             return deads
         }else{
             return recovered
         }
     }
+
+
 }

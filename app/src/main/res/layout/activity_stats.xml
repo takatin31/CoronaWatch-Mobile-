@@ -47,11 +47,20 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/lastUpdateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/countryNameView"
+                    android:layout_toStartOf="@id/countryImageView"
+                    android:text="@string/last_update" />
+
+                <TextView
                     android:id="@+id/lastUpdateView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/countryNameView"
-                    android:layout_toStartOf="@id/countryImageView" />
+                    android:layout_marginEnd="5dp"
+                    android:layout_toStartOf="@id/lastUpdateTitle" />
             </RelativeLayout>
 
             <RelativeLayout

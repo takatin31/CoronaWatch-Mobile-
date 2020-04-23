@@ -39,5 +39,6 @@
         <item>حالات الوفاة</item>
         <item>حالات العلاج</item>
     </string-array>
+    <string name="last_update">آخر تحديث : </string>
     <string name="host">http://192.168.1.55:8081</string>
 </resources>

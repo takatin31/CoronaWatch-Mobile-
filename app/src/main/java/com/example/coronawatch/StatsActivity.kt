@@ -1,7 +1,5 @@
 package com.example.coronawatch
 
-
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,9 +7,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.blongho.country_data.World
 import com.facebook.internal.Mutable
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -33,14 +33,15 @@ class StatsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_stats)
 
+        World.init(this)
+
         var isCountry = intent.getBooleanExtra("isCountry", false)
-
-
-
 
         if (isCountry){
             var countryCode = intent.getStringExtra("countryCode")
             var countryName = intent.getStringExtra("countryName")
+            val flag : Int = World.getFlagOf(countryCode)
+            countryImageView.setImageResource(flag)
             countryNameView.text = countryName
             getCountryData(countryCode)
         }else{
@@ -48,17 +49,11 @@ class StatsActivity : AppCompatActivity() {
             getZoneData(zoneId)
         }
 
-
-
-
-
         initComoboxes()
-
     }
 
     private fun getCountryData(countryCode : String){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/historyByCountry?cc=$countryCode"
-
 
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = JsonObjectRequest(
@@ -93,13 +88,19 @@ class StatsActivity : AppCompatActivity() {
                     nbrCases = dataHistory.last().cases
                     nbrDeaths = dataHistory.last().deads
                     nbrCared = dataHistory.last().recovered
+                    lastUpdateView.text = dataHistory.last().date.toString()
                 }
 
                 nbrCasesView.text = nbrCases.toString()
                 nbrDeathsView.text = nbrDeaths.toString()
                 nbrCaredView.text = nbrCared.toString()
             },
-            Response.ErrorListener { Log.d("Error", "Request error") })
+            Response.ErrorListener {
+                Log.d("Error", "Request error")
+                nbrCasesView.text = "0"
+                nbrDeathsView.text = "0"
+                nbrCaredView.text = "0"
+            })
 
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
     }
@@ -108,13 +109,15 @@ class StatsActivity : AppCompatActivity() {
     private fun getZoneData(zoneId : Int){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/$zoneId"
 
-
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = JsonObjectRequest(
             Request.Method.GET, urlCountriesData, null,
             Response.Listener { response ->
                 var items = response.getJSONArray("dataZones")
                 countryNameView.text = response.getString("city")
+                val countryCode : String = response.getString("counrtyCode")
+                val flag : Int = World.getFlagOf(countryCode)
+                countryImageView.setImageResource(flag)
                 val count = items.length()
                 for (i in 0 until count){
                     var item = items.getJSONObject(i)
@@ -139,6 +142,7 @@ class StatsActivity : AppCompatActivity() {
                     nbrCases = dataHistory.last().cases
                     nbrDeaths = dataHistory.last().deads
                     nbrCared = dataHistory.last().recovered
+                    lastUpdateView.text = dataHistory.last().date.toString()
                 }
 
                 nbrCasesView.text = nbrCases.toString()
@@ -152,43 +156,38 @@ class StatsActivity : AppCompatActivity() {
 
     private fun setCharts(option : String, idChart : Int) {
 
+        val idColor = getOptionColor(option)
 
         if (idChart == 0){
 
             val entries = ArrayList<BarEntry>()
-            val labels = ArrayList<String>()
-            var i = 2f
+            var i = 0f
             for (data in dataHistory){
                 entries.add(BarEntry(i, data.getOptionData(option).toFloat()))
-                labels.add(data.date.toString())
-                i += 2
+                Log.i("dateee", data.date.toString())
+                i += 1
             }
 
             val barDataSet = BarDataSet(entries, "Cells")
 
-
             barChart.setDrawGridBackground(false)
-
-            barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
 
 
             val data = BarData(barDataSet)
 
-
             barChart.data = data // set the data and list of lables into chart
 
-
             //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
-            barDataSet.color = resources.getColor(R.color.mapbox_blue)
+            barDataSet.color = ContextCompat.getColor(this, idColor)
+
 
             barChart.animateY(1000)
-
-            barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
 
             barChart.description.isEnabled = false
             barChart.description.textSize = 0f
             barChart.axisLeft.axisMinimum = 0f
             barChart.axisRight.axisMinimum = 0f
+            barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
             barChart.data.isHighlightEnabled = false
             barChart.invalidate()
             barChart.axisLeft.setDrawGridLines(false)
@@ -196,26 +195,28 @@ class StatsActivity : AppCompatActivity() {
             barChart.axisRight.isEnabled = false
         }else{
 
-            val Lentries = ArrayList<Entry>()
-            Lentries.add(BarEntry(0f, 0f))
+            val lentries = ArrayList<Entry>()
             val labels = ArrayList<String>()
+            lentries.add(BarEntry(0f, 0f))
             var i = 2f
             for (data in dataHistory){
-                Lentries.add(BarEntry(i, data.getOptionData(option).toFloat()))
-                labels.add(data.date.toString())
-                i += 2
+                lentries.add(BarEntry(i, data.getOptionData(option).toFloat()))
+                i += 1
             }
 
+            val lineDataSet = LineDataSet(lentries, "Cells")
 
-            val lineDataSet = LineDataSet(Lentries, "Cells")
+            lineDataSet.enableDashedLine(10f, 5f, 0f)
 
             val Ldata = LineData(lineDataSet)
 
-            lineDataSet.color = resources.getColor(R.color.darkblue)
+            lineDataSet.color = ContextCompat.getColor(this, idColor)
 
+            lineDataSet.fillColor = ContextCompat.getColor(this, idColor)
+
+            lineDataSet.setDrawFilled(true)
 
             lineChart.data = Ldata // set the data and list of lables into chart
-
 
             lineChart.animateY(1000)
 
@@ -223,6 +224,7 @@ class StatsActivity : AppCompatActivity() {
             lineChart.description.textSize = 0f
             lineChart.axisLeft.axisMinimum = 0f
             lineChart.axisRight.axisMinimum = 0f
+            lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
             lineChart.data.isHighlightEnabled = false
             lineChart.invalidate()
             lineChart.axisLeft.setDrawGridLines(false)
@@ -230,10 +232,17 @@ class StatsActivity : AppCompatActivity() {
             lineChart.axisRight.isEnabled = false
         }
 
+    }
 
 
-
-
+    private fun getOptionColor(option : String) : Int {
+        if (option == "cases"){
+            return R.color.cases_color
+        }else if (option == "deaths"){
+            return R.color.deaths_color
+        }else{
+            return R.color.recovered_color
+        }
     }
 
     private fun initComoboxes(){
@@ -243,9 +252,9 @@ class StatsActivity : AppCompatActivity() {
         ArrayAdapter.createFromResource(
             this,
             R.array.graph_menu,
-            android.R.layout.simple_spinner_item
+            R.layout.spinner_item_layout
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.spinner_item_layout)
             spinnerBarChart.adapter = adapter
             spinnerLineChart.adapter = adapter
         }

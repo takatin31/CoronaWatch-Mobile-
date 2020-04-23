@@ -77,6 +77,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         mapBtn.setOnClickListener {
+
             if (currentIndex != 1){
                 var mapFr: Fragment = MapFragment()
                 if (mapFr != null) {

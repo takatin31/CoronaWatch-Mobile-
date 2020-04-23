@@ -97,7 +97,7 @@ class MapFragment : Fragment(), PermissionsListener {
 
             mapboxMap.addOnMapClickListener {
                 if (countriesData){
-                    var geocoder = Geocoder(activity, Locale.getDefault())
+                    var geocoder = Geocoder(activity, Locale("ar"))
                     var adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
                     Log.i("adresses", adresses.toString())
                     if (!adresses.isEmpty() && adresses[0].countryCode != null){
@@ -130,9 +130,9 @@ class MapFragment : Fragment(), PermissionsListener {
         ArrayAdapter.createFromResource(
             mContext,
             R.array.graph_menu,
-            android.R.layout.simple_spinner_item
+            R.layout.spinner_item_layout
         ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.spinner_item_layout)
             filterIcon.adapter = adapter
         }
 
@@ -202,10 +202,10 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(3),division(get(layer), abs(200))))),
-                    stop(5,min(abs(30),max(abs(5),division(get(layer), abs(100))))),
-                    stop(10,max(abs(30), min(abs(20),division(get(layer), abs(50))))),
-                    stop(13,max(abs(30),min(abs(20),division(get(layer), abs(10)))))
+                    stop(1, min(abs(30),max(abs(15),division(get(layer), abs(200))))),
+                    stop(5,min(abs(30),max(abs(20),division(get(layer), abs(100))))),
+                    stop(10,max(abs(50), min(abs(30),division(get(layer), abs(50))))),
+                    stop(13,max(abs(50),min(abs(30),division(get(layer), abs(10)))))
                 )
             )
         )
@@ -235,8 +235,8 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1482e7c")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(5),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(8),division(get(layer), abs(20))))),
+                    stop(1, min(abs(30),max(abs(8),division(get(layer), abs(50))))),
+                    stop(5,min(abs(30),max(abs(12),division(get(layer), abs(20))))),
                     stop(10,max(abs(30), min(abs(20),division(get(layer), abs(10))))),
                     stop(13,max(abs(30),min(abs(20),division(get(layer), abs(5)))))
                 )
@@ -268,8 +268,8 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1159a39")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(5),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(8),division(get(layer), abs(20))))),
+                    stop(1, min(abs(30),max(abs(8),division(get(layer), abs(50))))),
+                    stop(5,min(abs(30),max(abs(12),division(get(layer), abs(20))))),
                     stop(10,max(abs(30), min(abs(20),division(get(layer), abs(10))))),
                     stop(13,max(abs(30),min(abs(20),division(get(layer), abs(5)))))
                 )
@@ -401,10 +401,10 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(3),division(get(layer), abs(200))))),
-                    stop(5,min(abs(30),max(abs(5),division(get(layer), abs(100))))),
-                    stop(10,max(abs(30), min(abs(20),division(get(layer), abs(50))))),
-                    stop(13,max(abs(30),min(abs(20),division(get(layer), abs(10)))))
+                    stop(1, min(abs(30),max(abs(3),division(get(layer), abs(50))))),
+                    stop(5,min(abs(30),max(abs(5),division(get(layer), abs(20))))),
+                    stop(10,min(abs(100), max(abs(50),division(get(layer), abs(10))))),
+                    stop(13,min(abs(100),max(abs(50),division(get(layer), abs(5)))))
                 )
             )
         )
@@ -438,8 +438,8 @@ class MapFragment : Fragment(), PermissionsListener {
                 interpolate(linear(), zoom(),
                     stop(1, min(abs(30),max(abs(5),division(get(layer), abs(50))))),
                     stop(5,min(abs(30),max(abs(8),division(get(layer), abs(20))))),
-                    stop(10,max(abs(30), min(abs(20),division(get(layer), abs(10))))),
-                    stop(13,max(abs(30),min(abs(20),division(get(layer), abs(5)))))
+                    stop(10,min(abs(100), max(abs(50),division(get(layer), abs(10))))),
+                    stop(13,min(abs(100),max(abs(50),division(get(layer), abs(5)))))
                 )
             )
         )
@@ -474,8 +474,8 @@ class MapFragment : Fragment(), PermissionsListener {
                 interpolate(linear(), zoom(),
                     stop(1, min(abs(30),max(abs(5),division(get(layer), abs(50))))),
                     stop(5,min(abs(30),max(abs(8),division(get(layer), abs(20))))),
-                    stop(10,max(abs(30), min(abs(20),division(get(layer), abs(10))))),
-                    stop(13,max(abs(30),min(abs(20),division(get(layer), abs(5)))))
+                    stop(10,min(abs(100), max(abs(50),division(get(layer), abs(10))))),
+                    stop(13,min(abs(100),max(abs(50),division(get(layer), abs(5)))))
                 )
             )
         )
