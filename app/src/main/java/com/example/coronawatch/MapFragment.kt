@@ -51,14 +51,14 @@ class MapFragment : Fragment(), PermissionsListener {
     private var mapView: MapView? = null
     private lateinit var mapboxMap: MapboxMap
     private var permissionsManager: PermissionsManager = PermissionsManager(this)
-    lateinit var mContext:Context
+    private lateinit var mContext:Context
     var detached : Boolean = true
     var countriesData = true
     var features = arrayListOf<Feature>()
-    var layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered")
+    val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered")
     var zonesAlgeriaData = arrayListOf<ZoneData>()
 
-    var listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
+    private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -87,8 +87,8 @@ class MapFragment : Fragment(), PermissionsListener {
 
             mapboxMap.addOnMapClickListener {
                 if (countriesData){
-                    var geocoder = Geocoder(activity, Locale("ar"))
-                    var adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+                    val geocoder = Geocoder(activity, Locale("ar"))
+                    val adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
                     Log.i("adresses", adresses.toString())
                     if (!adresses.isEmpty() && adresses[0].countryCode != null){
                         Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
@@ -125,7 +125,7 @@ class MapFragment : Fragment(), PermissionsListener {
             filterIcon.adapter = adapter
         }
 
-        var showAlgeriaData = changeDataDisplayView
+        val showAlgeriaData = changeDataDisplayView
 
         showAlgeriaData.setOnClickListener{
             countriesData = !countriesData
@@ -138,12 +138,12 @@ class MapFragment : Fragment(), PermissionsListener {
 
 
 
-        var searchCountry = searchCountryView
-        var adapter = ArrayAdapter<String>(activity!!, android.R.layout.simple_list_item_1, listCountries)
+        val searchCountry = searchCountryView
+        val adapter = ArrayAdapter<String>(activity!!, android.R.layout.simple_list_item_1, listCountries)
         searchCountry.setAdapter(adapter)
         searchCountry.setOnItemClickListener { parent, view, position, id ->
-            var geocoder = Geocoder(activity, Locale("ar"))
-            var adresses = geocoder.getFromLocationName(parent.getItemAtPosition(position).toString(), 1)
+            val geocoder = Geocoder(activity, Locale("ar"))
+            val adresses = geocoder.getFromLocationName(parent.getItemAtPosition(position).toString(), 1)
             val position = CameraPosition.Builder()
                 .target(LatLng(adresses[0].latitude, adresses[0].longitude))
                 .zoom(3.0)
@@ -168,11 +168,11 @@ class MapFragment : Fragment(), PermissionsListener {
     }
 
 
-    private fun addCasesOnMap(loadedMapStyle: Style){
+    fun addCasesOnMap(loadedMapStyle: Style){
 
         val layer = layers[0]
 
-        var features = FeatureCollection.fromFeatures(features)
+        val features = FeatureCollection.fromFeatures(features)
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -202,10 +202,10 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
-    private fun addDeathsOnMap(loadedMapStyle: Style){
+    fun addDeathsOnMap(loadedMapStyle: Style){
 
         val layer = layers[1]
-        var features = FeatureCollection.fromFeatures(features)
+        val features = FeatureCollection.fromFeatures(features)
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -235,10 +235,10 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
-    private fun addRecoveredOnMap(loadedMapStyle: Style){
+    fun addRecoveredOnMap(loadedMapStyle: Style){
 
         val layer = layers[2]
-        var features = FeatureCollection.fromFeatures(features)
+        val features = FeatureCollection.fromFeatures(features)
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -277,17 +277,17 @@ class MapFragment : Fragment(), PermissionsListener {
         val jsonRequestNbrDeaths = JsonObjectRequest(
             Request.Method.GET, urlCountriesData, null,
             Response.Listener { response ->
-                var count : Int = response.getInt("count")
-                var items = response.getJSONArray("items")
+                val count : Int = response.getInt("count")
+                val items = response.getJSONArray("items")
                 for (i in 0 until count){
-                    var item = items.getJSONObject(i)
-                    var nbrCases : Int = item.getInt("totalConfirmed")
-                    var nbrDeaths : Int = item.getInt("totalDead")
-                    var nbrRecovered : Int = item.getInt("totalRecovered")
-                    var countryCode : String = item.getString("counrtyCode")
-                    var latLng = CountryInfo.getLatLng(countryCode)
-                    var geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
-                    var feature : Feature = Feature.fromGeometry(geometry)
+                    val item = items.getJSONObject(i)
+                    val nbrCases : Int = item.getInt("totalConfirmed")
+                    val nbrDeaths : Int = item.getInt("totalDead")
+                    val nbrRecovered : Int = item.getInt("totalRecovered")
+                    val countryCode : String = item.getString("counrtyCode")
+                    val latLng = CountryInfo.getLatLng(countryCode)
+                    val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
+                    val feature : Feature = Feature.fromGeometry(geometry)
                     feature.addNumberProperty(layers[0], nbrCases)
                     feature.addNumberProperty(layers[1], nbrDeaths)
                     feature.addNumberProperty(layers[2], nbrRecovered)
@@ -367,7 +367,7 @@ class MapFragment : Fragment(), PermissionsListener {
         RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
-    private fun addCountryCasesOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
+    fun addCountryCasesOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
         val layer = layers[3]
 
 
@@ -401,7 +401,7 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
-    private fun addCountryDeathsOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
+    fun addCountryDeathsOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
 
         val layer = layers[4]
 
@@ -436,11 +436,11 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
-    private fun addCountryRecoveredOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
+    fun addCountryRecoveredOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
 
         val layer = layers[5]
 
-        var features = FeatureCollection.fromFeatures(features)
+        val features = FeatureCollection.fromFeatures(features)
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -478,6 +478,7 @@ class MapFragment : Fragment(), PermissionsListener {
             val d = zone.latLng.distanceTo(clickLatLng) / 1000
             if (d < 15 && d < closestDistance){
                 closestZone = zone.id
+                closestDistance = d
             }
         }
 
