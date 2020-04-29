@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="images">
+        <item>@drawable/first</item>
+        <item>@drawable/second</item>
+        <item>@drawable/third</item>
+        <item>@drawable/forth</item>
+
+
+    </integer-array>
+    <integer-array name="images1">
+        <item>@drawable/un</item>
+        <item>@drawable/deux</item>
+        <item>@drawable/trois</item>
+        <item>@drawable/quatre</item>
+    </integer-array>
+</resources>
