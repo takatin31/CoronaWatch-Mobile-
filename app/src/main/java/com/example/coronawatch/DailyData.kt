@@ -13,4 +13,14 @@ class DailyData (date : LocalDate, cases : Int, deads : Int, recovered : Int) : 
     override fun compareTo(other: DailyData): Int {
         return this.date.compareTo(other.date)
     }
+
+    fun getOptionData(option : String) : Int {
+        if (option.equals("cases")){
+            return cases
+        }else if (option.equals("deaths")){
+            return deads
+        }else{
+            return recovered
+        }
+    }
 }

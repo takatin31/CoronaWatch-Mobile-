@@ -26,6 +26,8 @@ import java.time.format.DateTimeFormatter
 
 class StatsActivity : AppCompatActivity() {
 
+    var dataHistory = mutableListOf<DailyData>()
+    var options = arrayListOf("cases", "deaths", "recovered")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,6 @@ class StatsActivity : AppCompatActivity() {
 
         countryNameView.text = countryName
 
-        setBarChart()
 
         initComoboxes()
 
@@ -48,7 +49,7 @@ class StatsActivity : AppCompatActivity() {
 
     private fun getCountryData(countryCode : String){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/historyByCountry?cc=$countryCode"
-        var dataHistory = mutableListOf<DailyData>()
+
 
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = JsonObjectRequest(
@@ -59,10 +60,8 @@ class StatsActivity : AppCompatActivity() {
 
                 for (i in 0 until count){
                     var item = items.getJSONObject(i)
-                    Log.i("daaaate", item.get("date").toString())
                     var stringDate = item.getString("date").split("-")
                     var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
-
                     var data = item.getJSONArray("items").getJSONObject(0)
                     var nbrCases = data.getInt("totalConfirmed")
                     var nbrDeaths = data.getInt("totalDead")
@@ -72,6 +71,8 @@ class StatsActivity : AppCompatActivity() {
                 }
 
                 dataHistory.sort()
+                setCharts(options[0], 0)
+                setCharts(options[0], 1)
 
                 var nbrCases = dataHistory.last().cases
                 var nbrDeaths = dataHistory.last().deads
@@ -88,63 +89,89 @@ class StatsActivity : AppCompatActivity() {
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
-    private fun setBarChart() {
-        val entries = ArrayList<BarEntry>()
-        entries.add(BarEntry(8f, 0f))
-        entries.add(BarEntry(2f, 1f))
-        entries.add(BarEntry(5f, 2f))
-        entries.add(BarEntry(20f, 3f))
-        entries.add(BarEntry(15f, 4f))
-        entries.add(BarEntry(19f, 5f))
-
-        val barDataSet = BarDataSet(entries, "Cells")
-
-        val labels = ArrayList<String>()
-        labels.add("18-Jan")
-        labels.add("19-Jan")
-        labels.add("20-Jan")
-        labels.add("21-Jan")
-        labels.add("22-Jan")
-        labels.add("23-Jan")
-
-        barChart.setDrawGridBackground(false)
-
-        barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+    private fun setCharts(option : String, idChart : Int) {
 
 
-        val data = BarData(barDataSet)
+        if (idChart == 0){
+
+            val entries = ArrayList<BarEntry>()
+            val labels = ArrayList<String>()
+            var i = 2f
+            for (data in dataHistory){
+                entries.add(BarEntry(i, data.getOptionData(option).toFloat()))
+                labels.add(data.date.toString())
+                i += 2
+            }
+
+            val barDataSet = BarDataSet(entries, "Cells")
 
 
-        barChart.data = data // set the data and list of lables into chart
+            barChart.setDrawGridBackground(false)
+
+            barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
 
 
-        //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
-        barDataSet.color = resources.getColor(R.color.mapbox_blue)
-
-        barChart.animateY(5000)
+            val data = BarData(barDataSet)
 
 
-
-        val Lentries = ArrayList<Entry>()
-        Lentries.add(BarEntry(8f, 0f))
-        Lentries.add(BarEntry(2f, 1f))
-        Lentries.add(BarEntry(5f, 2f))
-        Lentries.add(BarEntry(20f, 3f))
-        Lentries.add(BarEntry(15f, 4f))
-        Lentries.add(BarEntry(19f, 5f))
-
-        val lineDataSet = LineDataSet(Lentries, "Cells")
-
-        val Ldata = LineData(lineDataSet)
+            barChart.data = data // set the data and list of lables into chart
 
 
-        lineChart.data = Ldata // set the data and list of lables into chart
+            //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
+            barDataSet.color = resources.getColor(R.color.mapbox_blue)
+
+            barChart.animateY(1000)
+
+            barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+
+            barChart.description.isEnabled = false
+            barChart.description.textSize = 0f
+            barChart.axisLeft.axisMinimum = 0f
+            barChart.axisRight.axisMinimum = 0f
+            barChart.data.isHighlightEnabled = false
+            barChart.invalidate()
+            barChart.axisLeft.setDrawGridLines(false)
+            barChart.xAxis.setDrawGridLines(false)
+            barChart.axisRight.isEnabled = false
+        }else{
+
+            val Lentries = ArrayList<Entry>()
+            val labels = ArrayList<String>()
+            var i = 2f
+            for (data in dataHistory){
+                Lentries.add(BarEntry(i, data.getOptionData(option).toFloat()))
+                labels.add(data.date.toString())
+                i += 2
+            }
 
 
-        //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS)
-        barDataSet.color = resources.getColor(R.color.mapbox_blue)
+            val lineDataSet = LineDataSet(Lentries, "Cells")
 
-        lineChart.animateY(5000)
+            val Ldata = LineData(lineDataSet)
+
+            lineDataSet.color = resources.getColor(R.color.darkblue)
+
+
+            lineChart.data = Ldata // set the data and list of lables into chart
+
+
+            lineChart.animateY(1000)
+
+            lineChart.description.isEnabled = false
+            lineChart.description.textSize = 0f
+            lineChart.axisLeft.axisMinimum = 0f
+            lineChart.axisRight.axisMinimum = 0f
+            lineChart.data.isHighlightEnabled = false
+            lineChart.invalidate()
+            lineChart.axisLeft.setDrawGridLines(false)
+            lineChart.xAxis.setDrawGridLines(false)
+            lineChart.axisRight.isEnabled = false
+        }
+
+
+
+
+
     }
 
     private fun initComoboxes(){
