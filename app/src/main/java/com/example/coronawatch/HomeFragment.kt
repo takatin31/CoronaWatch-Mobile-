@@ -22,6 +22,7 @@ import java.time.LocalDate
 
 class HomeFragment : Fragment() {
 
+    //le contexte de l'activity
     lateinit var mContext:Context
     var detached : Boolean = true
 

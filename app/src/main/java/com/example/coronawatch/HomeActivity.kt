@@ -118,6 +118,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    //effecturer un effet sur les bottons
     fun buttonEffect(button: View) {
         button.setOnTouchListener { v, event ->
             when (event.action) {
@@ -135,6 +136,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
+    //changer l'index
     fun changeIndex(newIndex: Int){
         currentIndex = newIndex
         var titleTextView = fragmentTitleView

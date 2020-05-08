@@ -52,6 +52,7 @@ class StatsActivity : AppCompatActivity() {
         initComoboxes()
     }
 
+    //recuperer les données d'un pays
     private fun getCountryData(countryCode : String){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/historyByCountry?cc=$countryCode"
 
@@ -106,6 +107,7 @@ class StatsActivity : AppCompatActivity() {
     }
 
 
+    //recuperer les données sur une zone
     private fun getZoneData(zoneId : Int){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/$zoneId"
 
@@ -154,12 +156,14 @@ class StatsActivity : AppCompatActivity() {
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
+    //afficher les graphes (barchart et linechart)
     private fun setCharts(option : String, idChart : Int) {
 
         val idColor = getOptionColor(option)
 
         if (idChart == 0){
-
+            //cette partie concerne le graph barchart
+            // on recupere et on affiche les donnes
             val entries = ArrayList<BarEntry>()
             var i = 0f
             for (data in dataHistory){
@@ -192,7 +196,8 @@ class StatsActivity : AppCompatActivity() {
             barChart.xAxis.setDrawGridLines(false)
             barChart.axisRight.isEnabled = false
         }else{
-
+            //cette partie concerne le graph linechart
+            // on recupere et on affiche les donnes
             val lentries = ArrayList<Entry>()
             val labels = ArrayList<String>()
             lentries.add(BarEntry(0f, 0f))
@@ -233,6 +238,7 @@ class StatsActivity : AppCompatActivity() {
     }
 
 
+    //recuperer la couleur selon l'option chosiie
     private fun getOptionColor(option : String) : Int {
         return when (option) {
             "cases" -> {
@@ -247,6 +253,7 @@ class StatsActivity : AppCompatActivity() {
         }
     }
 
+    //initialiser les combobox
     private fun initComoboxes(){
         val spinnerBarChart: Spinner = spinnerBarChartView
         val spinnerLineChart: Spinner = spinnerLineChartView

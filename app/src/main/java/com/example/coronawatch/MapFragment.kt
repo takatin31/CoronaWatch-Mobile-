@@ -35,6 +35,7 @@ import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.style.expressions.Expression
 import com.mapbox.mapboxsdk.style.expressions.Expression.*
 import com.mapbox.mapboxsdk.style.layers.CircleLayer
 import com.mapbox.mapboxsdk.style.layers.Property.NONE
@@ -157,17 +158,24 @@ class MapFragment : Fragment(), PermissionsListener {
 
     }
 
+    //afficher les data dans la map
     private fun showDataOnMap(type : String, loadedMapStyle : Style){
+
 
         for (layer in layers){
 
-            loadedMapStyle.getLayer(layer)!!.setProperties(visibility(NONE))
+            if (loadedMapStyle.getLayer(layer) != null){
+                loadedMapStyle.getLayer(layer)!!.setProperties(visibility(NONE))
+            }
+
         }
 
-        loadedMapStyle.getLayer(type)!!.setProperties(visibility(VISIBLE))
+        if (loadedMapStyle.getLayer(type) != null)
+            loadedMapStyle.getLayer(type)!!.setProperties(visibility(VISIBLE))
     }
 
 
+    //ajouter les données des cas infectés dans la map
     fun addCasesOnMap(loadedMapStyle: Style){
 
         val layer = layers[0]
@@ -191,10 +199,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(15),division(get(layer), abs(200))))),
-                    stop(5,min(abs(30),max(abs(20),division(get(layer), abs(100))))),
-                    stop(10,max(abs(50), min(abs(30),division(get(layer), abs(50))))),
-                    stop(13,max(abs(50),min(abs(30),division(get(layer), abs(10)))))
+                    stop(0, normalize(get(layer), abs(1), 1, 10)),
+                    stop(1, normalize(get(layer), abs(1), 1, 10)),
+                    stop(6, normalize(get(layer), abs(3), 1, 10)),
+                    stop(10, normalize(get(layer), abs(5), 1, 10)),
+                    stop(12, normalize(get(layer), abs(6), 1, 10))
                 )
             )
         )
@@ -202,6 +211,7 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
+    //ajouter les données des cas de deces dans la map
     fun addDeathsOnMap(loadedMapStyle: Style){
 
         val layer = layers[1]
@@ -224,10 +234,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1482e7c")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(8),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(12),division(get(layer), abs(20))))),
-                    stop(10,max(abs(30), min(abs(20),division(get(layer), abs(10))))),
-                    stop(13,max(abs(30),min(abs(20),division(get(layer), abs(5)))))
+                    stop(0, normalize(get(layer), abs(1), 3, 10)),
+                    stop(1, normalize(get(layer), abs(1), 3, 10)),
+                    stop(6, normalize(get(layer), abs(3), 3, 10)),
+                    stop(10, normalize(get(layer), abs(5), 3, 10)),
+                    stop(12, normalize(get(layer), abs(6), 3, 10))
                 )
             )
         )
@@ -235,6 +246,7 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
+    //ajouter les données des cas cared dans la map
     fun addRecoveredOnMap(loadedMapStyle: Style){
 
         val layer = layers[2]
@@ -257,10 +269,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1159a39")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(8),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(12),division(get(layer), abs(20))))),
-                    stop(10,max(abs(30), min(abs(20),division(get(layer), abs(10))))),
-                    stop(13,max(abs(30),min(abs(20),division(get(layer), abs(5)))))
+                    stop(0, normalize(get(layer), abs(1), 3, 10)),
+                    stop(1, normalize(get(layer), abs(1), 3, 10)),
+                    stop(6, normalize(get(layer), abs(3), 3, 10)),
+                    stop(10, normalize(get(layer), abs(5), 3, 10)),
+                    stop(12, normalize(get(layer), abs(6), 3, 10))
                 )
             )
         )
@@ -268,7 +281,16 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
+    fun normalize (value : Expression, zoom : Expression, min : Int, max : Int)  : Expression
+    {
 
+
+        val newVal : Expression = division(subtract(sqrt(value), abs(min)), subtract(abs(max), abs(min)))
+        return product(newVal, pow(abs(2), zoom))
+    }
+
+
+    //recupere les données relatives a tous les pays
     private fun getCountriesData(loadedMapStyle: Style){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/groupByCountry"
 
@@ -304,6 +326,7 @@ class MapFragment : Fragment(), PermissionsListener {
         RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
+    //recupere les données relatives a un pays
     private fun getCountryData(countryCode : String, loadedMapStyle: Style){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/country?cc=$countryCode"
         val features = arrayListOf<Feature>()
@@ -314,21 +337,21 @@ class MapFragment : Fragment(), PermissionsListener {
             Response.Listener { response ->
                 val count : Int = response.getInt("count")
                 val items = response.getJSONArray("rows")
-                for (i in 0 until count){
+                for (i in 0 until count) {
                     val item = items.getJSONObject(i)
                     val id = item.getInt("zoneId")
                     val datazone = item.getJSONArray("dataZones").getJSONObject(0)
-                    val nbrCases : Int = datazone.getInt("totalConfirmed")
-                    val nbrDeaths : Int = datazone.getInt("totalDead")
-                    val nbrRecovered : Int = datazone.getInt("totalRecovered")
+                    val nbrCases: Int = datazone.getInt("totalConfirmed")
+                    val nbrDeaths: Int = datazone.getInt("totalDead")
+                    val nbrRecovered: Int = datazone.getInt("totalRecovered")
                     val latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
                     val zoneData = ZoneData(id, latLng, nbrCases, nbrDeaths, nbrRecovered)
                     zonesAlgeriaData.add(zoneData)
                     val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
-                    val feature : Feature = Feature.fromGeometry(geometry)
-                    feature.addNumberProperty(layers[0], nbrCases)
-                    feature.addNumberProperty(layers[1], nbrDeaths)
-                    feature.addNumberProperty(layers[2], nbrRecovered)
+                    val feature: Feature = Feature.fromGeometry(geometry)
+                    feature.addNumberProperty(layers[3], nbrCases)
+                    feature.addNumberProperty(layers[4], nbrDeaths)
+                    feature.addNumberProperty(layers[5], nbrRecovered)
                     features.add(feature)
                 }
 
@@ -344,17 +367,13 @@ class MapFragment : Fragment(), PermissionsListener {
                     }
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                         if (countriesData){
-                            when(position){
-                                0 -> showDataOnMap(layers[0], loadedMapStyle)
-                                1 -> showDataOnMap(layers[1], loadedMapStyle)
-                                2 -> showDataOnMap(layers[2], loadedMapStyle)
-                            }
+
+                                showDataOnMap(layers[position], loadedMapStyle)
+
                         }else{
-                            when(position){
-                                0 -> showDataOnMap(layers[3], loadedMapStyle)
-                                1 -> showDataOnMap(layers[4], loadedMapStyle)
-                                2 -> showDataOnMap(layers[5], loadedMapStyle)
-                            }
+
+                                showDataOnMap(layers[3+position], loadedMapStyle)
+
                         }
                     }
                 }
@@ -367,6 +386,7 @@ class MapFragment : Fragment(), PermissionsListener {
         RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
+    //ajouter les données des cas infected dans la map
     fun addCountryCasesOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
         val layer = layers[3]
 
@@ -390,10 +410,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(3),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(5),division(get(layer), abs(20))))),
-                    stop(10,min(abs(100), max(abs(50),division(get(layer), abs(10))))),
-                    stop(13,min(abs(100),max(abs(50),division(get(layer), abs(5)))))
+                    stop(0, normalize(get(layer), abs(1), 5, 25)),
+                    stop(1, normalize(get(layer), abs(1), 5, 25)),
+                    stop(6, normalize(get(layer), abs(3), 5, 25)),
+                    stop(10, normalize(get(layer), abs(5), 5, 25)),
+                    stop(12, normalize(get(layer), abs(6), 5, 25))
                 )
             )
         )
@@ -401,12 +422,14 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
+    //ajouter les données des cas de deces dans la map
     fun addCountryDeathsOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
 
         val layer = layers[4]
 
-
         val features = FeatureCollection.fromFeatures(features)
+
+
         try {
             loadedMapStyle.addSource(
                 GeoJsonSource(
@@ -425,10 +448,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1482e7c")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(5),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(8),division(get(layer), abs(20))))),
-                    stop(10,min(abs(100), max(abs(50),division(get(layer), abs(10))))),
-                    stop(13,min(abs(100),max(abs(50),division(get(layer), abs(5)))))
+                    stop(0, normalize(get(layer), abs(1), 10, 20)),
+                    stop(1, normalize(get(layer), abs(1), 10, 20)),
+                    stop(6, normalize(get(layer), abs(6), 10, 20)),
+                    stop(10, normalize(get(layer), abs(10), 10, 20)),
+                    stop(12, normalize(get(layer), abs(12), 10, 20))
                 )
             )
         )
@@ -436,6 +460,7 @@ class MapFragment : Fragment(), PermissionsListener {
         loadedMapStyle.addLayer(circles)
     }
 
+    //ajouter les données des cas cared dans la map
     fun addCountryRecoveredOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
 
         val layer = layers[5]
@@ -459,10 +484,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1159a39")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(1, min(abs(30),max(abs(5),division(get(layer), abs(50))))),
-                    stop(5,min(abs(30),max(abs(8),division(get(layer), abs(20))))),
-                    stop(10,min(abs(100), max(abs(50),division(get(layer), abs(10))))),
-                    stop(13,min(abs(100),max(abs(50),division(get(layer), abs(5)))))
+                    stop(0, normalize(get(layer), abs(1), 10, 20)),
+                    stop(1, normalize(get(layer), abs(1), 10, 20)),
+                    stop(6, normalize(get(layer), abs(5), 10, 20)),
+                    stop(10, normalize(get(layer), abs(8), 10, 20)),
+                    stop(12, normalize(get(layer), abs(10), 10, 20))
                 )
             )
         )
@@ -471,6 +497,7 @@ class MapFragment : Fragment(), PermissionsListener {
     }
 
 
+    //lorsqu'un cclick est effectué sur la map
     private fun zoneClicked(clickLatLng : LatLng) : Int{
         var closestZone : Int = -1
         var closestDistance : Double = Double.MAX_VALUE
