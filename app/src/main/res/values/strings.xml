@@ -53,4 +53,5 @@
     <string name="closestDistanceLabel">على اقرب منطقة خطر</string>
     <string name="degre_danger">درجة الخطورة :</string>
     <string name="reason_danger">السبب :</string>
+    <string name="dangerZoneLabel">هذه منطقة خطيرة</string>
 </resources>

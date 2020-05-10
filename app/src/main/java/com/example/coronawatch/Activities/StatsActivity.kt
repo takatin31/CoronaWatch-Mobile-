@@ -146,6 +146,7 @@ class StatsActivity : AppCompatActivity() {
                 val degre = item.getInt("degre")
                 if (degre > 1){
                     getZoneData(zoneData)
+                    noDataMessageView.visibility = View.GONE
                 }else{
                     var stringDate = item.getString("updatedAt").split("T")[0].split("-")
                     var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
@@ -154,6 +155,7 @@ class StatsActivity : AppCompatActivity() {
                     val flag : Int = World.getFlagOf(countryCode)
                     countryImageView.setImageResource(flag)
                     countryNameView.text = item.getJSONObject("zone").getString("city")
+                    noDataMessageView.visibility = View.VISIBLE
                 }
 
             },

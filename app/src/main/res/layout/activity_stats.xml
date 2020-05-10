@@ -69,12 +69,26 @@
             android:padding="5dp">
 
             <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/almarai_bold"
+                android:text="@string/dangerZoneLabel"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <TextView
                 android:id="@+id/degreTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:fontFamily="@font/almarai_regular"
                 android:text="@string/degre_danger"
                 android:textColor="@color/black"
@@ -84,6 +98,7 @@
                 android:id="@+id/degreValueView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
@@ -323,6 +338,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_below="@id/spinnerLineChartView" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/noDataMessageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai_bold"
+                android:text="هذه المنطقة لا تحتوي على اي حالات"
+                android:textAlignment="center"
+                android:textSize="28sp" />
         </RelativeLayout>
     </LinearLayout>
 
