@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,6 +19,10 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.coronawatch.DataClasses.CountryInfo
+import com.example.coronawatch.DataClasses.ZoneData
+import com.example.coronawatch.R
+import com.example.coronawatch.Request.RequestHandler
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.geojson.Feature
@@ -42,12 +46,16 @@ import com.mapbox.mapboxsdk.style.layers.Property.NONE
 import com.mapbox.mapboxsdk.style.layers.Property.VISIBLE
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import kotlinx.android.synthetic.main.fragment_map.*
 import java.net.URISyntaxException
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MapFragment : Fragment(), PermissionsListener {
+class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<RFACLabelItem<Int>> {
 
     private var mapView: MapView? = null
     private lateinit var mapboxMap: MapboxMap
@@ -56,8 +64,9 @@ class MapFragment : Fragment(), PermissionsListener {
     var detached : Boolean = true
     var countriesData = true
     var features = arrayListOf<Feature>()
-    val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered")
+    val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered", "algeriaDangerZone")
     var zonesAlgeriaData = arrayListOf<ZoneData>()
+    var isFABOpen = false
 
     private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
@@ -79,7 +88,7 @@ class MapFragment : Fragment(), PermissionsListener {
 
         // Custom map style has been loaded and map is now ready
             Log.i("Succes", "Map loaded Succefully")
-            enableLocationComponent(it)
+            //enableLocationComponent(it)
 
             getCountriesData(it)
             getCountryData("DZ", it)
@@ -126,14 +135,24 @@ class MapFragment : Fragment(), PermissionsListener {
             filterIcon.adapter = adapter
         }
 
-        val showAlgeriaData = changeDataDisplayView
+        menuFloatingBtn.setOnClickListener {
+            if(!isFABOpen){
+                showFABMenu();
+            }else{
+                closeFABMenu();
+            }
+        }
+
+        val showAlgeriaData = algeriaFloatingBtn
 
         showAlgeriaData.setOnClickListener{
             countriesData = !countriesData
             if (countriesData){
                 showDataOnMap(layers[0], mapboxMap.style!!)
+                showAlgeriaData.setImageResource(R.drawable.ic_algeria)
             }else{
                 showDataOnMap(layers[3], mapboxMap.style!!)
+                showAlgeriaData.setImageResource(R.drawable.ic_world)
             }
         }
 
@@ -156,6 +175,19 @@ class MapFragment : Fragment(), PermissionsListener {
             Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
         }
 
+
+    }
+
+    private fun showFABMenu(){
+        isFABOpen=true;
+        algeriaFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_65))
+        dangerZoneFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_125))
+    }
+
+    private fun closeFABMenu(){
+        isFABOpen=false;
+        algeriaFloatingBtn.animate().translationY(0f)
+        dangerZoneFloatingBtn.animate().translationY(0f)
     }
 
     //afficher les data dans la map
@@ -285,7 +317,7 @@ class MapFragment : Fragment(), PermissionsListener {
     {
 
 
-        val newVal : Expression = division(subtract(sqrt(value), abs(min)), subtract(abs(max), abs(min)))
+        val newVal : Expression = division(abs(subtract(sqrt(value), abs(min))), subtract(abs(max), abs(min)))
         return product(newVal, pow(abs(2), zoom))
     }
 
@@ -345,7 +377,13 @@ class MapFragment : Fragment(), PermissionsListener {
                     val nbrDeaths: Int = datazone.getInt("totalDead")
                     val nbrRecovered: Int = datazone.getInt("totalRecovered")
                     val latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
-                    val zoneData = ZoneData(id, latLng, nbrCases, nbrDeaths, nbrRecovered)
+                    val zoneData = ZoneData(
+                        id,
+                        latLng,
+                        nbrCases,
+                        nbrDeaths,
+                        nbrRecovered
+                    )
                     zonesAlgeriaData.add(zoneData)
                     val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
                     val feature: Feature = Feature.fromGeometry(geometry)
@@ -366,15 +404,13 @@ class MapFragment : Fragment(), PermissionsListener {
 
                     }
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
                         if (countriesData){
-
-                                showDataOnMap(layers[position], loadedMapStyle)
-
+                            showDataOnMap(layers[position], loadedMapStyle)
                         }else{
-
-                                showDataOnMap(layers[3+position], loadedMapStyle)
-
+                            showDataOnMap(layers[3+position], loadedMapStyle)
                         }
+
                     }
                 }
 
@@ -410,11 +446,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 5, 25)),
-                    stop(1, normalize(get(layer), abs(1), 5, 25)),
-                    stop(6, normalize(get(layer), abs(3), 5, 25)),
-                    stop(10, normalize(get(layer), abs(5), 5, 25)),
-                    stop(12, normalize(get(layer), abs(6), 5, 25))
+                    stop(0, normalize(get(layer), abs(1), 1, 25)),
+                    stop(1, normalize(get(layer), abs(1), 1, 25)),
+                    stop(6, normalize(get(layer), abs(4), 1, 25)),
+                    stop(10, normalize(get(layer), abs(8), 1, 25)),
+                    stop(12, normalize(get(layer), abs(10), 1, 25))
                 )
             )
         )
@@ -448,11 +484,11 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1482e7c")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 10, 20)),
-                    stop(1, normalize(get(layer), abs(1), 10, 20)),
-                    stop(6, normalize(get(layer), abs(6), 10, 20)),
-                    stop(10, normalize(get(layer), abs(10), 10, 20)),
-                    stop(12, normalize(get(layer), abs(12), 10, 20))
+                    stop(0, normalize(get(layer), abs(1), 1, 20)),
+                    stop(1, normalize(get(layer), abs(1), 1, 20)),
+                    stop(6, normalize(get(layer), abs(6), 1, 20)),
+                    stop(10, normalize(get(layer), abs(10), 1, 20)),
+                    stop(12, normalize(get(layer), abs(12), 1, 20))
                 )
             )
         )
@@ -484,11 +520,47 @@ class MapFragment : Fragment(), PermissionsListener {
             circleStrokeColor(Color.parseColor("#d1159a39")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 10, 20)),
-                    stop(1, normalize(get(layer), abs(1), 10, 20)),
-                    stop(6, normalize(get(layer), abs(5), 10, 20)),
-                    stop(10, normalize(get(layer), abs(8), 10, 20)),
-                    stop(12, normalize(get(layer), abs(10), 10, 20))
+                    stop(0, normalize(get(layer), abs(1), 1, 20)),
+                    stop(1, normalize(get(layer), abs(1), 1, 20)),
+                    stop(6, normalize(get(layer), abs(6), 1, 20)),
+                    stop(10, normalize(get(layer), abs(10), 1, 20)),
+                    stop(12, normalize(get(layer), abs(12), 1, 20))
+                )
+            )
+        )
+
+        loadedMapStyle.addLayer(circles)
+    }
+
+    //ajouter les données des cas cared dans la map
+    fun addCountryDangerZoneOnMap(features: ArrayList<Feature>, loadedMapStyle : Style) {
+
+        val layer = layers[6]
+
+        val features = FeatureCollection.fromFeatures(features)
+        try {
+            loadedMapStyle.addSource(
+                GeoJsonSource(
+                    layer,
+                    features
+                )
+            )
+        } catch (uriSyntaxException: URISyntaxException) {
+            Log.i("Check the URL %s", uriSyntaxException.message)
+        }
+
+        val circles = CircleLayer(layer, layer)
+        circles.setProperties(
+            circleColor(Color.parseColor("#601bb043")),
+            circleStrokeWidth(2f),
+            circleStrokeColor(Color.parseColor("#d1159a39")),
+            circleRadius(
+                interpolate(linear(), zoom(),
+                    stop(0, normalize(get(layer), abs(1), 1, 20)),
+                    stop(1, normalize(get(layer), abs(1), 1, 20)),
+                    stop(6, normalize(get(layer), abs(6), 1, 20)),
+                    stop(10, normalize(get(layer), abs(10), 1, 20)),
+                    stop(12, normalize(get(layer), abs(12), 1, 20))
                 )
             )
         )
@@ -520,7 +592,9 @@ class MapFragment : Fragment(), PermissionsListener {
             // Create and customize the LocationComponent's options
             val customLocationComponentOptions = LocationComponentOptions.builder(context!!)
                 .trackingGesturesManagement(true)
-                .accuracyColor(ContextCompat.getColor(context!!, R.color.darkblue))
+                .accuracyColor(ContextCompat.getColor(context!!,
+                    R.color.darkblue
+                ))
                 .build()
 
             val locationComponentActivationOptions = LocationComponentActivationOptions.builder(context!!, loadedMapStyle)
@@ -547,6 +621,7 @@ class MapFragment : Fragment(), PermissionsListener {
             permissionsManager.requestLocationPermissions(activity)
         }
     }
+
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -619,6 +694,14 @@ class MapFragment : Fragment(), PermissionsListener {
     override fun onDetach() {
         super.onDetach()
         detached = true
+    }
+
+    override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<RFACLabelItem<Int>>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<RFACLabelItem<Int>>?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

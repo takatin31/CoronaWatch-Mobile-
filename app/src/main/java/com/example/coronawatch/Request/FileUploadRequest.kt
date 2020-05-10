@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Request
 
 import android.util.Log
 import com.android.volley.*

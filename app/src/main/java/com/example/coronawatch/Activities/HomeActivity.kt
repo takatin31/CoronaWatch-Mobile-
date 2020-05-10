@@ -1,16 +1,17 @@
-package com.example.coronawatch
+package com.example.coronawatch.Activities
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.coronawatch.Fragments.HomeFragment
+import com.example.coronawatch.R
+import com.example.coronawatch.Fragments.SignalFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -46,7 +47,8 @@ class HomeActivity : AppCompatActivity() {
 
         homeBtn.setOnClickListener {
 
-            var homeFr: Fragment = HomeFragment()
+            var homeFr: Fragment =
+                HomeFragment()
             if (homeFr != null) {
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.mainFragmentView, homeFr)
@@ -79,7 +81,8 @@ class HomeActivity : AppCompatActivity() {
         mapBtn.setOnClickListener {
 
             if (currentIndex != 1){
-                var mapFr: Fragment = MapFragment()
+                var mapFr: Fragment =
+                    MapFragment()
                 if (mapFr != null) {
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.mainFragmentView, mapFr)
@@ -123,12 +126,16 @@ class HomeActivity : AppCompatActivity() {
         button.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    v.setBackgroundColor(ContextCompat.getColor(this, R.color.greyLighter))
+                    v.setBackgroundColor(ContextCompat.getColor(this,
+                        R.color.greyLighter
+                    ))
                     //v.background.setColorFilter(resources.getColor(R.color.light_grey), PorterDuff.Mode.SRC_ATOP)
                     v.invalidate()
                 }
                 MotionEvent.ACTION_UP -> {
-                    v.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+                    v.setBackgroundColor(ContextCompat.getColor(this,
+                        R.color.white
+                    ))
                     v.invalidate()
                 }
             }

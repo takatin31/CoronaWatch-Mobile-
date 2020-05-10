@@ -1,6 +1,5 @@
-package com.example.coronawatch
+package com.example.coronawatch.Fragments
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +10,9 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.mapbox.android.core.location.LocationEngine
-import com.mapbox.android.core.location.LocationEngineCallback
-import com.mapbox.android.core.location.LocationEngineProvider
-import com.mapbox.android.core.location.LocationEngineResult
-import com.mapbox.mapboxsdk.geometry.LatLng
+import com.example.coronawatch.DataClasses.DailyData
+import com.example.coronawatch.R
+import com.example.coronawatch.Request.RequestHandler
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDate
 
@@ -75,7 +72,13 @@ class HomeFragment : Fragment() {
                         var nbrCases = data.getInt("totalConfirmed")
                         var nbrDeaths = data.getInt("totalDead")
                         var nbrRecovered = data.getInt("totalRecovered")
-                        var dailyData = DailyData(date, nbrCases, nbrDeaths, nbrRecovered)
+                        var dailyData =
+                            DailyData(
+                                date,
+                                nbrCases,
+                                nbrDeaths,
+                                nbrRecovered
+                            )
                         dataHistory.add(dailyData)
                     }
 
@@ -100,7 +103,8 @@ class HomeFragment : Fragment() {
 
 
         if (!detached){
-            RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestData)
+            RequestHandler.getInstance(mContext)
+                .addToRequestQueue(jsonRequestData)
         }
 
     }

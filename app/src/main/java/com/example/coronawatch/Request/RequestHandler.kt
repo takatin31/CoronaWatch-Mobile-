@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Request
 
 import android.content.Context
 import com.android.volley.Request
@@ -11,7 +11,8 @@ class RequestHandler constructor(context: Context) {
         private var INSTANCE: RequestHandler? = null
         fun getInstance(context: Context) =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: RequestHandler(context).also {
+                INSTANCE
+                    ?: RequestHandler(context).also {
                     INSTANCE = it
                 }
             }

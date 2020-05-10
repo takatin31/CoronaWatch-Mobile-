@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:id="@+id/homeActivity"
-    tools:context=".HomeActivity">
+    tools:context=".Activities.HomeActivity">
 
     <LinearLayout
         android:id="@+id/topNAvigation"

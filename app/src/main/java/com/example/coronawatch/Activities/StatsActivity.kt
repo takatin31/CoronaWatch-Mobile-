@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.Activities
 
 import android.os.Bundle
 import android.util.Log
@@ -12,16 +12,13 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.blongho.country_data.World
-import com.facebook.internal.Mutable
+import com.example.coronawatch.DataClasses.DailyData
+import com.example.coronawatch.R
+import com.example.coronawatch.Request.RequestHandler
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.mapbox.geojson.Feature
-import com.mapbox.geojson.Point
 import kotlinx.android.synthetic.main.activity_stats.*
-import kotlinx.android.synthetic.main.fragment_map.*
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 
 class StatsActivity : AppCompatActivity() {
@@ -73,7 +70,13 @@ class StatsActivity : AppCompatActivity() {
                     var nbrCases = data.getInt("totalConfirmed")
                     var nbrDeaths = data.getInt("totalDead")
                     var nbrRecovered = data.getInt("totalRecovered")
-                    var dailyData = DailyData(date, nbrCases, nbrDeaths, nbrRecovered)
+                    var dailyData =
+                        DailyData(
+                            date,
+                            nbrCases,
+                            nbrDeaths,
+                            nbrRecovered
+                        )
                     dataHistory.add(dailyData)
                 }
 
@@ -128,7 +131,13 @@ class StatsActivity : AppCompatActivity() {
                     var nbrCases = item.getInt("totalConfirmed")
                     var nbrDeaths = item.getInt("totalDead")
                     var nbrRecovered = item.getInt("totalRecovered")
-                    var dailyData = DailyData(date, nbrCases, nbrDeaths, nbrRecovered)
+                    var dailyData =
+                        DailyData(
+                            date,
+                            nbrCases,
+                            nbrDeaths,
+                            nbrRecovered
+                        )
                     dataHistory.add(dailyData)
                 }
 

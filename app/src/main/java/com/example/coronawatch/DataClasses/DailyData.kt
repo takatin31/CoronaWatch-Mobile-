@@ -1,7 +1,6 @@
-package com.example.coronawatch
+package com.example.coronawatch.DataClasses
 
 import java.time.LocalDate
-import java.util.*
 
 //contient les données d'une zone qui est dans l'historique
 //ceci est relatif a une datazone

@@ -1,4 +1,4 @@
-package com.example.coronawatch
+package com.example.coronawatch.DataClasses
 
 import com.mapbox.mapboxsdk.geometry.LatLng
 

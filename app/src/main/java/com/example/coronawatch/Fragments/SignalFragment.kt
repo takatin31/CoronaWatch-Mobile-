@@ -1,22 +1,21 @@
-package com.example.coronawatch
+package com.example.coronawatch.Fragments
 
 
-import android.Manifest
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.example.coronawatch.R
+import com.example.coronawatch.Request.FileDataPart
+import com.example.coronawatch.Request.FileUploadRequest
 import kotlinx.android.synthetic.main.fragment_signal.*
 import java.io.IOException
 
@@ -98,7 +97,12 @@ class SignalFragment : Fragment() {
         ) {
             override fun getByteData(): MutableMap<String, FileDataPart> {
                 var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart("image", imageData!!, "mp4")
+                params["imageFile"] =
+                    FileDataPart(
+                        "image",
+                        imageData!!,
+                        "mp4"
+                    )
                 return params
             }
         }
