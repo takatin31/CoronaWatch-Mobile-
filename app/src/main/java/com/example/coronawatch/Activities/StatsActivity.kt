@@ -33,21 +33,32 @@ class StatsActivity : AppCompatActivity() {
         World.init(this)
 
         var isCountry = intent.getBooleanExtra("isCountry", false)
+        val isRiskZone = intent.getBooleanExtra("isDangerZone", false)
 
-        if (isCountry){
-            var countryCode = intent.getStringExtra("countryCode")
-            var countryName = intent.getStringExtra("countryName")
-            val flag : Int = World.getFlagOf(countryCode)
-            countryImageView.setImageResource(flag)
-            countryNameView.text = countryName
-            getCountryData(countryCode)
+        if (isRiskZone){
+            var riskZoneId = intent.getIntExtra("riskZoneId", -1)
+            getRiskZoneData(riskZoneId)
         }else{
-            var zoneId = intent.getIntExtra("zoneId", -1)
-            getZoneData(zoneId)
+            if (isCountry){
+                var countryCode = intent.getStringExtra("countryCode")
+                var countryName = intent.getStringExtra("countryName")
+                val flag : Int = World.getFlagOf(countryCode)
+                countryImageView.setImageResource(flag)
+                countryNameView.text = countryName
+                getCountryData(countryCode)
+            }else{
+                var zoneId = intent.getIntExtra("zoneId", -1)
+                getZoneData(zoneId)
+            }
+            initComoboxes()
         }
 
-        initComoboxes()
+
+
+
+
     }
+
 
     //recuperer les données d'un pays
     private fun getCountryData(countryCode : String){
@@ -109,6 +120,24 @@ class StatsActivity : AppCompatActivity() {
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
     }
 
+    private fun getRiskZoneData(riskZoneId : Int){
+        Log.i("thisiszonerisk", riskZoneId.toString())
+        val urlRiskZoneData = "${resources.getString(R.string.host)}/api/v0/zoneRisque/$riskZoneId"
+
+        // Request a string response from the provided URL.
+        val jsonRequestNbrDeaths = JsonObjectRequest(
+            Request.Method.GET, urlRiskZoneData, null,
+            Response.Listener { response ->
+                val item = response.getJSONObject("item")
+                val zoneData = item.getInt("zoneZoneId")
+                val cause = item.getString("cause")
+                val degre = item.getInt("degre")
+                getZoneData(zoneData)
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") })
+
+        RequestHandler.getInstance(this).addToRequestQueue(jsonRequestNbrDeaths)
+    }
 
     //recuperer les données sur une zone
     private fun getZoneData(zoneId : Int){

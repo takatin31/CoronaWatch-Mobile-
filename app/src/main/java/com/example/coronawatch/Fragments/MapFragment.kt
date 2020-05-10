@@ -23,10 +23,7 @@ import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.Activities.StatsActivity
 import com.example.coronawatch.Adapters.FilterAdapter
-import com.example.coronawatch.DataClasses.CountryInfo
-import com.example.coronawatch.DataClasses.Filter
-import com.example.coronawatch.DataClasses.RiskZone
-import com.example.coronawatch.DataClasses.ZoneData
+import com.example.coronawatch.DataClasses.*
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.RequestHandler
 import com.mapbox.android.core.permissions.PermissionsListener
@@ -70,10 +67,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     var countriesData = true
     var features = arrayListOf<Feature>()
     val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered", "algeriaDangerZone")
-    var zonesAlgeriaData = arrayListOf<ZoneData>()
+    var zonesAlgeriaData = arrayListOf<Zone>()
     var isFABOpen = false
     var filterList = arrayListOf<Filter>()
-    var riskZoneList = arrayListOf<RiskZone>()
+    var riskZoneList = arrayListOf<Zone>()
+    var dangerZoneMode : Boolean = false
 
     private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
@@ -103,28 +101,43 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         }
 
             mapboxMap.addOnMapClickListener {
-                if (countriesData){
-                    val geocoder = Geocoder(activity, Locale("ar"))
-                    val adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                    Log.i("adresses", adresses.toString())
-                    if (!adresses.isEmpty() && adresses[0].countryCode != null){
-                        Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
-                        val intent = Intent(activity, StatsActivity::class.java)
-                        intent.putExtra("isCountry", true)
-                        intent.putExtra("countryCode", adresses[0].countryCode)
-                        intent.putExtra("countryName", adresses[0].countryName)
-                        startActivity(intent)
-                    }
-                }else{
-                    val zoneClicked : Int = zoneClicked(it)
+                if (dangerZoneMode){
+                    val zoneClicked : Int = zoneClicked(it, riskZoneList)
                     if (zoneClicked != -1){
                         Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
                         val intent = Intent(activity, StatsActivity::class.java)
-                        intent.putExtra("zoneId", zoneClicked)
+                        intent.putExtra("riskZoneId", zoneClicked)
                         intent.putExtra("isCountry", false)
+                        intent.putExtra("isDangerZone", true)
                         startActivity(intent)
                     }
+                }else{
+                    if (countriesData){
+                        val geocoder = Geocoder(activity, Locale("ar"))
+                        val adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+                        Log.i("adresses", adresses.toString())
+                        if (!adresses.isEmpty() && adresses[0].countryCode != null){
+                            Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
+                            val intent = Intent(activity, StatsActivity::class.java)
+                            intent.putExtra("isCountry", true)
+                            intent.putExtra("countryCode", adresses[0].countryCode)
+                            intent.putExtra("countryName", adresses[0].countryName)
+                            intent.putExtra("isDangerZone", false)
+                            startActivity(intent)
+                        }
+                    }else{
+                        val zoneClicked : Int = zoneClicked(it, zonesAlgeriaData)
+                        if (zoneClicked != -1){
+                            Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
+                            val intent = Intent(activity, StatsActivity::class.java)
+                            intent.putExtra("zoneId", zoneClicked)
+                            intent.putExtra("isCountry", false)
+                            intent.putExtra("isDangerZone", false)
+                            startActivity(intent)
+                        }
+                    }
                 }
+
 
                 true
             }
@@ -148,6 +161,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         val showAlgeriaData = algeriaFloatingBtn
 
         showAlgeriaData.setOnClickListener{
+            dangerZoneMode = false
             countriesData = !countriesData
             if (countriesData){
                 showDataOnMap(layers[0], mapboxMap.style!!)
@@ -159,6 +173,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         }
 
         dangerZoneFloatingBtn.setOnClickListener {
+            dangerZoneMode = true
             showDataOnMap(layers[6], mapboxMap.style!!)
         }
 
@@ -450,7 +465,9 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                     val zoneRiskCause = zoneRisk.getString("cause")
                     val zoneRiskDegre = zoneRisk.getInt("degre")
                     val zoneRiskZoneId = zoneRisk.getInt("zoneZoneId")
-                    riskZoneList.add(RiskZone(zoneRiskId, zoneRiskDiameter, zoneRiskCause, zoneRiskDegre, zoneRiskZoneId))
+                    val zone = zoneRisk.getJSONObject("zone")
+                    val latLng = LatLng(zone.getDouble("latitude"), zone.getDouble("longitude"))
+                    riskZoneList.add(RiskZone(zoneRiskId, zoneRiskDiameter, zoneRiskCause, zoneRiskDegre, zoneRiskZoneId, latLng))
                     val zoneRiskLat = zoneRisk.getJSONObject("zone").getDouble("latitude")
                     val zoneRiskLon = zoneRisk.getJSONObject("zone").getDouble("longitude")
 
@@ -620,10 +637,10 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
 
 
     //lorsqu'un cclick est effectué sur la map
-    private fun zoneClicked(clickLatLng : LatLng) : Int{
+    private fun zoneClicked(clickLatLng : LatLng, listZones : ArrayList<Zone>) : Int{
         var closestZone : Int = -1
         var closestDistance : Double = Double.MAX_VALUE
-        for (zone in zonesAlgeriaData){
+        for (zone in listZones){
             val d = zone.latLng.distanceTo(clickLatLng) / 1000
             if (d < 15 && d < closestDistance){
                 closestZone = zone.id
