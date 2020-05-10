@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.coronawatch.Fragments.HomeFragment
+import com.example.coronawatch.Fragments.MapFragment
 import com.example.coronawatch.R
 import com.example.coronawatch.Fragments.SignalFragment
 import kotlinx.android.synthetic.main.activity_home.*

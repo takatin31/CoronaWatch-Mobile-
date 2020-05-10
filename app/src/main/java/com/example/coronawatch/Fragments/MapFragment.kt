@@ -1,4 +1,4 @@
-package com.example.coronawatch.Activities
+package com.example.coronawatch.Fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -19,7 +19,10 @@ import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.coronawatch.Activities.StatsActivity
+import com.example.coronawatch.Adapters.FilterAdapter
 import com.example.coronawatch.DataClasses.CountryInfo
+import com.example.coronawatch.DataClasses.Filter
 import com.example.coronawatch.DataClasses.ZoneData
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.RequestHandler
@@ -46,8 +49,6 @@ import com.mapbox.mapboxsdk.style.layers.Property.NONE
 import com.mapbox.mapboxsdk.style.layers.Property.VISIBLE
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import kotlinx.android.synthetic.main.fragment_map.*
@@ -67,6 +68,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered", "algeriaDangerZone")
     var zonesAlgeriaData = arrayListOf<ZoneData>()
     var isFABOpen = false
+    var filterList = arrayListOf<Filter>()
 
     private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
@@ -124,22 +126,17 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
 
         }
 
-        val filterIcon: Spinner = filterIconView
+        initFilterList()
 
-        ArrayAdapter.createFromResource(
-            mContext,
-            R.array.graph_menu,
-            R.layout.spinner_item_layout
-        ).also { adapter ->
-            adapter.setDropDownViewResource(R.layout.spinner_item_layout)
-            filterIcon.adapter = adapter
-        }
+        val filterAdapter = FilterAdapter(mContext, filterList)
+
+        filterIconView.adapter = filterAdapter
 
         menuFloatingBtn.setOnClickListener {
             if(!isFABOpen){
-                showFABMenu();
+                showFABMenu()
             }else{
-                closeFABMenu();
+                closeFABMenu()
             }
         }
 
@@ -155,7 +152,6 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 showAlgeriaData.setImageResource(R.drawable.ic_world)
             }
         }
-
 
 
         val searchCountry = searchCountryView
@@ -174,6 +170,9 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
 
             Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
         }
+
+
+
 
 
     }
@@ -620,6 +619,12 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             permissionsManager = PermissionsManager(this)
             permissionsManager.requestLocationPermissions(activity)
         }
+    }
+
+    fun initFilterList(){
+        filterList.add(Filter(resources.getString(R.string.place_nbr_infected), R.color.cases_color))
+        filterList.add(Filter(resources.getString(R.string.place_nbr_deaths), R.color.deaths_color))
+        filterList.add(Filter(resources.getString(R.string.place_nbr_cared), R.color.recovered_color))
     }
 
 
