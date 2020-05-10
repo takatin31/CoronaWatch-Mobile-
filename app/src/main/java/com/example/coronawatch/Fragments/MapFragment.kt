@@ -16,13 +16,16 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.Activities.StatsActivity
 import com.example.coronawatch.Adapters.FilterAdapter
 import com.example.coronawatch.DataClasses.CountryInfo
 import com.example.coronawatch.DataClasses.Filter
+import com.example.coronawatch.DataClasses.RiskZone
 import com.example.coronawatch.DataClasses.ZoneData
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.RequestHandler
@@ -52,6 +55,7 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import kotlinx.android.synthetic.main.fragment_map.*
+import org.json.JSONObject
 import java.net.URISyntaxException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -69,6 +73,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     var zonesAlgeriaData = arrayListOf<ZoneData>()
     var isFABOpen = false
     var filterList = arrayListOf<Filter>()
+    var riskZoneList = arrayListOf<RiskZone>()
 
     private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
@@ -151,6 +156,10 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 showDataOnMap(layers[3], mapboxMap.style!!)
                 showAlgeriaData.setImageResource(R.drawable.ic_world)
             }
+        }
+
+        dangerZoneFloatingBtn.setOnClickListener {
+            showDataOnMap(layers[6], mapboxMap.style!!)
         }
 
 
@@ -396,6 +405,8 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 addCountryDeathsOnMap(features, loadedMapStyle)
                 addCountryRecoveredOnMap(features, loadedMapStyle)
 
+                getDangerZone(loadedMapStyle)
+
                 val filterIcon: Spinner = filterIconView
 
                 filterIcon.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -413,12 +424,59 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                     }
                 }
 
-                showDataOnMap(layers[0], loadedMapStyle)
+
 
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
         RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
+    }
+
+    fun getDangerZone(loadedMapStyle: Style){
+        val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zoneRisque"
+        val features = arrayListOf<Feature>()
+
+        // Request a string response from the provided URL.
+        val jsonRequestNbrDeaths = object : JsonObjectRequest(
+            Request.Method.GET, urlCountriesData, null,
+            Response.Listener { response ->
+                val items = response.getJSONObject("items")
+                val count = items.getInt("count")
+                val zones = items.getJSONArray("rows")
+                for (i in 0 until count){
+                    val zoneRisk = zones.getJSONObject(i)
+                    val zoneRiskId = zoneRisk.getInt("zoneRisqueId")
+                    val zoneRiskDiameter = 20f//zoneRisk.getDouble("diametre").toFloat()
+                    val zoneRiskCause = zoneRisk.getString("cause")
+                    val zoneRiskDegre = zoneRisk.getInt("degre")
+                    val zoneRiskZoneId = zoneRisk.getInt("zoneZoneId")
+                    riskZoneList.add(RiskZone(zoneRiskId, zoneRiskDiameter, zoneRiskCause, zoneRiskDegre, zoneRiskZoneId))
+                    val zoneRiskLat = zoneRisk.getJSONObject("zone").getDouble("latitude")
+                    val zoneRiskLon = zoneRisk.getJSONObject("zone").getDouble("longitude")
+
+                    val geometry = Point.fromLngLat(zoneRiskLon, zoneRiskLat)
+                    val feature: Feature = Feature.fromGeometry(geometry)
+
+                    feature.addNumberProperty(layers[6], zoneRiskDiameter)
+                    features.add(feature)
+                }
+
+                addCountryDangerZoneOnMap(features, loadedMapStyle)
+
+                showDataOnMap(layers[0], loadedMapStyle)
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") }) {
+            @Throws(AuthFailureError::class)
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+                headers.put("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoidGVzdDRAZ21haWwuY29tIiwidXNlcm5hbWUiOm51bGwsIm5vbSI6bnVsbCwicHJlbm9tIjpudWxsLCJyb2xlIjoiVVRJTElTQVRFVVIifSwicm9sZSI6IlVUSUxJU0FURVVSIiwiaWF0IjoxNTg5MTA4NzM2LCJleHAiOjE1OTE3MDA3MzZ9.vph74KKOBZIq3eV4RDN2KB2PQl6JO4diJQ9RzWI7Mk4")
+                return headers
+            }
+        }
+
+
+        RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestNbrDeaths)
+
     }
 
     //ajouter les données des cas infected dans la map
@@ -550,21 +608,14 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
 
         val circles = CircleLayer(layer, layer)
         circles.setProperties(
-            circleColor(Color.parseColor("#601bb043")),
+            circleColor(Color.parseColor("#60403CD3")),
             circleStrokeWidth(2f),
-            circleStrokeColor(Color.parseColor("#d1159a39")),
-            circleRadius(
-                interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 1, 20)),
-                    stop(1, normalize(get(layer), abs(1), 1, 20)),
-                    stop(6, normalize(get(layer), abs(6), 1, 20)),
-                    stop(10, normalize(get(layer), abs(10), 1, 20)),
-                    stop(12, normalize(get(layer), abs(12), 1, 20))
-                )
-            )
+            circleStrokeColor(Color.parseColor("#d10D0A96")),
+            circleRadius(get(layer))
         )
 
         loadedMapStyle.addLayer(circles)
+        Log.i("ciiiiiircles", circles.toString())
     }
 
 
@@ -708,5 +759,6 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<RFACLabelItem<Int>>?) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
 }
