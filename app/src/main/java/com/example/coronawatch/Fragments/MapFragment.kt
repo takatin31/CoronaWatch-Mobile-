@@ -106,7 +106,10 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                     if (zoneClicked != -1){
                         Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
                         val intent = Intent(activity, StatsActivity::class.java)
-                        intent.putExtra("riskZoneId", zoneClicked)
+                        val dangerZone = riskZoneList[zoneClicked] as RiskZone
+                        intent.putExtra("riskZoneId", dangerZone.zoneRiskId)
+                        intent.putExtra("degre", dangerZone.degre)
+                        intent.putExtra("reason", dangerZone.cause)
                         intent.putExtra("isCountry", false)
                         intent.putExtra("isDangerZone", true)
                         startActivity(intent)
@@ -130,7 +133,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                         if (zoneClicked != -1){
                             Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
                             val intent = Intent(activity, StatsActivity::class.java)
-                            intent.putExtra("zoneId", zoneClicked)
+                            intent.putExtra("zoneId", zonesAlgeriaData[zoneClicked].id)
                             intent.putExtra("isCountry", false)
                             intent.putExtra("isDangerZone", false)
                             startActivity(intent)
@@ -640,12 +643,14 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     private fun zoneClicked(clickLatLng : LatLng, listZones : ArrayList<Zone>) : Int{
         var closestZone : Int = -1
         var closestDistance : Double = Double.MAX_VALUE
+        var index = 0
         for (zone in listZones){
             val d = zone.latLng.distanceTo(clickLatLng) / 1000
             if (d < 15 && d < closestDistance){
-                closestZone = zone.id
+                closestZone = index
                 closestDistance = d
             }
+            index++
         }
 
         return closestZone

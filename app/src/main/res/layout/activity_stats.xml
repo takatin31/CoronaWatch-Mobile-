@@ -15,106 +15,113 @@
         android:orientation="vertical" >
 
         <RelativeLayout
+            android:id="@+id/headView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="3dp">
 
-            <RelativeLayout
-                android:id="@+id/headView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:padding="3dp">
 
-                <ImageView
-                    android:id="@+id/countryImageView"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="5dp"
-                    android:contentDescription="@string/logo"
-                    tools:srcCompat="@tools:sample/avatars" />
-
-                <TextView
-                    android:id="@+id/countryNameView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@id/countryImageView"
-                    android:fontFamily="@font/almarai_bold"
-                    android:textColor="@color/darkblue"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:id="@+id/lastUpdateTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/countryNameView"
-                    android:layout_toStartOf="@id/countryImageView"
-                    android:text="@string/last_update" />
-
-                <TextView
-                    android:id="@+id/lastUpdateView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/countryNameView"
-                    android:layout_marginEnd="5dp"
-                    android:layout_toStartOf="@id/lastUpdateTitle" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/infectedView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/headView"
+            <ImageView
+                android:id="@+id/countryImageView"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                android:background="@drawable/infolayout"
-                android:padding="10dp">
+                android:contentDescription="@string/logo"
+                tools:srcCompat="@tools:sample/avatars" />
 
-                <ImageView
-                    android:id="@+id/targetIconView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:contentDescription="@string/logo"
-                    app:srcCompat="@drawable/ic_target" />
+            <TextView
+                android:id="@+id/countryNameView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/countryImageView"
+                android:fontFamily="@font/almarai_bold"
+                android:textColor="@color/darkblue"
+                android:textSize="22sp" />
 
-                <TextView
-                    android:id="@+id/casesTitleView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:layout_toStartOf="@id/targetIconView"
-                    android:fontFamily="@font/almarai_regular"
-                    android:padding="2dp"
-                    android:text="@string/place_nbr_infected"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
+            <TextView
+                android:id="@+id/lastUpdateTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countryNameView"
+                android:layout_toStartOf="@id/countryImageView"
+                android:text="@string/last_update" />
 
-                <TextView
-                    android:id="@+id/nbrCasesView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/casesTitleView"
-                    android:fontFamily="@font/almarai_bold"
-                    android:gravity="center_horizontal"
-                    android:textColor="@color/darkblue"
-                    android:textSize="24sp"
-                    tools:layout_editor_absoluteX="57dp"
-                    tools:layout_editor_absoluteY="138dp" />
-            </RelativeLayout>
+            <TextView
+                android:id="@+id/lastUpdateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/countryNameView"
+                android:layout_marginEnd="5dp"
+                android:layout_toStartOf="@id/lastUpdateTitle" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dangerZoneView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/degreTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/almarai_regular"
+                android:text="@string/degre_danger"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/degreValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@id/degreTextView"
+                android:fontFamily="@font/almarai_bold"
+                android:text=""
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/reasonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/degreTextView"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/almarai_regular"
+                android:text="@string/reason_danger"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/reasonValueView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reasonTextView"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/almarai_regular"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/dataView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <RelativeLayout
                 android:id="@+id/deathView"
@@ -166,6 +173,67 @@
                     android:textSize="24sp"
                     tools:layout_editor_absoluteX="52dp"
                     tools:layout_editor_absoluteY="230dp" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="200dp"
+                android:layout_height="1dp"
+                android:layout_below="@id/caredView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/dark_grey" />
+
+            <RelativeLayout
+                android:id="@+id/infectedView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/infolayout"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/targetIconView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:contentDescription="@string/logo"
+                    app:srcCompat="@drawable/ic_target" />
+
+                <TextView
+                    android:id="@+id/casesTitleView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_toStartOf="@id/targetIconView"
+                    android:fontFamily="@font/almarai_regular"
+                    android:padding="2dp"
+                    android:text="@string/place_nbr_infected"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/nbrCasesView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/casesTitleView"
+                    android:fontFamily="@font/almarai_bold"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/darkblue"
+                    android:textSize="24sp"
+                    tools:layout_editor_absoluteX="57dp"
+                    tools:layout_editor_absoluteY="138dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -220,16 +288,6 @@
                     tools:layout_editor_absoluteY="319dp" />
 
             </RelativeLayout>
-
-            <View
-                android:id="@+id/divider"
-                android:layout_width="200dp"
-                android:layout_height="1dp"
-                android:layout_below="@id/caredView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@color/dark_grey" />
 
         </RelativeLayout>
 

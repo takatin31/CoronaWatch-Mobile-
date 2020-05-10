@@ -36,9 +36,21 @@ class StatsActivity : AppCompatActivity() {
         val isRiskZone = intent.getBooleanExtra("isDangerZone", false)
 
         if (isRiskZone){
-            var riskZoneId = intent.getIntExtra("riskZoneId", -1)
+            dangerZoneView.visibility = View.VISIBLE
+            val riskZoneId = intent.getIntExtra("riskZoneId", -1)
+            val degre = intent.getIntExtra("degre", 0)
+            val reason = intent.getStringExtra("reason")
+            degreValueView.text = degre.toString()
+            reasonValueView.text = reason
+
+            if (degre == 1){
+                dataView.visibility = View.GONE
+                chartsScrollView.visibility = View.GONE
+            }
+
             getRiskZoneData(riskZoneId)
         }else{
+            dangerZoneView.visibility = View.GONE
             if (isCountry){
                 var countryCode = intent.getStringExtra("countryCode")
                 var countryName = intent.getStringExtra("countryName")
@@ -132,7 +144,18 @@ class StatsActivity : AppCompatActivity() {
                 val zoneData = item.getInt("zoneZoneId")
                 val cause = item.getString("cause")
                 val degre = item.getInt("degre")
-                getZoneData(zoneData)
+                if (degre > 1){
+                    getZoneData(zoneData)
+                }else{
+                    var stringDate = item.getString("updatedAt").split("T")[0].split("-")
+                    var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
+                    lastUpdateView.text = date.toString()
+                    val countryCode : String = item.getJSONObject("zone").getString("counrtyCode")
+                    val flag : Int = World.getFlagOf(countryCode)
+                    countryImageView.setImageResource(flag)
+                    countryNameView.text = item.getJSONObject("zone").getString("city")
+                }
+
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
