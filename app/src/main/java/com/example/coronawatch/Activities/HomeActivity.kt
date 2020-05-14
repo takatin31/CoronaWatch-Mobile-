@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.coronawatch.Fragments.ArticlesFragment
 import com.example.coronawatch.Fragments.HomeFragment
 import com.example.coronawatch.Fragments.MapFragment
 import com.example.coronawatch.R
@@ -90,6 +91,19 @@ class HomeActivity : AppCompatActivity() {
                     transaction.commit()
                 }
                 changeIndex(1)
+            }
+        }
+
+        contentBtn.setOnClickListener {
+            if (currentIndex != 4){
+                var contentFr: Fragment =
+                    ArticlesFragment()
+                if (contentFr != null) {
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.mainFragmentView, contentFr)
+                    transaction.commit()
+                }
+                changeIndex(4)
             }
         }
     }

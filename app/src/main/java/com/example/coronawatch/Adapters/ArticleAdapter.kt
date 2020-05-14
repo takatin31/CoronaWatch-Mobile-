@@ -1,22 +1,30 @@
 package com.example.coronawatch.Adapters
 
-import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.coronawatch.Activities.HomeActivity
-import com.example.coronawatch.Activities.MainActivity
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 import com.example.coronawatch.R
+import com.squareup.picasso.Picasso
+import java.net.URL
 
-class ArticleAdapter(val activity: HomeActivity, val listArticle : ArrayList<ArticleThumbnail>) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>(){
+
+class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList<ArticleThumbnail>) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>(){
     class ArticleViewHolder(v : View) : RecyclerView.ViewHolder(v){
-       /* val titleTache = v.findViewById<TextView>(R.id.TacheTitle)
-        val dateTache = v.findViewById<TextView>(R.id.TacheId)
-        val layoutTache = v.findViewById<RelativeLayout>(R.id.itemLayout)*/
+        val imageArticle = v.findViewById<ImageView>(R.id.article_image)
+        val titleArticle = v.findViewById<TextView>(R.id.article_title)
+        val dateArticle = v.findViewById<TextView>(R.id.articleDate)
+        val descriptinoArticle = v.findViewById<TextView>(R.id.articleDescription)
+        val nbrCommentsArticle = v.findViewById<TextView>(R.id.article_number_comments)
+        val showComments = v.findViewById<LinearLayout>(R.id.show_comments_trigger)
+        val editComment = v.findViewById<EditText>(R.id.article_comment_box)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -28,14 +36,25 @@ class ArticleAdapter(val activity: HomeActivity, val listArticle : ArrayList<Art
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-        val title = listArticle[position].title
-        val tacheId = listArticle[position].id
 
-        /*holder.titleTache.text = title
-        holder.dateTache.text = tacheId.toString()
+        val articleId = listArticle[position].id
+        val articleTitle = listArticle[position].title
+        val articleImage = listArticle[position].image
+        val articleNbrComment = listArticle[position].nbrComments
+        val articleDate =  listArticle[position].date
+        val articleDescription = listArticle[position].description
 
-        holder.layoutTache.setOnClickListener {
+        holder.titleArticle.text = articleTitle
+        holder.nbrCommentsArticle.text = articleNbrComment.toString()
 
-        }*/
+        holder.dateArticle.text = articleDate
+        holder.descriptinoArticle.text = articleDescription
+
+        Picasso.get().load("https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80").into(holder.imageArticle)
+
+
+        holder.showComments.setOnClickListener {
+
+        }
     }
 }

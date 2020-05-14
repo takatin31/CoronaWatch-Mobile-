@@ -4,6 +4,7 @@
     <string name="slogan">اعتن بصحتك و بصحة من حولك</string>
     <string name="start_btn">ابدأ الآن</string>
     <string name="logo">logo</string>
+    <string name="description">this is a description</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="enter">تسجيل الدخول</string>
     <string name="login_slogan">استكشف بيئتك  \nو احمي نفسك و عائلتك</string>
@@ -18,6 +19,7 @@
     <string-array name="menu">
         <item>الصفحة الرئيسية</item>
         <item>الخريطة</item>
+        <item>اضافة محتوى</item>
         <item>الابلاغ</item>
         <item>المحتوى</item>
     </string-array>
@@ -54,4 +56,7 @@
     <string name="degre_danger">درجة الخطورة :</string>
     <string name="reason_danger">السبب :</string>
     <string name="dangerZoneLabel">هذه منطقة خطيرة</string>
+    <string name="number_example">5</string>
+    <string name="article_title_example">طرق الوقاية من الفيروس</string>
+    <string name="add_comment">إضافة تعليق ...</string>
 </resources>
