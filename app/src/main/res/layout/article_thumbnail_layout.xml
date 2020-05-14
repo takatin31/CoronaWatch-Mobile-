@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/articleThumbnailLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -16,12 +17,21 @@
         android:contentDescription="@string/description"
         app:srcCompat="@drawable/heart2" />
 
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/tagsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:flexWrap="wrap" />
+
+
     <TextView
         android:id="@+id/article_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_margin="5dp"
         android:fontFamily="@font/almarai_bold"
         android:text="@string/article_title_example"
         android:textColor="@color/darkblue"
@@ -32,7 +42,9 @@
         android:id="@+id/articleDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="3dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="3dp"
         android:textDirection="rtl" />
 
@@ -40,6 +52,8 @@
         android:id="@+id/articleDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:textDirection="rtl"
         android:textSize="16sp" />
 

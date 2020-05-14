@@ -1,19 +1,22 @@
 package com.example.coronawatch.Adapters
 
-import android.graphics.BitmapFactory
+import android.content.Intent
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coronawatch.Activities.ArticleActivity
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 import com.example.coronawatch.R
+import com.google.android.flexbox.FlexboxLayout
 import com.squareup.picasso.Picasso
-import java.net.URL
 
 
 class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList<ArticleThumbnail>) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>(){
@@ -25,6 +28,8 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         val nbrCommentsArticle = v.findViewById<TextView>(R.id.article_number_comments)
         val showComments = v.findViewById<LinearLayout>(R.id.show_comments_trigger)
         val editComment = v.findViewById<EditText>(R.id.article_comment_box)
+        val thumbnailLayout = v.findViewById<LinearLayout>(R.id.articleThumbnailLayout)
+        val tagsContainer = v.findViewById<FlexboxLayout>(R.id.tagsContainer)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -43,6 +48,28 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         val articleNbrComment = listArticle[position].nbrComments
         val articleDate =  listArticle[position].date
         val articleDescription = listArticle[position].description
+        val listTags = listArticle[position].tags
+
+        for (tag in listTags){
+
+            val tagView = TextView(activity)
+
+
+            tagView.setPadding(20, 8, 20, 8)
+
+            val params: LinearLayout.LayoutParams =
+                LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            params.setMargins(10, 5, 10, 5)
+            tagView.layoutParams = params
+
+
+            tagView.background = activity.resources.getDrawable(R.drawable.tag_shape)
+
+            tagView.text = tag
+
+            holder.tagsContainer.addView(tagView)
+
+        }
 
         holder.titleArticle.text = articleTitle
         holder.nbrCommentsArticle.text = articleNbrComment.toString()
@@ -56,5 +83,13 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         holder.showComments.setOnClickListener {
 
         }
+
+        holder.thumbnailLayout.setOnClickListener {
+            val articleIntent = Intent(activity, ArticleActivity::class.java)
+            articleIntent.putExtra("articleId", articleId)
+            activity.startActivity(articleIntent)
+        }
     }
+
+
 }

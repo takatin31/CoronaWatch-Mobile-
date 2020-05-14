@@ -67,7 +67,10 @@ class ArticlesFragment : Fragment() {
                     val articleDesc = item.getString("sous_titre")
                     val articleImage = item.getString("imageUrl")
                     val listTags = arrayListOf<String>()
-
+                    val tags = item.getJSONArray("tags")
+                    for (i in 0 until  tags.length()){
+                        listTags.add(tags.getJSONObject(i).getString("description"))
+                    }
                     var localDateTime: LocalDateTime = LocalDateTime.parse(dateArticle.replace("Z", ""))
                     var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
                     dateArticle = formatter.format(localDateTime)
