@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,40 +8,78 @@
     android:padding="5dp"
     tools:context=".Activities.ArticleActivity">
 
-    <TextView
-        android:id="@+id/articleTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:fontFamily="@font/almarai_bold"
-        android:text="@string/article_title_example"
-        android:textColor="@color/darkblue"
-        android:textDirection="rtl"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/articleDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/articleTitle"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:textDirection="rtl"
-        android:textSize="16sp" />
-
-    <com.mukesh.MarkdownView
-        android:id="@+id/articleContent"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/articleDate" />
-
-    <ProgressBar
-        android:id="@+id/progressBarArticle"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminateTint="@color/darkblue"
-        android:layout_centerInParent="true" />
-</RelativeLayout>
+        android:layoutDirection="rtl">
+
+        <TextView
+            android:id="@+id/articleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/almarai_bold"
+            android:text="@string/article_title_example"
+            android:textColor="@color/darkblue"
+            android:textDirection="rtl"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/articleDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/articleTitle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:textDirection="rtl"
+            android:textSize="16sp" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tagsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/articleDate"
+            android:layoutDirection="rtl"
+            app:alignContent="flex_start"
+            app:alignItems="flex_start"
+            app:flexWrap="wrap" />
+
+        <FrameLayout
+            android:id="@+id/videoController"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/tagsContainer"
+            android:visibility="visible">
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <com.mukesh.MarkdownView
+            android:id="@+id/articleContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/videoController"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarArticle"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminateTint="@color/darkblue" />
+
+    </RelativeLayout>
+</ScrollView>
