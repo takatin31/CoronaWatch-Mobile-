@@ -50,11 +50,11 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         val articleDescription = listArticle[position].description
         val listTags = listArticle[position].tags
 
+        holder.tagsContainer.removeAllViews()
+
         for (tag in listTags){
 
             val tagView = TextView(activity)
-
-
             tagView.setPadding(20, 8, 20, 8)
 
             val params: LinearLayout.LayoutParams =
@@ -62,16 +62,13 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
             params.setMargins(10, 5, 10, 5)
             tagView.layoutParams = params
 
-
             tagView.background = activity.resources.getDrawable(R.drawable.tag_shape)
-
             tagView.text = tag
-
             holder.tagsContainer.addView(tagView)
 
         }
 
-        holder.titleArticle.text = articleTitle
+        holder.titleArticle.text = articleId.toString()
         holder.nbrCommentsArticle.text = articleNbrComment.toString()
 
         holder.dateArticle.text = articleDate
@@ -89,6 +86,13 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
             articleIntent.putExtra("articleId", articleId)
             activity.startActivity(articleIntent)
         }
+    }
+
+    fun addData(listItems: ArrayList<ArticleThumbnail>) {
+        var size = this.listArticle.size
+        this.listArticle.addAll(listItems)
+        var sizeNew = this.listArticle.size
+        notifyItemRangeChanged(size, sizeNew)
     }
 
 

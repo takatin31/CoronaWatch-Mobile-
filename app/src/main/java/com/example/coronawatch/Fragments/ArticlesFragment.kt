@@ -13,6 +13,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.Adapters.ArticleAdapter
+import com.example.coronawatch.Controllers.PaginationScrollListener
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 
 import com.example.coronawatch.R
@@ -31,6 +32,9 @@ class ArticlesFragment : Fragment() {
     //le contexte de l'activity
     lateinit var mContext:Context
     var detached : Boolean = true
+    var isLastPage: Boolean = false
+    var isLoading: Boolean = false
+    var currentPage : Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +52,36 @@ class ArticlesFragment : Fragment() {
         adapter = ArticleAdapter(activity!!, thumbnailArticleList)
         articleRecycler.adapter = adapter
 
+        articleRecycler.addOnScrollListener(object : PaginationScrollListener(layoutManager) {
+            override fun isLastPage(): Boolean {
+                return isLastPage
+            }
+
+            override fun isLoading(): Boolean {
+                return isLoading
+            }
+
+            override fun loadMoreItems() {
+                //you have to call loadmore items to get more data
+                getMoreItems()
+            }
+        })
+
         getListArticlesThumbnail(1)
     }
 
+    fun getMoreItems() {
+
+        if (!isLastPage && !isLoading){
+            isLoading = true
+            Log.i("currentPage", currentPage.toString())
+            getListArticlesThumbnail(currentPage+1)
+        }
+
+    }
+
     fun getListArticlesThumbnail(page : Int){
+        val newList = arrayListOf<ArticleThumbnail>()
         val urlData = "${resources.getString(R.string.host)}/api/v0/article/pages/$page"
 
         // Request a string response from the provided URL.
@@ -59,30 +89,38 @@ class ArticlesFragment : Fragment() {
             Request.Method.GET, urlData, null,
             Response.Listener { response ->
                 val items = response.getJSONArray("rows")
-                for (i in 0 until items.length()){
-                    val item = items.getJSONObject(i)
-                    val articleId = item.getInt("articleId")
-                    var dateArticle = item.getString("dateArticle")
-                    val articleTitle = item.getString("titre")
-                    val articleDesc = item.getString("sous_titre")
-                    val articleImage = item.getString("imageUrl")
-                    val listTags = arrayListOf<String>()
-                    val tags = item.getJSONArray("tags")
-                    for (i in 0 until  tags.length()){
-                        listTags.add(tags.getJSONObject(i).getString("description"))
+                if (items.length() == 0){
+                    isLastPage = true
+                }else{
+                    currentPage = page
+                    Log.i("currentPage", currentPage.toString())
+                    for (i in 0 until items.length()){
+                        val item = items.getJSONObject(i)
+                        val articleId = item.getInt("articleId")
+                        var dateArticle = item.getString("dateArticle")
+                        val articleTitle = item.getString("titre")
+                        val articleDesc = item.getString("sous_titre")
+                        val articleImage = item.getString("imageUrl")
+                        val listTags = arrayListOf<String>()
+                        val tags = item.getJSONArray("tags")
+                        for (i in 0 until  tags.length()){
+                            listTags.add(tags.getJSONObject(i).getString("description"))
+                        }
+                        var localDateTime: LocalDateTime = LocalDateTime.parse(dateArticle.replace("Z", ""))
+                        var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
+                        dateArticle = formatter.format(localDateTime)
+                        val articleThumbnail = ArticleThumbnail(articleId, articleImage, articleTitle, articleDesc, dateArticle, listTags, 0 )
+                        newList.add(articleThumbnail)
                     }
-                    var localDateTime: LocalDateTime = LocalDateTime.parse(dateArticle.replace("Z", ""))
-                    var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
-                    dateArticle = formatter.format(localDateTime)
-                    val articleThumbnail = ArticleThumbnail(articleId, articleImage, articleTitle, articleDesc, dateArticle, listTags, 0 )
-                    thumbnailArticleList.add(articleThumbnail)
-                }
 
-                if (loadingArticleProgressBar != null){
-                    loadingArticleProgressBar.visibility = View.INVISIBLE
-                }
+                    if (loadingArticleProgressBar != null){
+                        loadingArticleProgressBar.visibility = View.INVISIBLE
+                    }
 
-                adapter.notifyDataSetChanged()
+                    adapter.addData(newList)
+                }
+                isLoading = false
+
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
