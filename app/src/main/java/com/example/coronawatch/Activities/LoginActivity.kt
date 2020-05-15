@@ -1,20 +1,21 @@
 package com.example.coronawatch.Activities
 
+
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.coronawatch.R
+import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
-import kotlinx.android.synthetic.main.activity_login.*
-
-
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
+
 
 class LoginActivity : AppCompatActivity() {
     private var callbackManager: CallbackManager? = null
@@ -39,6 +40,8 @@ class LoginActivity : AppCompatActivity() {
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
+                        val accessToken = AccessToken.getCurrentAccessToken()
+                        Log.i("tooooooken", accessToken.token)
                         var home_intent = Intent(this@LoginActivity, HomeActivity::class.java)
                         startActivity(home_intent)                    }
 

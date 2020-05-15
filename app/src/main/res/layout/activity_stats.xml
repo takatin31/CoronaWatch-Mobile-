@@ -343,7 +343,8 @@
         <RelativeLayout
             android:id="@+id/noDataMessageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="match_parent"

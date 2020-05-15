@@ -1,11 +1,15 @@
 package com.example.coronawatch.Fragments
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
@@ -13,8 +17,12 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.DataClasses.DailyData
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.RequestHandler
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.mapbox.mapboxsdk.geometry.LatLng
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDate
+import kotlin.math.floor
 
 
 class HomeFragment : Fragment() {
@@ -22,6 +30,9 @@ class HomeFragment : Fragment() {
     //le contexte de l'activity
     lateinit var mContext:Context
     var detached : Boolean = true
+    private val PERMISSION_CODE: Int = 1000
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,38 +112,57 @@ class HomeFragment : Fragment() {
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
-
         if (!detached){
             RequestHandler.getInstance(mContext)
                 .addToRequestQueue(jsonRequestData)
         }
 
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+            val permission = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+            requestPermissions(permission, PERMISSION_CODE)
+        }else {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext)
+
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location: Location ->
+                    val latLng = LatLng(location.latitude, location.longitude)
+                    getNearestDangerZone(latLng)
+                }
+        }
+
+
+
+
     }
 
 
-    /*@SuppressLint("MissingPermission")
-    private fun getLastLocation() {
-        if (checkPermissions()) {
-            if (isLocationEnabled()) {
+    fun getNearestDangerZone(latLng: LatLng) {
 
-                mFusedLocationClient.lastLocation.addOnCompleteListener(this) { task ->
-                    var location: Location? = task.result
-                    if (location == null) {
-                        requestNewLocationData()
-                    } else {
-                        findViewById<TextView>(R.id.latTextView).text = location.latitude.toString()
-                        findViewById<TextView>(R.id.lonTextView).text = location.longitude.toString()
-                    }
+        // this is just a test because there is no data
+        val urlData = "${resources.getString(R.string.host)}/api/v0/zoneRisque/nearest?lat=${latLng.latitude}&lang=${latLng.longitude}&limit=1"
+
+        // Request a string response from the provided URL.
+        val jsonRequestData =JsonObjectRequest(Request.Method.GET, urlData, null,
+            Response.Listener { response ->
+                val items = response.getJSONObject("items")
+                if (items.getInt("count") > 0){
+                    val zone = items.getJSONArray("rows").getJSONObject(0).getJSONObject("zone")
+                    val zoneRisqeCity = zone.getString("city")
+                    val zoneRisqueLatLng = LatLng(zone.getDouble("latitude"), zone.getDouble("longitude"))
+                    val distance = floor(latLng.distanceTo(zoneRisqueLatLng)/ 1000)
+                    closestDistanceView.text = distance.toString() + "  كم "
+                    closestZoneTextView.text = zoneRisqeCity
                 }
-            } else {
-                Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
-                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                startActivity(intent)
-            }
-        } else {
-            requestPermissions()
-        }
-    }*/
+
+
+            },Response.ErrorListener { Log.d("Error", "Request error") })
+        RequestHandler.getInstance(mContext)
+            .addToRequestQueue(jsonRequestData)
+
+    }
+
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

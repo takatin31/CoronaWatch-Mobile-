@@ -1,7 +1,9 @@
 package com.example.coronawatch.Activities
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
@@ -14,16 +16,21 @@ import com.example.coronawatch.Fragments.HomeFragment
 import com.example.coronawatch.Fragments.MapFragment
 import com.example.coronawatch.R
 import com.example.coronawatch.Fragments.SignalFragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
 
     private var currentIndex : Int = 0
     private val PERMISSION_CODE: Int = 1000
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
 
         var titleTextView = fragmentTitleView
         titleTextView.text = resources.getStringArray(R.array.menu)[0]
@@ -92,6 +99,11 @@ class HomeActivity : AppCompatActivity() {
                 }
                 changeIndex(1)
             }
+        }
+
+        btnAddContentView.setOnClickListener {
+            val addVideoIntent = Intent(this, ShareVideoActivity::class.java)
+            startActivity(addVideoIntent)
         }
 
         contentBtn.setOnClickListener {
@@ -165,6 +177,8 @@ class HomeActivity : AppCompatActivity() {
         var titleTextView = fragmentTitleView
         titleTextView.text = resources.getStringArray(R.array.menu)[newIndex]
     }
+
+
 
 
 }
