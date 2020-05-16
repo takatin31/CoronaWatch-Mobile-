@@ -46,7 +46,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.github.mukeshsolanki:MarkdownView-Android:1.0.8'
     implementation 'com.google.android:flexbox:2.0.1'
-
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:4.6.0'
 
     androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
     testImplementation 'androidx.test:core:1.0.0'

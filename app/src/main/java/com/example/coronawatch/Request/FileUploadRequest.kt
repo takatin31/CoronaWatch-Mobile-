@@ -20,7 +20,7 @@ open class FileUploadRequest(
     private var headers: Map<String, String>? = null
     private val divider: String = "--"
     private val ending = "\r\n"
-    private val boundary = "imageRequest${System.currentTimeMillis()}"
+    private val boundary = "apiclient-${System.currentTimeMillis()}"
 
 
     override fun getHeaders(): MutableMap<String, String> =
@@ -45,6 +45,7 @@ open class FileUploadRequest(
                 processData(dataOutputStream, data)
             }
             dataOutputStream.writeBytes(divider + boundary + divider + ending)
+            Log.i("byteArray", byteArrayOutputStream.toString())
             return byteArrayOutputStream.toByteArray()
 
         } catch (e: IOException) {
@@ -57,6 +58,8 @@ open class FileUploadRequest(
     open fun getByteData(): Map<String, Any>? {
         return null
     }
+
+
 
     override fun parseNetworkResponse(response: NetworkResponse): Response<NetworkResponse> {
         return try {
@@ -80,6 +83,7 @@ open class FileUploadRequest(
     private fun processParams(dataOutputStream: DataOutputStream, params: Map<String, String>, encoding: String) {
         try {
             params.forEach {
+                Log.i("paraaaaaaam", it.key+"   "+it.value)
                 dataOutputStream.writeBytes(divider + boundary + ending)
                 dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"${it.key}\"$ending")
                 dataOutputStream.writeBytes(ending)
