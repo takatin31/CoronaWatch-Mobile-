@@ -170,10 +170,7 @@ class ShareVideoActivity : AppCompatActivity() {
             Response.Listener {
                 Log.i("response", it.toString())
                 progressBarSending.visibility = View.GONE
-                if (cpt == 0){
-                    cpt = 1
-                    uploadVideo(postURL)
-                }
+
 
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)

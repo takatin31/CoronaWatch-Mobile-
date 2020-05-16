@@ -80,12 +80,12 @@ class VideoFragment : Fragment() {
                         var dateVideo = item.getString("dateVideo")
                         val videoTitle = item.getString("titre")
                         val videoDesc = item.getString("description")
-                        val videoUrl = item.getString("videoUrl")
+                        val videoUrl = "http://192.168.1.55:8081/"+item.getString("videoUrl")
 
                         var localDateTime: LocalDateTime = LocalDateTime.parse(dateVideo.replace("Z", ""))
                         var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
                         dateVideo = formatter.format(localDateTime)
-                        val videoThumbnail = VideoThumbnail(videoId, videoUrl, videoTitle, videoDesc, dateVideo)
+                        val videoThumbnail = VideoThumbnail(videoId, videoUrl, videoTitle, videoDesc, dateVideo, false)
                         thumbnailVideoList.add(videoThumbnail)
                     }
 

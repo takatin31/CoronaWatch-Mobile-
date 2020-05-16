@@ -45,7 +45,6 @@ open class FileUploadRequest(
                 processData(dataOutputStream, data)
             }
             dataOutputStream.writeBytes(divider + boundary + divider + ending)
-            Log.i("byteArray", byteArrayOutputStream.toString())
             return byteArrayOutputStream.toByteArray()
 
         } catch (e: IOException) {
@@ -83,7 +82,6 @@ open class FileUploadRequest(
     private fun processParams(dataOutputStream: DataOutputStream, params: Map<String, String>, encoding: String) {
         try {
             params.forEach {
-                Log.i("paraaaaaaam", it.key+"   "+it.value)
                 dataOutputStream.writeBytes(divider + boundary + ending)
                 dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"${it.key}\"$ending")
                 dataOutputStream.writeBytes(ending)
