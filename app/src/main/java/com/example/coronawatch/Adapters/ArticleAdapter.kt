@@ -68,13 +68,13 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
 
         }
 
-        holder.titleArticle.text = articleId.toString()
+        holder.titleArticle.text = articleTitle
         holder.nbrCommentsArticle.text = articleNbrComment.toString()
 
         holder.dateArticle.text = articleDate
         holder.descriptinoArticle.text = articleDescription
 
-        Picasso.get().load("https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80").into(holder.imageArticle)
+        Picasso.get().load("${activity.resources.getString(R.string.host)}/$articleImage").into(holder.imageArticle)
 
 
         holder.showComments.setOnClickListener {

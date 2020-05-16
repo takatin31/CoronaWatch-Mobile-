@@ -44,6 +44,13 @@
             android:textSize="24sp" />
 
 
+        <Spinner
+            android:id="@+id/spinnerContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:visibility="gone" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/colorFilter"
             android:layout_width="0dp"

@@ -29,7 +29,7 @@ class SignalFragment : Fragment() {
     private val IMAGE_CAPTURE_CODE = 1001
     private var imageData: ByteArray? = null
     // Voici l'adresse de l'api qu'on utilise pour l'upload
-    private val postURL: String = "https://coronawatch-api-v0.herokuapp.com/api/v0/signalement/image"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +84,7 @@ class SignalFragment : Fragment() {
     }
 
     private fun uploadImage() {
+        val postURL: String = "${resources.getString(R.string.host)}/api/v0/signalement/image"
         imageData?: return
         val request = object : FileUploadRequest(
             Method.POST,

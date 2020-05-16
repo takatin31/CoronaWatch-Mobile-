@@ -16,12 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.VideoActivity"></activity>
+        <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.ArticleActivity" />
         <activity android:name=".Activities.MainActivity" />
         <activity android:name=".Activities.StatsActivity" />
-        <activity android:name=".Activities.HomeActivity" />
-        <activity android:name=".Activities.ShareVideoActivity">
+        <activity android:name=".Activities.ShareVideoActivity" />
+        <activity android:name=".Activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,27 +8,73 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.coronawatch.Fragments.ArticlesFragment
-import com.example.coronawatch.Fragments.HomeFragment
-import com.example.coronawatch.Fragments.MapFragment
+import com.example.coronawatch.Fragments.*
 import com.example.coronawatch.R
-import com.example.coronawatch.Fragments.SignalFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_stats.*
 
 class HomeActivity : AppCompatActivity() {
 
     private var currentIndex : Int = 0
     private val PERMISSION_CODE: Int = 1000
+    private var spinnerCpt = 0
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+
+        spinnerContent.visibility = View.GONE
+
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.spinner_content,
+            R.layout.spinner_item_layout
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.spinner_item_layout)
+            spinnerContent.adapter = adapter
+        }
+
+        spinnerContent.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (spinnerCpt == 0){
+                    spinnerCpt++
+                }else {
+                    when (position) {
+                        0 -> {
+                            var contentFr: Fragment =
+                                ArticlesFragment()
+                            if (contentFr != null) {
+                                val transaction = supportFragmentManager.beginTransaction()
+                                transaction.replace(R.id.mainFragmentView, contentFr)
+                                transaction.commit()
+                            }
+                        }
+                        1 -> {
+                            var videoFr: Fragment =
+                                VideoFragment()
+                            if (videoFr != null) {
+                                val transaction = supportFragmentManager.beginTransaction()
+                                transaction.replace(R.id.mainFragmentView, videoFr)
+                                transaction.commit()
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
 
 
 
@@ -38,6 +84,8 @@ class HomeActivity : AppCompatActivity() {
 
         var homeFr: Fragment = HomeFragment()
         if (homeFr != null) {
+            spinnerContent.visibility = View.GONE
+            fragmentTitleView.visibility = View.VISIBLE
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.mainFragmentView, homeFr)
             transaction.commit()
@@ -59,6 +107,8 @@ class HomeActivity : AppCompatActivity() {
             var homeFr: Fragment =
                 HomeFragment()
             if (homeFr != null) {
+                spinnerContent.visibility = View.GONE
+                fragmentTitleView.visibility = View.VISIBLE
                 val transaction = supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.mainFragmentView, homeFr)
                 transaction.commit()
@@ -79,6 +129,8 @@ class HomeActivity : AppCompatActivity() {
                 var signalFr: Fragment? = null
                 signalFr = SignalFragment()
                 if (signalFr != null) {
+                    spinnerContent.visibility = View.GONE
+                    fragmentTitleView.visibility = View.VISIBLE
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.mainFragmentView, signalFr)
                     transaction.commit()
@@ -90,9 +142,12 @@ class HomeActivity : AppCompatActivity() {
         mapBtn.setOnClickListener {
 
             if (currentIndex != 1){
+
                 var mapFr: Fragment =
                     MapFragment()
                 if (mapFr != null) {
+                    spinnerContent.visibility = View.VISIBLE
+                    fragmentTitleView.visibility = View.GONE
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.mainFragmentView, mapFr)
                     transaction.commit()
@@ -108,6 +163,8 @@ class HomeActivity : AppCompatActivity() {
 
         contentBtn.setOnClickListener {
             if (currentIndex != 4){
+                spinnerContent.visibility = View.VISIBLE
+                fragmentTitleView.visibility = View.GONE
                 var contentFr: Fragment =
                     ArticlesFragment()
                 if (contentFr != null) {

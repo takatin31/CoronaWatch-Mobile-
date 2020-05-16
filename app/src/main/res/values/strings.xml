@@ -47,6 +47,10 @@
         <item>حالات العلاج</item>
         <item>مناطق الخطر</item>
     </string-array>
+    <string-array name="spinner_content">
+        <item>المقالات</item>
+        <item>الفيديوهات</item>
+    </string-array>
     <string name="last_update">آخر تحديث : </string>
     <string name="host">https://coronawatch-api-v0.herokuapp.com</string>
     <string name="closestDangerZoneLabel">اقرب منطقة خطر</string>

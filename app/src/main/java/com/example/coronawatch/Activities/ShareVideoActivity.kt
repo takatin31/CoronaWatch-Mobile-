@@ -222,7 +222,7 @@ class ShareVideoActivity : AppCompatActivity() {
                 var params = HashMap<String, FileDataPart>()
                 params["videoFile"] =
                     FileDataPart(
-                        "video",
+                        ".mp4",
                         imageData!!,
                         "mp4"
                     )
