@@ -76,7 +76,7 @@ class SignalFragment : Fragment() {
 
             if (uri != null) {
                 createImageData(uri!!)
-                textView5.text = uri.toString()
+                progressBar.visibility = View.VISIBLE
                 uploadImage()
             }
 
@@ -84,16 +84,18 @@ class SignalFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        val postURL: String = "${resources.getString(R.string.host)}/api/v0/signalement/image"
+        val postURL: String = "http://192.168.1.55:8081/api/v0/signalement/image"
         imageData?: return
         val request = object : FileUploadRequest(
             Method.POST,
             postURL,
             Response.Listener {
-                textView5.text = "response is: $it"
+                progressBar.visibility = View.GONE
+                successResult.visibility = View.VISIBLE
             },
             Response.ErrorListener {
-                textView5.text = "error is: $it"
+                progressBar.visibility = View.GONE
+                successResult.visibility = View.VISIBLE
             }
         ) {
             override fun getByteData(): MutableMap<String, FileDataPart> {

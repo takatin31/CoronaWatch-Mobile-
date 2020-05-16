@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="50dp"
     android:paddingRight="50dp"
-    android:orientation="vertical"
     android:id="@+id/signalFragmentView"
     tools:context=".Fragments.SignalFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="0.3">
+        android:layout_height="match_parent"
+        android:layout_above="@id/divider3"
+        android:layout_marginBottom="20dp">
 
         <Button
             android:id="@+id/pictureBtnView"
@@ -32,7 +31,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider3"
         android:layout_marginTop="20dp"
         android:layout_weight="0.3">
 
@@ -50,9 +50,36 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/successResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/almarai_bold"
+        android:padding="10dp"
+        android:text="تم الابلاغ بنجاح"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/divider3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.4" />
+        android:layout_centerInParent="true"
+        android:background="?android:attr/listDivider" />
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
