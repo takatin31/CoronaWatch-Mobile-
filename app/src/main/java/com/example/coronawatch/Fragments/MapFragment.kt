@@ -361,7 +361,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 val items = response.getJSONArray("items")
                 for (i in 0 until count){
                     val item = items.getJSONObject(i)
-                    val nbrCases : Int = item.getInt("totalConfirmed")
+                    val nbrCases : Int = item.getInt("totalActive")
                     val nbrDeaths : Int = item.getInt("totalDead")
                     val nbrRecovered : Int = item.getInt("totalRecovered")
                     val countryCode : String = item.getString("counrtyCode")

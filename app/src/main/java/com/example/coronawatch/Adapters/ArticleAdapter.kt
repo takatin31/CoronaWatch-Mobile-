@@ -74,7 +74,7 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         holder.dateArticle.text = articleDate
         holder.descriptinoArticle.text = articleDescription
 
-        Picasso.get().load("${activity.resources.getString(R.string.host)}/$articleImage").into(holder.imageArticle)
+        Picasso.get().load(articleImage).into(holder.imageArticle)
 
 
         holder.showComments.setOnClickListener {

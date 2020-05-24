@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
                         var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
 
                         var data = item.getJSONArray("items").getJSONObject(0)
-                        var nbrCases = data.getInt("totalConfirmed")
+                        var nbrCases = data.getInt("totalActive")
                         var nbrDeaths = data.getInt("totalDead")
                         var nbrRecovered = data.getInt("totalRecovered")
                         var dailyData =
