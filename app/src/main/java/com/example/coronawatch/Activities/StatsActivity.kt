@@ -166,25 +166,27 @@ class StatsActivity : AppCompatActivity() {
 
     //recuperer les données sur une zone
     private fun getZoneData(zoneId : Int){
-        val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zone/$zoneId"
+        val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zoneDaily/historyByZone/$zoneId"
 
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = JsonObjectRequest(
             Request.Method.GET, urlCountriesData, null,
             Response.Listener { response ->
-                var items = response.getJSONArray("dataZones")
-                countryNameView.text = response.getString("city")
-                val countryCode : String = response.getString("counrtyCode")
-                val flag : Int = World.getFlagOf(countryCode)
-                countryImageView.setImageResource(flag)
+                var items = response.getJSONArray("items")
+
                 val count = items.length()
                 for (i in 0 until count){
                     var item = items.getJSONObject(i)
-                    var stringDate = item.getString("dateDataZone").split("T")[0].split("-")
+                    var stringDate = item.getString("date").replace("O", "0").split("-")
                     var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
-                    var nbrCases = item.getInt("totalActive")
-                    var nbrDeaths = item.getInt("totalDead")
-                    var nbrRecovered = item.getInt("totalRecovered")
+                    var data = item.getJSONArray("items").getJSONObject(0)
+                    countryNameView.text = data.getString("city")
+                    val countryCode : String = data.getString("counrtyCode")
+                    val flag : Int = World.getFlagOf(countryCode)
+                    countryImageView.setImageResource(flag)
+                    var nbrCases = data.getInt("totalActive")
+                    var nbrDeaths = data.getInt("totalDead")
+                    var nbrRecovered = data.getInt("totalRecovered")
                     var dailyData =
                         DailyData(
                             date,
