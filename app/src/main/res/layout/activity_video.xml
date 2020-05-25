@@ -140,7 +140,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="5dp"
-                            android:layout_toEndOf="@id/colorFilter"
+                            android:layout_toEndOf="@id/userImage"
                             android:background="@drawable/box_shape"
                             android:ems="10"
                             android:hint="يمكنك اضافة تعليق هنا ..."
@@ -148,7 +148,7 @@
                             android:padding="10dp" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/colorFilter"
+                            android:id="@+id/userImage"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
                             android:layout_alignParentStart="true"
@@ -166,7 +166,7 @@
                         android:layout_height="1dp"
                         android:layout_below="@id/commentBoxContainer"
                         android:layout_marginTop="5dp"
-                        android:layout_marginBottom="-2dp"
+                        android:layout_marginBottom="5dp"
                         android:background="@color/light_grey" />
 
                     <LinearLayout

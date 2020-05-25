@@ -10,8 +10,8 @@
     <string name="login_slogan">استكشف بيئتك  \nو احمي نفسك و عائلتك</string>
     <string name="facebook">Facebook</string>
     <string name="gmail">Google</string>
-    <string name="facebook_app_id">220529105826107</string>
-    <string name="fb_login_protocol_scheme">fb220529105826107</string>
+    <string name="facebook_app_id">1669449756527026</string>
+    <string name="fb_login_protocol_scheme">fb1669449756527026</string>
     <string name="content">المحتوى</string>
     <string name="signal">الابلاغ</string>
     <string name="map">الخريطة</string>
@@ -63,4 +63,6 @@
     <string name="number_example">5</string>
     <string name="article_title_example">طرق الوقاية من الفيروس</string>
     <string name="add_comment">إضافة تعليق ...</string>
+    <string name="date_example">24-09-2020</string>
+    <string name="username_example">علي شريف</string>
 </resources>

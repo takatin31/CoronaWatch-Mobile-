@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
                     }
 
                     override fun onError(error: FacebookException) {
+                        Log.i("erroooor", error.toString())
                         Toast.makeText(this@LoginActivity, "Hi there! This is a Error", Toast.LENGTH_SHORT).show()
 
                     }
