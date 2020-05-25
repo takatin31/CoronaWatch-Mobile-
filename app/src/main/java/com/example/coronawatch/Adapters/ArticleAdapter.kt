@@ -25,9 +25,6 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         val titleArticle = v.findViewById<TextView>(R.id.article_title)
         val dateArticle = v.findViewById<TextView>(R.id.articleDate)
         val descriptinoArticle = v.findViewById<TextView>(R.id.articleDescription)
-        val nbrCommentsArticle = v.findViewById<TextView>(R.id.article_number_comments)
-        val showComments = v.findViewById<LinearLayout>(R.id.show_comments_trigger)
-        val editComment = v.findViewById<EditText>(R.id.article_comment_box)
         val thumbnailLayout = v.findViewById<LinearLayout>(R.id.articleThumbnailLayout)
         val tagsContainer = v.findViewById<FlexboxLayout>(R.id.tagsContainer)
     }
@@ -69,17 +66,12 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         }
 
         holder.titleArticle.text = articleTitle
-        holder.nbrCommentsArticle.text = articleNbrComment.toString()
 
         holder.dateArticle.text = articleDate
         holder.descriptinoArticle.text = articleDescription
 
         Picasso.get().load(articleImage).into(holder.imageArticle)
 
-
-        holder.showComments.setOnClickListener {
-
-        }
 
         holder.thumbnailLayout.setOnClickListener {
             val articleIntent = Intent(activity, ArticleActivity::class.java)

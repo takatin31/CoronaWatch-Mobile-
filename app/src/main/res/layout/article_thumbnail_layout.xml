@@ -57,55 +57,6 @@
         android:textDirection="rtl"
         android:textSize="16sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/show_comments_trigger"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:contentDescription="@string/description"
-                app:srcCompat="@drawable/ic_comment" />
-
-            <TextView
-                android:id="@+id/article_number_comments"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/number_example" />
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/article_comment_box"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/comment_box_shape"
-            android:ems="10"
-            android:hint="@string/add_comment"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:paddingStart="10dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="5dp"
-            android:textDirection="rtl" />
-    </LinearLayout>
-
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"

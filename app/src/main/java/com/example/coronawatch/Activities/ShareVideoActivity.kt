@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.VolleyLog
 import com.android.volley.toolbox.Volley
+import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileDataPart
 import com.example.coronawatch.Request.FileUploadRequest
@@ -151,18 +152,7 @@ class ShareVideoActivity : AppCompatActivity() {
     }
 
     private fun uploadVideo(postURL : String) {
-        val rootObject= JSONObject()
-        rootObject.put("utilisateurUtilisateurId","1")
-        rootObject.put("titre","titre here")
-        rootObject.put("description","description here")
-        val array1 = JsonArray()
-        array1.add("1")
-        array1.add("2")
-        val array2 = JsonArray()
-        array2.add("corona")
-        array2.add("flutter")
-        rootObject.put("oldTags",array1)
-        rootObject.put("newTags", array2)
+
         imageData?: return
         val request = object : FileUploadRequest(
             Method.POST,
@@ -189,27 +179,11 @@ class ShareVideoActivity : AppCompatActivity() {
 
             override fun getParams(): MutableMap<String, String> {
                 var params = HashMap<String, String>()
-                val rootObject= JSONObject()
-                rootObject.put("utilisateurUtilisateurId","1")
-                rootObject.put("titre","titre here")
-                rootObject.put("description","description here")
-                val array1 = JsonArray()
-                array1.add("1")
-                array1.add("2")
-                val array2 = JsonArray()
-                array2.add("corona")
-                array2.add("flutter")
-                rootObject.put("oldTags",array1)
-                rootObject.put("newTags", array2)
 
-                val jsonString:String = rootObject.toString()
-                val gson:Gson = GsonBuilder().setPrettyPrinting().create()
-                val json: JsonElement = gson.fromJson(jsonString,JsonElement::class.java)
-                val jsonInString:String= gson.toJson(json)
 
                 val theString = "{\"utilisateurUtilisateurId\":\"1\"," +
-                        "\"titre\":\"${aVideoTitle.text}\"," +
-                        "\"description\":\"${descriptionVideo.text}\"" +
+                        "\"titre\":\"${ArabicController.encode_str(aVideoTitle.text.toString())}\"," +
+                        "\"description\":\"${ArabicController.encode_str(descriptionVideo.text.toString())}\"" +
                         "}"
 
                 params["jsonData"] = theString

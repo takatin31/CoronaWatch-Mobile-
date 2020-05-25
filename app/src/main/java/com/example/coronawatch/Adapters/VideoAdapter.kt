@@ -29,7 +29,6 @@ class VideoAdapter(val activity: FragmentActivity, val listArticle : ArrayList<V
         val titleVideo = v.findViewById<TextView>(R.id.video_title)
         val descriptinoVideo = v.findViewById<TextView>(R.id.videoDescription)
         val thumbnailLayout = v.findViewById<LinearLayout>(R.id.videoThumbnailLayout)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {

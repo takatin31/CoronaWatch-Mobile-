@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -61,4 +62,12 @@
         android:fontFamily="@font/almarai_bold"
         android:textDirection="rtl"
         android:textSize="16sp" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/commentContent"
+        android:layout_margin="5dp"
+        android:background="@color/light_grey" />
 </RelativeLayout>

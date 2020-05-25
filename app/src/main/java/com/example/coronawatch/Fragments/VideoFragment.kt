@@ -15,6 +15,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.Adapters.ArticleAdapter
 import com.example.coronawatch.Adapters.VideoAdapter
+import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.Controllers.PaginationScrollListener
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 import com.example.coronawatch.DataClasses.VideoThumbnail
@@ -78,8 +79,8 @@ class VideoFragment : Fragment() {
                         val item = items.getJSONObject(i)
                         val videoId = item.getInt("videoId")
                         var dateVideo = item.getString("dateVideo")
-                        val videoTitle = item.getString("titre")
-                        val videoDesc = item.getString("description")
+                        val videoTitle = ArabicController.decode_str(item.getString("titre"))
+                        val videoDesc = ArabicController.decode_str(item.getString("description"))
                         val videoUrl = "http://192.168.1.55:8081/"+item.getString("videoUrl")
 
                         var localDateTime: LocalDateTime = LocalDateTime.parse(dateVideo.replace("Z", ""))
