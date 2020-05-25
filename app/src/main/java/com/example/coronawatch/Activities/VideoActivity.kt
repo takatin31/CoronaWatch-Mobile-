@@ -15,17 +15,15 @@ import com.example.coronawatch.Adapters.CommentAdapter
 import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.DataClasses.Comment
 import com.example.coronawatch.DataClasses.VideoThumbnail
+import com.example.coronawatch.Interfaces.Commentable
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileUploadRequest
 import com.example.coronawatch.Request.RequestHandler
 import kotlinx.android.synthetic.main.activity_video.*
-import java.io.UnsupportedEncodingException
-import java.net.URLDecoder
-import java.net.URLEncoder
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class VideoActivity : AppCompatActivity() {
+class VideoActivity : AppCompatActivity(), Commentable {
 
     private lateinit var mediaController: MediaController
     private var descriptionContainerBool = false
@@ -81,8 +79,8 @@ class VideoActivity : AppCompatActivity() {
         }
     }
 
-    fun getComments(videoId : Int){
-        val urlData = "${resources.getString(R.string.host)}/api/v0/CommentVideo/video/$videoId"
+    override fun getComments(itemId : Int){
+        val urlData = "${resources.getString(R.string.host)}/api/v0/CommentVideo/video/$itemId"
         commentsProgressBar.visibility = View.VISIBLE
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
@@ -112,7 +110,7 @@ class VideoActivity : AppCompatActivity() {
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestData)
     }
 
-    fun addComment(content : String, userId : Int, videoId : Int){
+    override fun addComment(content : String, userId : Int, itemId : Int){
         val postURL: String = "${resources.getString(R.string.host)}/api/v0/CommentVideo"
 
         val request = object : FileUploadRequest(
@@ -120,7 +118,7 @@ class VideoActivity : AppCompatActivity() {
             postURL,
             Response.Listener {
                 Log.i("success", "comment posted succefully")
-                getComments(videoId)
+                getComments(itemId)
             },
             Response.ErrorListener {
                 Log.i("error", "error while posting comment")
@@ -129,7 +127,7 @@ class VideoActivity : AppCompatActivity() {
             override fun getParams(): MutableMap<String, String> {
                 var params = HashMap<String, String>()
                 params["contenu"] = ArabicController.encode_str(content)
-                params["videoVideoId"] = videoId.toString()
+                params["videoVideoId"] = itemId.toString()
                 params["utilisateurUtilisateurId"] = userId.toString()
 
                 return params
