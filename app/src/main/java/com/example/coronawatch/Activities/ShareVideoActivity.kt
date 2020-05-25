@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.MediaController
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
 import com.android.volley.VolleyLog
@@ -162,16 +163,14 @@ class ShareVideoActivity : AppCompatActivity() {
                 progressBarSending.visibility = View.GONE
                 if (cpt == 0){
                     cpt++
-                   // uploadVideo(postURL)
-                }
 
+                }
+                Toast.makeText(this, "تم رفع الفيديو بنجاح", Toast.LENGTH_LONG).show()
                 val homeIntent = Intent(this, HomeActivity::class.java)
                 startActivity(homeIntent)
                 finish()
             },
             Response.ErrorListener {
-//                Log.i("responseError223 ", it.networkResponse.toString())
-           //     Log.i("responseError", it.toString())
 
             }
         ) {
