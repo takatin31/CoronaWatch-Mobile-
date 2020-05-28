@@ -1,159 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
     android:focusable="true"
-    android:id="@+id/homeActivity"
+    android:id="@+id/drawer_layout"
     tools:context=".Activities.HomeActivity">
 
-    <LinearLayout
-        android:id="@+id/topNAvigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="3dp">
-
-        <ImageView
-            android:id="@+id/notificationIconView"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.05"
-            android:contentDescription="@string/logo"
-            android:src="@drawable/notification_icon_off" />
-
-        <TextView
-            android:id="@+id/fragmentTitleView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.8"
-            android:fontFamily="@font/almarai_bold"
-            android:gravity="start"
-            android:textColor="@color/darkblue"
-            android:textSize="24sp" />
-
-
-        <Spinner
-            android:id="@+id/spinnerContent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.8"
-            android:visibility="gone" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/userImage"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.15"
-            android:src="@drawable/user" />
-
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/mainFragmentView"
+    <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigation"
-        android:layout_below="@id/topNAvigation"
-        android:layout_centerHorizontal="true">
+        layout="@layout/home_layout"/>
 
-    </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
         android:background="@color/white"
-        android:gravity="bottom"
-        android:orientation="horizontal">
+        android:fitsSystemWindows="true"
+        android:layoutDirection="rtl"
+        app:headerLayout="@layout/drawer_header"
+        app:itemTextAppearance="@style/menu_text_style"
+        app:menu="@menu/menu">
 
-        <Button
-            android:id="@+id/contentBtnView"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:drawableTop="@drawable/ic_content"
-            android:fontFamily="@font/almarai_bold"
-            android:paddingTop="10dp"
-            android:text="@string/content"
-            android:textColor="@color/bottom_icons_gret"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/signalBtnView"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:drawableTop="@drawable/ic_camera"
-            android:fontFamily="@font/almarai_bold"
-            android:paddingTop="10dp"
-            android:text="@string/signal"
-            android:textColor="@color/bottom_icons_gret"
-            android:textSize="12sp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnAddContentView"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="0.1"
-            android:backgroundTint="@color/redLight"
-            android:clickable="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            app:backgroundTint="@color/white"
-            app:borderWidth="3dp"
-            app:maxImageSize="46dp"
-            app:srcCompat="@drawable/ic_add" />
+            android:layout_gravity="bottom"
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/mapBtnView"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:drawableTop="@drawable/ic_map"
-            android:fontFamily="@font/almarai_bold"
-            android:paddingTop="10dp"
-            android:text="@string/map"
-            android:textColor="@color/bottom_icons_gret"
-            android:textSize="12sp" />
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/greyLighter" />
 
-        <Button
-            android:id="@+id/homeBtnView"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:drawableTop="@drawable/ic_home"
-            android:fontFamily="@font/almarai_bold"
-            android:paddingTop="10dp"
-            android:text="@string/home"
-            android:textColor="@color/bottom_icons_gret"
-            android:textSize="12sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/almarai_bold"
+                android:text="اتصل بنا"
+                android:textColor="@color/darkblue"
+                android:textDirection="rtl"
+                android:textSize="24sp" />
 
-    </LinearLayout>
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/greyLighter" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/button2"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/white"
+                android:drawableTop="@drawable/ic_help"
+                android:text="مساعدة" />
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>

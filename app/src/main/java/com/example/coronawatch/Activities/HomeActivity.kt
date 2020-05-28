@@ -7,22 +7,27 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.coronawatch.Fragments.*
 import com.example.coronawatch.R
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_stats.*
+import kotlinx.android.synthetic.main.home_layout.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var currentIndex : Int = 0
     private val PERMISSION_CODE: Int = 1000
@@ -30,6 +35,12 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        initDrawer()
+
+        userImage.setOnClickListener {
+            drawer_layout.openDrawer(GravityCompat.END)
+        }
 
         val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
 
@@ -147,8 +158,8 @@ class HomeActivity : AppCompatActivity() {
                 var mapFr: Fragment =
                     MapFragment()
                 if (mapFr != null) {
-                    spinnerContent.visibility = View.VISIBLE
-                    fragmentTitleView.visibility = View.GONE
+                    spinnerContent.visibility = View.GONE
+                    fragmentTitleView.visibility = View.VISIBLE
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.mainFragmentView, mapFr)
                     transaction.commit()
@@ -236,7 +247,17 @@ class HomeActivity : AppCompatActivity() {
         titleTextView.text = resources.getStringArray(R.array.menu)[newIndex]
     }
 
+    private fun initDrawer(){
+        val toggle = ActionBarDrawerToggle(this, drawer_layout, R.string.nav_open, R.string.nav_close)
+        drawer_layout.addDrawerListener(toggle)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        navigation_view.setNavigationItemSelectedListener(this)
+    }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.i("cliiiikk", item.toString())
+        return true
+    }
 
 
 }

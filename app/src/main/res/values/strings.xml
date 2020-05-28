@@ -67,4 +67,10 @@
     <string name="date_example">24-09-2020</string>
     <string name="username_example">علي شريف</string>
     <string name="default_web_client_id">47228953457-rifthskf9hte6jkn7g6n85l4jtbhr9ko.apps.googleusercontent.com</string>
+    <string name="nav_open">Open navigation drawer</string>
+    <string name="nav_close">Close navigation drawer</string>
+    <string name="profile_title">الحساب</string>
+    <string name="health_data_title">بيانات الصحة</string>
+    <string name="how_to_protect_title">كيف تحمي نفسك</string>
+    <string name="log_out_title">تسجيل الخروج</string>
 </resources>
