@@ -16,6 +16,7 @@
     <string name="signal">الابلاغ</string>
     <string name="map">الخريطة</string>
     <string name="home">الرئيسية</string>
+    <string name="shared_pref">CoronaWatch</string>
     <string-array name="menu">
         <item>الصفحة الرئيسية</item>
         <item>الخريطة</item>

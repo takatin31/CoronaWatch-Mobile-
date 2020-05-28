@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
@@ -26,11 +27,17 @@ class HomeActivity : AppCompatActivity() {
     private var currentIndex : Int = 0
     private val PERMISSION_CODE: Int = 1000
     private var spinnerCpt = 0
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+
+        val userId = pref.getInt("userId", -1)
+        val token = pref.getString("token", "noidea hhhhhhhh")
+
+        Log.i("userId", userId.toString())
+        Log.i("tokennn", token)
 
         spinnerContent.visibility = View.GONE
 
