@@ -1,15 +1,14 @@
 package com.example.coronawatch.Activities
 
 
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.NetworkResponse
-import com.android.volley.ParseError
+import androidx.fragment.app.FragmentActivity
 import com.android.volley.Response
-import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.Volley
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileUploadRequest
@@ -19,6 +18,11 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
@@ -27,17 +31,20 @@ import java.util.*
 
 class LoginActivity : AppCompatActivity() {
     private var callbackManager: CallbackManager? = null
-
+    val RC_SIGN_IN = 101
+    val GOOGLE_PERMISSION = 204
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+
 
         var facebook_btn = facebook_login
         var google_btn = google_login
 
         google_btn.setOnClickListener {
-            var home_intent = Intent(this, HomeActivity::class.java)
-            startActivity(home_intent)
+            googleSignIn()
         }
 
 
@@ -61,16 +68,51 @@ class LoginActivity : AppCompatActivity() {
                     override fun onError(error: FacebookException) {
                         Log.i("erroooor", error.toString())
                         Toast.makeText(this@LoginActivity, "Hi there! This is a Error", Toast.LENGTH_SHORT).show()
-
                     }
                 })
         }
+    }
+
+    private fun googleSignIn(){
+        val gso =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val signInIntent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        /*if (account != null){
+            Log.i("accouuuuu", account.idToken)
+        }*/
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         callbackManager?.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+
+        if (resultCode == RESULT_OK) {
+            if (GOOGLE_PERMISSION == requestCode) {
+                googleSignIn()
+            }
+        }
     }
 
     private fun loginUser(extern_token : String, method : String){
@@ -110,8 +152,6 @@ class LoginActivity : AppCompatActivity() {
                 val byteArrayOutputStream = ByteArrayOutputStream()
                 return byteArrayOutputStream.toByteArray()
             }
-
-
         }
         Volley.newRequestQueue(this).add(request)
 
@@ -128,6 +168,25 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("userEmail", user.getString("email"))
 
         editor.commit()
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account =
+                completedTask.getResult(ApiException::class.java)
+
+            // Signed in successfully, show authenticated UI.
+            Log.i("accouuuuu", account!!.idToken)
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(
+                "Logging failed",
+                "signInResult:failed code=" + e.statusCode
+            )
+            Toast.makeText(this, "Hi there! This is a Error", Toast.LENGTH_SHORT).show()
+
+        }
     }
 }
 

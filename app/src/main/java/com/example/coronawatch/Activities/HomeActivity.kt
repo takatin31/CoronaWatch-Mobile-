@@ -33,12 +33,6 @@ class HomeActivity : AppCompatActivity() {
 
         val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
 
-        val userId = pref.getInt("userId", -1)
-        val token = pref.getString("token", "noidea hhhhhhhh")
-
-        Log.i("userId", userId.toString())
-        Log.i("tokennn", token)
-
         spinnerContent.visibility = View.GONE
 
         ArrayAdapter.createFromResource(
