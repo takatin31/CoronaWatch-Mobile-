@@ -51,7 +51,7 @@
             android:visibility="gone" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/userImage"
+            android:id="@+id/userImageٍView"
             android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginLeft="5dp"

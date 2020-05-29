@@ -17,5 +17,6 @@
     <color name="cases_color">#d2DA1212</color>
     <color name="deaths_color">#d26d3dce</color>
     <color name="recovered_color">#d21bb043</color>
+    <color name="dsdsd">#805A5A5A</color>
 
 </resources>

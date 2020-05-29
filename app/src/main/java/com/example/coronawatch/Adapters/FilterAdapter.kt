@@ -33,7 +33,7 @@ class FilterAdapter(context: Context, filterList: ArrayList<Filter>) :
                 R.layout.map_spinner_item_layout, parent, false
             )
         }
-        val colorFilter: CircleImageView = convertView!!.findViewById(R.id.userImage)
+        val colorFilter: CircleImageView = convertView!!.findViewById(R.id.`userImageٍView`)
         val nameFilter: TextView = convertView.findViewById(R.id.titleFilter)
         val currentItem: Filter? = getItem(position)
         if (currentItem != null) {

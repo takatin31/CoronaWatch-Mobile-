@@ -6,11 +6,11 @@
             android:icon="@drawable/ic_profile"
             android:title="@string/profile_title" />
         <item
-            android:id="@+id/nav_messages"
+            android:id="@+id/nav_health_data"
             android:icon="@drawable/ic_data"
             android:title="@string/health_data_title" />
         <item
-            android:id="@+id/nav_friends"
+            android:id="@+id/nav_how_protect"
             android:icon="@drawable/ic_shield"
             android:title="@string/how_to_protect_title" />
         <item

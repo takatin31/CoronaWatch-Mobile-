@@ -13,26 +13,19 @@ import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Response
-import com.android.volley.VolleyLog
 import com.android.volley.toolbox.Volley
 import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileDataPart
 import com.example.coronawatch.Request.FileUploadRequest
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
 import kotlinx.android.synthetic.main.activity_share_video.*
-import org.json.JSONArray
-import org.json.JSONObject
 import java.io.IOException
 
 
 class ShareVideoActivity : AppCompatActivity() {
 
     private val GALLERY = 1
-    private var CAMERA:Int = 2
+    private var CAMERA = 2
     private lateinit var mediaController: MediaController
     var uri: Uri? = null
     private var imageData: ByteArray? = null

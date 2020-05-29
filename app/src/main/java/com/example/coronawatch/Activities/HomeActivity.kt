@@ -3,46 +3,46 @@ package com.example.coronawatch.Activities
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.coronawatch.Fragments.*
 import com.example.coronawatch.R
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_stats.*
+import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.home_layout.*
+
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var currentIndex : Int = 0
     private val PERMISSION_CODE: Int = 1000
     private var spinnerCpt = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         initDrawer()
 
-        userImage.setOnClickListener {
+
+        `userImageٍView`.setOnClickListener {
             drawer_layout.openDrawer(GravityCompat.END)
         }
-
-        val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
 
         spinnerContent.visibility = View.GONE
 
@@ -252,11 +252,51 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.addDrawerListener(toggle)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         navigation_view.setNavigationItemSelectedListener(this)
+
+        initUserData(navigation_view.getHeaderView(0).userNameView, navigation_view.getHeaderView(0).userPicView)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        Log.i("cliiiikk", item.toString())
+
+        when(item.itemId){
+            R.id.nav_profile -> {
+                val intent = Intent(this, ProfileActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.nav_health_data -> {
+
+            }
+
+            R.id.nav_how_protect -> {
+
+            }
+
+            R.id.nav_logout -> {
+
+            }
+        }
+
+        drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun initUserData(
+        userNameView: TextView,
+        userPicView: CircleImageView
+    ) {
+        val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+
+        val userName = pref.getString("userNom", "")+" "+ pref.getString("userPrenom", "")
+        val userPic = pref.getString("userPic", "")
+
+        if (userPic != ""){
+            Picasso.get().load(userPic).into(`userImageٍView`)
+            Picasso.get().load(userPic).into(userPicView)
+        }
+
+        userNameView.text = userName
+
     }
 
 

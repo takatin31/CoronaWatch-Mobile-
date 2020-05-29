@@ -10,7 +10,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userPic"
+        android:id="@+id/userPicView"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
@@ -22,10 +22,10 @@
         android:src="@drawable/user" />
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/userNameView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/userPic"
+        android:layout_below="@id/userPicView"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -40,7 +40,7 @@
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/userName"
+        android:layout_below="@id/userNameView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:background="@color/greyLighter" />
