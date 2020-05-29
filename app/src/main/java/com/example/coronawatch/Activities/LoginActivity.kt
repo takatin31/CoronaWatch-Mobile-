@@ -12,10 +12,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileUploadRequest
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
+import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -33,11 +30,17 @@ class LoginActivity : AppCompatActivity() {
     private var callbackManager: CallbackManager? = null
     val RC_SIGN_IN = 101
     val GOOGLE_PERMISSION = 204
+    lateinit var gso : GoogleSignInOptions
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
+        gso =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
 
         var facebook_btn = facebook_login
@@ -62,7 +65,6 @@ class LoginActivity : AppCompatActivity() {
 
                     override fun onCancel() {
                         Log.d("MainActivity", "Facebook onCancel.")
-
                     }
 
                     override fun onError(error: FacebookException) {
@@ -74,12 +76,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun googleSignIn(){
-        val gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build()
-
         // Build a GoogleSignInClient with the options specified by gso.
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
@@ -90,10 +86,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this)
-        /*if (account != null){
-            Log.i("accouuuuu", account.idToken)
-        }*/
-
+        if (account != null){
+            GoogleSignIn.getClient(this, gso).signOut()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -176,7 +171,8 @@ class LoginActivity : AppCompatActivity() {
                 completedTask.getResult(ApiException::class.java)
 
             // Signed in successfully, show authenticated UI.
-            Log.i("accouuuuu", account!!.idToken)
+            Log.i("accouuuuu", account.toString())
+            Log.i("token", account!!.idToken)
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
