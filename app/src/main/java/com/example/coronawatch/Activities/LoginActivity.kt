@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileUploadRequest
 import com.facebook.*
@@ -161,6 +162,14 @@ class LoginActivity : AppCompatActivity() {
         val user = userJsonObject.getJSONObject("user")
         editor.putInt("userId", user.getInt("id"))
         editor.putString("userEmail", user.getString("email"))
+        editor.putString("userNom", ArabicController.decode_str(user.getString("nom")))
+        editor.putString("userPrenom", ArabicController.decode_str(user.getString("prenom")))
+        editor.putString("userName", ArabicController.decode_str(user.getString("username")))
+        val urlResponse = user.getString("profileImageUrl")
+        val imgUrl = resources.getString(R.string.host) + "/"+ urlResponse
+        editor.putString("userPic", imgUrl)
+        editor.putString("userBirth", user.getString("dateNaissance"))
+        editor.putString("userGender", ArabicController.decode_str(user.getString("gender")))
 
         editor.commit()
     }

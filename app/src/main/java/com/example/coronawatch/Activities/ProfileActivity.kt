@@ -2,6 +2,7 @@ package com.example.coronawatch.Activities
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
@@ -11,17 +12,28 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileDataPart
 import com.example.coronawatch.Request.FileUploadRequest
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile.`userImageٍView`
+import kotlinx.android.synthetic.main.activity_profile.returnBtn
+import kotlinx.android.synthetic.main.activity_share_video.*
 import kotlinx.android.synthetic.main.fragment_signal.*
+import kotlinx.android.synthetic.main.home_layout.*
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+import java.io.DataOutputStream
 import java.io.IOException
+import java.util.*
+import kotlin.collections.HashMap
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -36,9 +48,51 @@ class ProfileActivity : AppCompatActivity() {
 
         initUserData()
 
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.gender_list,
+            R.layout.spinner_item_layout
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.spinner_item_layout)
+            spinnerGender.adapter = adapter
+        }
+
+        userBirthDateView.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                var dayS = "$dayOfMonth"
+                var monthS = "${monthOfYear+1}"
+                if (dayOfMonth < 10){
+                    dayS = "0$dayOfMonth"
+                }
+
+                if (monthOfYear < 9){
+                    monthS = "0${monthOfYear+1}"
+                }
+
+                userBirthDateView.setText("" + dayS + "/" + monthS + "/" + year)
+            }, year, month, day)
+
+            dpd.show()
+        }
+
         userImageContainer.setOnClickListener {
             showPictureDialog()
             //openCamera(MediaStore.ACTION_IMAGE_CAPTURE)
+        }
+
+        returnBtn.setOnClickListener {
+            finish()
+        }
+
+        saveBtn.setOnClickListener {
+            val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+            val userId = pref.getInt("userId", -1)
+            saveUserData(userId)
         }
     }
 
@@ -55,15 +109,70 @@ class ProfileActivity : AppCompatActivity() {
         userPrenomView.setText(userPrenom)
         userNameView.setText(userName)
         userBirthDateView.setText(userBirthDate)
-        userGenderView.setText(userGender)
+
+        val genderIndex = resources.getStringArray(R.array.gender_list).indexOf(userGender)
+        if (genderIndex > 0){
+            spinnerGender.setSelection(genderIndex)
+        }
 
         if (userPic != ""){
             Picasso.get().load(userPic).into(`userImageٍView`)
         }
     }
 
-    fun saveUserData(){
+    fun saveUserData(userId : Int){
+        //val postURL = "https://ptsv2.com/t/4qqou-1590430852/post"
+        val postURL = "${resources.getString(R.string.host)}/api/v0/utilisateur/$userId"
+        val userName = ArabicController.encode_str(userNameView.text.toString())
+        val nom = ArabicController.encode_str(userNomView.text.toString())
+        val prenom = ArabicController.encode_str(userPrenomView.text.toString())
+        val birthDate = userBirthDateView.text.toString()
+        val gender = ArabicController.encode_str(spinnerGender.selectedItem.toString())
 
+        val request = object : FileUploadRequest(
+            Method.PATCH,
+            postURL,
+            Response.Listener {
+                var responseString = String(it.data)
+                var jsonResponse = JSONObject(responseString)
+                var msg = jsonResponse.getString("message")
+                if (msg == "success"){
+                    Log.i("success", "user_updated")
+                }
+
+            },
+            Response.ErrorListener {
+
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                var headers: MutableMap<String, String> = mutableMapOf()
+                headers["Accept"] = "*/*"
+                headers["Cache-Control"] = "no-cache"
+                return headers
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+
+            override fun getBody(): ByteArray {
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                val dataOutputStream = DataOutputStream(byteArrayOutputStream)
+                val jsonUser = JSONObject()
+                jsonUser.put("username", userName)
+                jsonUser.put("nom", nom)
+                jsonUser.put("prenom", prenom)
+                jsonUser.put("gender", gender)
+                jsonUser.put("dateNaissance", birthDate)
+                dataOutputStream.writeBytes(jsonUser.toString())
+                return byteArrayOutputStream.toByteArray()
+            }
+
+
+
+        }
+        Volley.newRequestQueue(this).add(request)
     }
 
     private fun showPictureDialog() {
@@ -150,6 +259,7 @@ class ProfileActivity : AppCompatActivity() {
                     val editor = pref.edit()
 
                     editor.putString("userPic", imgUrl)
+                    editor.commit()
                 }
 
             },

@@ -73,4 +73,8 @@
     <string name="health_data_title">بيانات الصحة</string>
     <string name="how_to_protect_title">كيف تحمي نفسك</string>
     <string name="log_out_title">تسجيل الخروج</string>
+    <string-array name="gender_list">
+        <item>ذكر</item>
+        <item>انثى</item>
+    </string-array>
 </resources>

@@ -257,7 +257,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
+        drawer_layout.closeDrawer(GravityCompat.END)
         when(item.itemId){
             R.id.nav_profile -> {
                 val intent = Intent(this, ProfileActivity::class.java)
@@ -277,7 +277,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+
         return true
     }
 
