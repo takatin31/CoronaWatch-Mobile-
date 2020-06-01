@@ -66,7 +66,7 @@
     <string name="add_comment">إضافة تعليق ...</string>
     <string name="date_example">24-09-2020</string>
     <string name="username_example">علي شريف</string>
-    <string name="default_web_client_id">47228953457-rifthskf9hte6jkn7g6n85l4jtbhr9ko.apps.googleusercontent.com</string>
+    <string name="default_web_client_id_google_auth">47228953457-rifthskf9hte6jkn7g6n85l4jtbhr9ko.apps.googleusercontent.com</string>
     <string name="nav_open">Open navigation drawer</string>
     <string name="nav_close">Close navigation drawer</string>
     <string name="profile_title">الحساب</string>

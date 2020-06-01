@@ -25,6 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.home_layout.*
+import com.pusher.pushnotifications.PushNotifications
 
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -187,6 +188,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 changeIndex(4)
             }
         }
+
+        PushNotifications.start(applicationContext, "ee628110-0089-4e78-b871-8a5b43cdc248")
+        PushNotifications.addDeviceInterest("test")
+
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,

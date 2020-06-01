@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "109382727827",
+    "firebase_url": "https://coronawatch-272513.firebaseio.com",
+    "project_id": "coronawatch-272513",
+    "storage_bucket": "coronawatch-272513.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109382727827:android:ba2dabb79b6b539b867566",
+        "android_client_info": {
+          "package_name": "com.example.coronawatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109382727827-gplpregos749ujo4rfrg3ckqvanv05mm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA80nDWBjZmF8GeQc15RUvF3luXjd4CQUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109382727827-gplpregos749ujo4rfrg3ckqvanv05mm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109382727827:android:bce260414e7b036a867566",
+        "android_client_info": {
+          "package_name": "com.example.pushbottest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109382727827-gplpregos749ujo4rfrg3ckqvanv05mm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA80nDWBjZmF8GeQc15RUvF3luXjd4CQUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109382727827-gplpregos749ujo4rfrg3ckqvanv05mm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
