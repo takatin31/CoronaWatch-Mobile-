@@ -169,8 +169,6 @@ class ProfileActivity : AppCompatActivity() {
                 return byteArrayOutputStream.toByteArray()
             }
 
-
-
         }
         Volley.newRequestQueue(this).add(request)
     }
