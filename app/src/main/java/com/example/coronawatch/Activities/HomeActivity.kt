@@ -198,7 +198,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         PushNotifications.start(applicationContext, "ee628110-0089-4e78-b871-8a5b43cdc248")
-        PushNotifications.addDeviceInterest("test")
+        PushNotifications.addDeviceInterest("newContent")
 
         val tokenProvider = BeamsTokenProvider(
             "https://app.fakejson.com/q/HzbUm4IW?token=nVY8LUSgEpebwBFCuv2KAw",

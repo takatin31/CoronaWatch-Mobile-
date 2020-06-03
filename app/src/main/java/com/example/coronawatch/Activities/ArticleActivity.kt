@@ -61,8 +61,6 @@ class ArticleActivity : AppCompatActivity(), Commentable {
                 commentEditText.text.clear()
             }
         }
-
-
     }
 
     fun playVideo(videoUrl : String){
@@ -193,9 +191,6 @@ class ArticleActivity : AppCompatActivity(), Commentable {
 
                 return params
             }
-
-
-
         }
         Volley.newRequestQueue(this).add(request)
     }

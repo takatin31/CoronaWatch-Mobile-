@@ -39,7 +39,7 @@ class HomeActivityTest{
 
     @Test
     fun is_ProfileImageDisplayed(){
-        onView(withId(R.id.profile_image)).check(matches(isDisplayed()))
+        onView(withId(R.id.`userImageٍView`)).check(matches(isDisplayed()))
     }
 
     @Test

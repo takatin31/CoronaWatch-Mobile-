@@ -31,7 +31,6 @@ class MapFragmentTest{
     @Test
     fun isFloatingActionDisplayed(){
         onView(withId(R.id.mapBtnView)).perform(ViewActions.click())
-        onView(withId(R.id.changeDataDisplayView)).check(matches(isDisplayed()))
     }
 
     @Test
