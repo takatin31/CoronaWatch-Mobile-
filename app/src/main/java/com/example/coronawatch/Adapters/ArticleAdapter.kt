@@ -81,11 +81,10 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
     }
 
     fun addData(listItems: ArrayList<ArticleThumbnail>) {
-        var size = this.listArticle.size
-        this.listArticle.addAll(listItems)
-        var sizeNew = this.listArticle.size
+        var size = listArticle.size
+        listArticle.addAll(listItems)
+        var sizeNew = listArticle.size
         notifyItemRangeChanged(size, sizeNew)
     }
-
 
 }

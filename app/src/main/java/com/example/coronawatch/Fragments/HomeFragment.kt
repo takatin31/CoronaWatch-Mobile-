@@ -138,27 +138,29 @@ class HomeFragment : Fragment() {
 
 
     fun getNearestDangerZone(latLng: LatLng) {
+        if (!detached){
+            // this is just a test because there is no data
+            val urlData = "${resources.getString(R.string.host)}/api/v0/zoneRisque/nearest?lat=${latLng.latitude}&lang=${latLng.longitude}&limit=1"
 
-        // this is just a test because there is no data
-        val urlData = "${resources.getString(R.string.host)}/api/v0/zoneRisque/nearest?lat=${latLng.latitude}&lang=${latLng.longitude}&limit=1"
-
-        // Request a string response from the provided URL.
-        val jsonRequestData =JsonObjectRequest(Request.Method.GET, urlData, null,
-            Response.Listener { response ->
-                val items = response.getJSONObject("items")
-                if (items.getInt("count") > 0){
-                    val zone = items.getJSONArray("rows").getJSONObject(0).getJSONObject("zone")
-                    val zoneRisqeCity = zone.getString("city")
-                    val zoneRisqueLatLng = LatLng(zone.getDouble("latitude"), zone.getDouble("longitude"))
-                    val distance = floor(latLng.distanceTo(zoneRisqueLatLng)/ 1000)
-                    closestDistanceView.text = distance.toString() + "  كم "
-                    closestZoneTextView.text = zoneRisqeCity
-                }
+            // Request a string response from the provided URL.
+            val jsonRequestData =JsonObjectRequest(Request.Method.GET, urlData, null,
+                Response.Listener { response ->
+                    val items = response.getJSONObject("items")
+                    if (items.getInt("count") > 0){
+                        val zone = items.getJSONArray("rows").getJSONObject(0).getJSONObject("zone")
+                        val zoneRisqeCity = zone.getString("city")
+                        val zoneRisqueLatLng = LatLng(zone.getDouble("latitude"), zone.getDouble("longitude"))
+                        val distance = floor(latLng.distanceTo(zoneRisqueLatLng)/ 1000)
+                        closestDistanceView.text = distance.toString() + "  كم "
+                        closestZoneTextView.text = zoneRisqeCity
+                    }
 
 
-            },Response.ErrorListener { Log.d("Error", "Request error") })
-        RequestHandler.getInstance(mContext)
-            .addToRequestQueue(jsonRequestData)
+                },Response.ErrorListener { Log.d("Error", "Request error") })
+            RequestHandler.getInstance(mContext)
+                .addToRequestQueue(jsonRequestData)
+        }
+
 
     }
 

@@ -153,6 +153,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.replace(R.id.mainFragmentView, signalFr)
                     transaction.commit()
+
                 }
             }
             changeIndex(3)

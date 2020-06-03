@@ -35,6 +35,8 @@ class ArticlesFragment : Fragment() {
     var isLastPage: Boolean = false
     var isLoading: Boolean = false
     var currentPage : Int = 0
+    var urlData = ""
+    var created = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,11 @@ class ArticlesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.i("urrrrrrrrrrl123", urlData+"kjhkh")
+        if (urlData == "")
+        urlData = "${resources.getString(R.string.host)}/api/v0/article/pages"
+        Log.i("urrrrrrrrrrl456", urlData)
+
         layoutManager = LinearLayoutManager(activity)
         articleRecycler.layoutManager = layoutManager
 
@@ -67,8 +74,15 @@ class ArticlesFragment : Fragment() {
             }
         })
 
+        created = true
+        start()
+    }
+
+    fun start(){
+        isLoading = true
         getListArticlesThumbnail(1)
     }
+
 
     fun getMoreItems() {
 
@@ -81,13 +95,17 @@ class ArticlesFragment : Fragment() {
     }
 
     fun getListArticlesThumbnail(page : Int){
+
+
         val newList = arrayListOf<ArticleThumbnail>()
-        val urlData = "${resources.getString(R.string.host)}/api/v0/article/pages/$page"
+        val getUrl = "$urlData/$page"
+
 
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
-            Request.Method.GET, urlData, null,
+            Request.Method.GET, getUrl, null,
             Response.Listener { response ->
+                Log.i("respppppp", response.toString())
                 val items = response.getJSONArray("rows")
                 if (items.length() == 0){
                     isLastPage = true
@@ -118,6 +136,7 @@ class ArticlesFragment : Fragment() {
                     }
 
                     adapter.addData(newList)
+
                 }
                 isLoading = false
 
