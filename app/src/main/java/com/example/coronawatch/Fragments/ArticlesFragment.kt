@@ -18,6 +18,7 @@ import com.example.coronawatch.DataClasses.ArticleThumbnail
 
 import com.example.coronawatch.R
 import com.example.coronawatch.Request.RequestHandler
+import com.example.coronawatch.Testing.EspressoIdelingResource
 import kotlinx.android.synthetic.main.fragment_articles.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.time.LocalDateTime
@@ -96,7 +97,7 @@ class ArticlesFragment : Fragment() {
 
     fun getListArticlesThumbnail(page : Int){
 
-
+        EspressoIdelingResource.increment()
         val newList = arrayListOf<ArticleThumbnail>()
         val getUrl = "$urlData/$page"
 
@@ -110,7 +111,7 @@ class ArticlesFragment : Fragment() {
                 if (items.length() == 0){
                     isLastPage = true
                 }else{
-                    currentPage = page
+
                     Log.i("currentPage", currentPage.toString())
                     for (i in 0 until items.length()){
                         val item = items.getJSONObject(i)
@@ -138,7 +139,10 @@ class ArticlesFragment : Fragment() {
                     adapter.addData(newList)
 
                 }
+                currentPage = page
                 isLoading = false
+                EspressoIdelingResource.decrement()
+
 
             },
             Response.ErrorListener { Log.d("Error", "Request error") })

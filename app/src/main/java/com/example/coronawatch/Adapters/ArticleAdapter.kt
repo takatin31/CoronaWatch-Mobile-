@@ -1,6 +1,7 @@
 package com.example.coronawatch.Adapters
 
 import android.content.Intent
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coronawatch.Activities.ArticleActivity
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 import com.example.coronawatch.R
+import com.example.coronawatch.Testing.EspressoIdelingResource
 import com.google.android.flexbox.FlexboxLayout
 import com.squareup.picasso.Picasso
 
@@ -78,13 +80,21 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
             articleIntent.putExtra("articleId", articleId)
             activity.startActivity(articleIntent)
         }
+
     }
 
     fun addData(listItems: ArrayList<ArticleThumbnail>) {
+        EspressoIdelingResource.increment()
+        Log.i("semaphoooo", listItems.toString())
+        Log.i("semaphoooo", "wait")
         var size = listArticle.size
         listArticle.addAll(listItems)
         var sizeNew = listArticle.size
+
         notifyItemRangeChanged(size, sizeNew)
+        EspressoIdelingResource.decrement()
     }
+
+
 
 }
