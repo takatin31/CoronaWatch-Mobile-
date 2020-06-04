@@ -336,7 +336,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     ) {
         val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
 
-        val userName = pref.getString("userNom", "")+" "+ pref.getString("userPrenom", "")
+        val userName = pref.getString("userName", "")
         val userPic = pref.getString("userPic", "")
 
         if (userPic != ""){

@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -168,7 +170,11 @@ class LoginActivity : AppCompatActivity() {
         val urlResponse = user.getString("profileImageUrl")
         val imgUrl = resources.getString(R.string.host) + "/"+ urlResponse
         editor.putString("userPic", imgUrl)
-        editor.putString("userBirth", user.getString("dateNaissance"))
+        val birthDate = user.getString("dateNaissance")
+        var localDateTime: LocalDateTime = LocalDateTime.parse(birthDate.replace("Z", ""))
+        var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val birthDateS = formatter.format(localDateTime)
+        editor.putString("userBirth", birthDateS)
         editor.putString("userGender", ArabicController.decode_str(user.getString("gender")))
 
         editor.commit()

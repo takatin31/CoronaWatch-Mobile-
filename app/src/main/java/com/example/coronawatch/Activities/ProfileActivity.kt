@@ -22,10 +22,14 @@ import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileDataPart
 import com.example.coronawatch.Request.FileUploadRequest
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.`userImageٍView`
 import kotlinx.android.synthetic.main.activity_profile.returnBtn
+import kotlinx.android.synthetic.main.activity_profile.userNameView
 import kotlinx.android.synthetic.main.activity_share_video.*
+import kotlinx.android.synthetic.main.drawer_header.*
+import kotlinx.android.synthetic.main.drawer_header.view.*
 import kotlinx.android.synthetic.main.fragment_signal.*
 import kotlinx.android.synthetic.main.home_layout.*
 import org.json.JSONObject
@@ -74,7 +78,7 @@ class ProfileActivity : AppCompatActivity() {
                     monthS = "0${monthOfYear+1}"
                 }
 
-                userBirthDateView.setText("" + dayS + "/" + monthS + "/" + year)
+                userBirthDateView.setText(""+ year + "-"+ monthS + "-" + dayS )
             }, year, month, day)
 
             dpd.show()
@@ -128,7 +132,7 @@ class ProfileActivity : AppCompatActivity() {
         val prenom = ArabicController.encode_str(userPrenomView.text.toString())
         val birthDate = userBirthDateView.text.toString()
         val gender = ArabicController.encode_str(spinnerGender.selectedItem.toString())
-
+        Log.i("daaaaaaaaaate", birthDate)
         val request = object : FileUploadRequest(
             Method.PATCH,
             postURL,
@@ -138,11 +142,20 @@ class ProfileActivity : AppCompatActivity() {
                 var msg = jsonResponse.getString("message")
                 if (msg == "success"){
                     Log.i("success", "user_updated")
+                    val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+                    val editor = pref.edit()
+                    editor.putString("userNom", userName)
+                    editor.putString("userPrenom", prenom)
+                    editor.putString("userName", nom)
+                    editor.putString("userBirth", birthDate)
+                    editor.putString("userGender", gender)
+                    editor.commit()
                 }
 
             },
             Response.ErrorListener {
-
+                val err = String(it.networkResponse.data)
+                Log.i("errrrrrrrrrrr", err)
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
