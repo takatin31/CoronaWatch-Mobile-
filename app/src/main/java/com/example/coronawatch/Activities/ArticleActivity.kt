@@ -36,7 +36,6 @@ class ArticleActivity : AppCompatActivity(), Commentable {
     lateinit var adapter: CommentAdapter
     lateinit var layoutManager : LinearLayoutManager
     val commentList = arrayListOf<Comment>()
-    var urlData = ""
     lateinit var apiManager : ApiManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,11 +43,6 @@ class ArticleActivity : AppCompatActivity(), Commentable {
         setContentView(R.layout.activity_article)
         apiManager = ApiManager(this)
 
-        Log.i("looooooo", urlData)
-
-
-
-        Log.i("looooooo", urlData)
 
         videoController.visibility = View.GONE
 
@@ -92,11 +86,13 @@ class ArticleActivity : AppCompatActivity(), Commentable {
     fun getArticle(articleId: Int) {
         EspressoIdelingResource.increment()
         val getUrl = apiManager.getApiUrl() +  "article/$articleId"
-        Log.i("loooooooooo", "start_getting_articles" + getUrl)
+        Log.i("loooooooooo", getUrl)
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
             Request.Method.GET, getUrl, null,
             Response.Listener { response ->
+
+                Log.i("errrrrrrrrrrrr", response.toString())
                 val title = response.getString("titre")
                 var date = response.getString("updatedAt")
                 val content = response.getString("contenu")
@@ -147,6 +143,8 @@ class ArticleActivity : AppCompatActivity(), Commentable {
             },
             Response.ErrorListener {
                 EspressoIdelingResource.decrement()
+                /*al strErr = String(it.networkResponse.data)
+                Log.i("errrrrrrrrrrrr", strErr)*/
                 Log.d("Error", "Request error")
             })
 

@@ -102,9 +102,4 @@ class ArticlesFragmentTest{
             perform(RecyclerViewActions.actionOnItemAtPosition<ArticleAdapter.ArticleViewHolder>(0, click()))
     }
 
-
-
-
-
-
 }

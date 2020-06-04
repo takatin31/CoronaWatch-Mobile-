@@ -17,6 +17,7 @@ import com.example.coronawatch.Controllers.PaginationScrollListener
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 
 import com.example.coronawatch.R
+import com.example.coronawatch.Request.ApiManager
 import com.example.coronawatch.Request.RequestHandler
 import com.example.coronawatch.Testing.EspressoIdelingResource
 import kotlinx.android.synthetic.main.fragment_articles.*
@@ -38,6 +39,7 @@ class ArticlesFragment : Fragment() {
     var currentPage : Int = 0
     var urlData = ""
     var created = false
+    lateinit var apiManager : ApiManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +51,9 @@ class ArticlesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.i("urrrrrrrrrrl123", urlData+"kjhkh")
+
         if (urlData == "")
-        urlData = "${resources.getString(R.string.host)}/api/v0/article/pages"
-        Log.i("urrrrrrrrrrl456", urlData)
+            urlData = "${resources.getString(R.string.host)}/api/v0/article/pages"
 
         layoutManager = LinearLayoutManager(activity)
         articleRecycler.layoutManager = layoutManager

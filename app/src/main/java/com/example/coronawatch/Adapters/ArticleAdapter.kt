@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coronawatch.Activities.ArticleActivity
@@ -27,7 +28,7 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
         val titleArticle = v.findViewById<TextView>(R.id.article_title)
         val dateArticle = v.findViewById<TextView>(R.id.articleDate)
         val descriptinoArticle = v.findViewById<TextView>(R.id.articleDescription)
-        val thumbnailLayout = v.findViewById<LinearLayout>(R.id.articleThumbnailLayout)
+        val thumbnailLayout = v.findViewById<CardView>(R.id.articleThumbnailLayout)
         val tagsContainer = v.findViewById<FlexboxLayout>(R.id.tagsContainer)
     }
 

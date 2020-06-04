@@ -151,8 +151,11 @@ class HomeFragment : Fragment() {
                         val zoneRisqeCity = zone.getString("city")
                         val zoneRisqueLatLng = LatLng(zone.getDouble("latitude"), zone.getDouble("longitude"))
                         val distance = floor(latLng.distanceTo(zoneRisqueLatLng)/ 1000)
-                        closestDistanceView.text = distance.toString() + "  كم "
-                        closestZoneTextView.text = zoneRisqeCity
+                        if (closestDistanceView != null && closestZoneTextView != null){
+                            closestDistanceView.text = distance.toString() + "  كم "
+                            closestZoneTextView.text = zoneRisqeCity
+                        }
+
                     }
 
 
