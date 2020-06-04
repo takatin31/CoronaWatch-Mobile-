@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
     android:padding="5dp"
+    android:id="@+id/layout_article_activity"
     tools:context=".Activities.ArticleActivity">
 
     <RelativeLayout
@@ -169,7 +170,7 @@
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/videoRecycler"
+                    android:id="@+id/commentsRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>

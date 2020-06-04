@@ -20,8 +20,10 @@ import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.DataClasses.Comment
 import com.example.coronawatch.Interfaces.Commentable
 import com.example.coronawatch.R
+import com.example.coronawatch.Request.ApiManager
 import com.example.coronawatch.Request.FileUploadRequest
 import com.example.coronawatch.Request.RequestHandler
+import com.example.coronawatch.Testing.EspressoIdelingResource
 import kotlinx.android.synthetic.main.activity_article.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -34,11 +36,20 @@ class ArticleActivity : AppCompatActivity(), Commentable {
     lateinit var adapter: CommentAdapter
     lateinit var layoutManager : LinearLayoutManager
     val commentList = arrayListOf<Comment>()
-
+    var urlData = ""
+    lateinit var apiManager : ApiManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article)
+        apiManager = ApiManager(this)
+
+        Log.i("looooooo", urlData)
+
+
+
+        Log.i("looooooo", urlData)
+
         videoController.visibility = View.GONE
 
         val articleId = intent.getIntExtra("articleId", -1)
@@ -46,10 +57,10 @@ class ArticleActivity : AppCompatActivity(), Commentable {
         getArticle(articleId)
 
         layoutManager = LinearLayoutManager(this)
-        videoRecycler.layoutManager = layoutManager
+        commentsRecycler.layoutManager = layoutManager
 
         adapter = CommentAdapter(this, commentList)
-        videoRecycler.adapter = adapter
+        commentsRecycler.adapter = adapter
 
         getComments(articleId)
 
@@ -62,6 +73,7 @@ class ArticleActivity : AppCompatActivity(), Commentable {
             }
         }
     }
+
 
     fun playVideo(videoUrl : String){
         mediaController = MediaController(this)
@@ -77,12 +89,13 @@ class ArticleActivity : AppCompatActivity(), Commentable {
         }
     }
 
-    private fun getArticle(articleId: Int) {
-        val urlData = "${resources.getString(R.string.host)}/api/v0/article/$articleId"
-
+    fun getArticle(articleId: Int) {
+        EspressoIdelingResource.increment()
+        val getUrl = apiManager.getApiUrl() +  "article/$articleId"
+        Log.i("loooooooooo", "start_getting_articles" + getUrl)
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
-            Request.Method.GET, urlData, null,
+            Request.Method.GET, getUrl, null,
             Response.Listener { response ->
                 val title = response.getString("titre")
                 var date = response.getString("updatedAt")
@@ -130,21 +143,25 @@ class ArticleActivity : AppCompatActivity(), Commentable {
 
                 articleContent.setMarkDownText(content)
                 articleContent.isOpenUrlInBrowser = true
-
-
+                EspressoIdelingResource.decrement()
             },
-            Response.ErrorListener { Log.d("Error", "Request error") })
+            Response.ErrorListener {
+                EspressoIdelingResource.decrement()
+                Log.d("Error", "Request error")
+            })
 
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestData)
     }
 
     override fun getComments(itemId : Int){
-        val urlData = "${resources.getString(R.string.host)}/api/v0/CommentArticle/article/$itemId"
-        commentsProgressBar.visibility = View.VISIBLE
+        EspressoIdelingResource.increment()
+        val getUrl = apiManager.getApiUrl() + "CommentArticle/article/$itemId"
+        //commentsProgressBar.visibility = View.VISIBLE
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
-            Request.Method.GET, urlData, null,
+            Request.Method.GET, getUrl, null,
             Response.Listener { response ->
+                Log.i("resssssssssssssss", response.toString())
                 commentList.clear()
                 val items = response.getJSONObject("items").getJSONArray("rows")
                 for (i in 0 until items.length()){
@@ -163,8 +180,12 @@ class ArticleActivity : AppCompatActivity(), Commentable {
                 }
                 commentsProgressBar.visibility = View.GONE
                 adapter.notifyDataSetChanged()
+                EspressoIdelingResource.decrement()
             },
-            Response.ErrorListener { Log.d("Error", "Request error") })
+            Response.ErrorListener {
+                EspressoIdelingResource.decrement()
+                Log.d("Error", "Request error")
+            })
 
         RequestHandler.getInstance(this).addToRequestQueue(jsonRequestData)
     }

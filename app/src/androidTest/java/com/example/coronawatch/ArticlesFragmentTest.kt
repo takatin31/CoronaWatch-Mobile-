@@ -1,15 +1,21 @@
 package com.example.coronawatch
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.size
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.internal.runner.junit4.AndroidJUnit4Builder
@@ -21,12 +27,15 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.coronawatch.Activities.ArticleActivity
 import com.example.coronawatch.Activities.HomeActivity
+import com.example.coronawatch.Activities.LoginActivity
 import com.example.coronawatch.Adapters.ArticleAdapter
 import com.example.coronawatch.DataClasses.ArticleThumbnail
 import com.example.coronawatch.Fragments.ArticlesFragment
 import com.example.coronawatch.Request.RequestHandler
 import com.example.coronawatch.Testing.EspressoIdelingResource
+import com.example.coronawatch.Testing.FakeData
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_articles.*
 import org.junit.*
@@ -51,11 +60,13 @@ class ArticlesFragmentTest{
 
     lateinit var myFragment : ArticlesFragment
 
+    val LIST_ITEM_SIZE = 2
+    val listThumbnailArticles = FakeData.thumbnailArticles
 
 
+    //initialiser les ressources necessaires pour le test
     @Before
     fun  initTest(){
-
         myFragment = ArticlesFragment()
         val transaction = activity.activity.supportFragmentManager.beginTransaction()
         transaction.replace(R.id.mainFragmentView, myFragment)
@@ -64,41 +75,33 @@ class ArticlesFragmentTest{
         IdlingRegistry.getInstance().register(EspressoIdelingResource.countingIdlingResorce)
     }
 
+    //utiliser pour mettre le tests en pause jusqu'a la fin de la requette
     @After
     fun unregisterIdlingResource(){
         IdlingRegistry.getInstance().unregister(EspressoIdelingResource.countingIdlingResorce)
     }
 
+    //verifier si le fragmenet est affiché
     @Test
     fun is_FragmentViewDisplayed(){
-        onView(ViewMatchers.withId(R.id.fragment_articles_layout))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.fragment_articles_layout))
+            .check(matches(isDisplayed()))
     }
 
+    //Verifier si la liste des articles est affichée
     @Test
     fun is_contentCorrectlyDisplayed(){
-        onView(ViewMatchers.withId(R.id.articleRecycler))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-/*        var v = myFragment.articleRecycler.findViewHolderForAdapterPosition(0) as ArticleAdapter.ArticleViewHolder
-
-        if (v != null){
-            Log.i("piiiiiii", v.titleArticle.text.toString())
-        }*/
-/*        for (i in 0 until myFragment.layoutManager.childCount){
-            val v = myFragment.layoutManager.getChildAt(i)
-            if (v != null){
-                var title = v.findViewById<TextView>(R.id.article_title)
-                Log.i("tiiiiiiiiiiiiiii", title.text.toString()+"khjk")
-            }
-
-        }
-*/
-        Log.i("siiiiiiiii", myFragment.articleRecycler.size.toString())
-        for (v in myFragment.articleRecycler.children){
-            var title = v.findViewById<TextView>(R.id.article_title)
-            Log.i("tiiiiiiiiiiiiiii", title.text.toString())
-        }
+        onView(withId(R.id.articleRecycler))
+            .check(matches(isDisplayed()))
     }
+
+    //Verifier si l'activite articleActivity est affichée aprés avoir cliqué sur un element
+    @Test
+    fun articleThumbnail_isClickPossible(){
+        onView(withId(R.id.articleRecycler)).
+            perform(RecyclerViewActions.actionOnItemAtPosition<ArticleAdapter.ArticleViewHolder>(0, click()))
+    }
+
 
 
 
