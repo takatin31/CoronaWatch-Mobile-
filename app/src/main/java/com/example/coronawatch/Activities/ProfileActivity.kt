@@ -115,10 +115,9 @@ class ProfileActivity : AppCompatActivity() {
         userBirthDateView.setText(userBirthDate)
 
         val genderIndex = resources.getStringArray(R.array.gender_list).indexOf(userGender)
-        if (genderIndex > 0){
+        if (genderIndex >= 0){
             spinnerGender.setSelection(genderIndex)
         }
-
         if (userPic != ""){
             Picasso.get().load(userPic).into(`userImageٍView`)
         }
@@ -144,11 +143,11 @@ class ProfileActivity : AppCompatActivity() {
                     Log.i("success", "user_updated")
                     val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
                     val editor = pref.edit()
-                    editor.putString("userNom", userName)
-                    editor.putString("userPrenom", prenom)
-                    editor.putString("userName", nom)
+                    editor.putString("userNom", ArabicController.decode_str(nom))
+                    editor.putString("userPrenom", ArabicController.decode_str(prenom))
+                    editor.putString("userName", ArabicController.decode_str(userName))
                     editor.putString("userBirth", birthDate)
-                    editor.putString("userGender", gender)
+                    editor.putString("userGender", ArabicController.decode_str(gender))
                     editor.commit()
                 }
 
