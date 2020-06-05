@@ -86,13 +86,13 @@ class ArticleActivity : AppCompatActivity(), Commentable {
     fun getArticle(articleId: Int) {
         EspressoIdelingResource.increment()
         val getUrl = apiManager.getApiUrl() +  "article/$articleId"
-        Log.i("loooooooooo", getUrl)
+
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
             Request.Method.GET, getUrl, null,
             Response.Listener { response ->
 
-                Log.i("errrrrrrrrrrrr", response.toString())
+
                 val title = response.getString("titre")
                 var date = response.getString("updatedAt")
                 val content = response.getString("contenu")
@@ -143,8 +143,7 @@ class ArticleActivity : AppCompatActivity(), Commentable {
             },
             Response.ErrorListener {
                 EspressoIdelingResource.decrement()
-                /*al strErr = String(it.networkResponse.data)
-                Log.i("errrrrrrrrrrrr", strErr)*/
+
                 Log.d("Error", "Request error")
             })
 
@@ -159,7 +158,7 @@ class ArticleActivity : AppCompatActivity(), Commentable {
         val jsonRequestData = JsonObjectRequest(
             Request.Method.GET, getUrl, null,
             Response.Listener { response ->
-                Log.i("resssssssssssssss", response.toString())
+
                 commentList.clear()
                 val items = response.getJSONObject("items").getJSONArray("rows")
                 for (i in 0 until items.length()){

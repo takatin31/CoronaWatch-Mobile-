@@ -115,7 +115,7 @@ class ShareVideoActivity : AppCompatActivity() {
             if (data != null) {
                 uri = data.data
                 val recordedVideoPath: String = getPath(uri)
-                Log.d("frrr", recordedVideoPath)
+
                 videoView.visibility = View.VISIBLE
                 deleteVideoBtn.visibility = View.VISIBLE
                 addVideoBtn.visibility = View.GONE
@@ -127,7 +127,7 @@ class ShareVideoActivity : AppCompatActivity() {
             }
 
         }else {
-            Log.d("what", "cancle")
+            Log.d("what", "cancel")
             return
         }
     }

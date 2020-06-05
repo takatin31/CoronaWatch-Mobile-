@@ -23,6 +23,7 @@
         <item>اضافة محتوى</item>
         <item>الابلاغ</item>
         <item>المحتوى</item>
+        <item>التنبيهات</item>
     </string-array>
     <string name="current_stats">احصائيات حالية</string>
     <string name="nbr_deaths">عدد\nالوفيات </string>
@@ -74,6 +75,7 @@
     <string name="health_data_title">بيانات الصحة</string>
     <string name="how_to_protect_title">كيف تحمي نفسك</string>
     <string name="log_out_title">تسجيل الخروج</string>
+    <string name="notification_example">هذا تنبيه</string>
     <string-array name="gender_list">
         <item>ذكر</item>
         <item>انثى</item>

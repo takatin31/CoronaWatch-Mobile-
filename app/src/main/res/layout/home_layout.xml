@@ -24,9 +24,9 @@
             android:id="@+id/notificationIconView"
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.05"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.07"
             android:contentDescription="@string/logo"
             android:src="@drawable/notification_icon_off" />
 
@@ -57,7 +57,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="0.15"
-            android:src="@drawable/user" />
+            android:src="@drawable/com_facebook_profile_picture_blank_portrait" />
 
 
     </LinearLayout>

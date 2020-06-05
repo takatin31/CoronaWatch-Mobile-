@@ -1,8 +1,10 @@
 package com.example.coronawatch.Activities
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -44,6 +46,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_home)
 
         initDrawer()
+
+        PushNotifications.start(applicationContext, "ee628110-0089-4e78-b871-8a5b43cdc248")
+        PushNotifications.addDeviceInterest("NEWCONTENTPUBLISHED")
+
+        RegisterMeWithPusher(this).execute()
 
 
         `userImageٍView`.setOnClickListener {
@@ -196,46 +203,63 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-
-        PushNotifications.start(applicationContext, "ee628110-0089-4e78-b871-8a5b43cdc248")
-        PushNotifications.addDeviceInterest("newContent")
-
-        val tokenProvider = BeamsTokenProvider(
-            "https://app.fakejson.com/q/HzbUm4IW?token=nVY8LUSgEpebwBFCuv2KAw",
-            object: AuthDataGetter {
-                override fun getAuthData(): AuthData {
-
-                    return AuthData(
-                        // Headers and URL query params your auth endpoint needs to
-                        // request a Beams Token for a given user
-                        headers = hashMapOf(
-                            // for example:
-                            // "Authorization" to sessionToken
-                        ),
-                        queryParams = hashMapOf()
-                    )
+        notificationIconView.setOnClickListener {
+            if (currentIndex != 5){
+                var notifFr: Fragment =
+                    NotificationFragment()
+                if (notifFr != null) {
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.replace(R.id.mainFragmentView, notifFr)
+                    transaction.commit()
                 }
+                changeIndex(5)
             }
-        )
+        }
 
 
+    }
 
-        PushNotifications.setUserId(
-            "1",
-            tokenProvider,
-            object : BeamsCallback<Void, PusherCallbackError> {
-                override fun onFailure(error: PusherCallbackError) {
-                    Log.e("BeamsAuth", "Could not login to Beams: ${error.message}");
+    class RegisterMeWithPusher(context : Context) : AsyncTask<Void, Void, Void>() {
+
+        val pref = context.getSharedPreferences(context.resources.getString(R.string.shared_pref),0)
+        val userId = pref.getInt("userId", -1)
+
+        val mConext = context
+        override fun doInBackground(vararg params: Void): Void? {
+
+            val tokenProvider = BeamsTokenProvider(
+                "${mConext.resources.getString(R.string.host)}/api/v0/pushNotification/getBeamsToken",
+                object: AuthDataGetter {
+                    override fun getAuthData(): AuthData {
+
+                        return AuthData(
+                            // Headers and URL query params your auth endpoint needs to
+                            // request a Beams Token for a given user
+                            headers = hashMapOf(
+                                // for example:
+                                // "Authorization" to sessionToken
+                            ),
+                            queryParams = hashMapOf()
+                        )
+                    }
                 }
+            )
 
-                override fun onSuccess(vararg values: Void) {
-                    Log.i("BeamsAuth", "Beams login success");
+            PushNotifications.setUserId(
+                userId.toString(),
+                tokenProvider,
+                object : BeamsCallback<Void, PusherCallbackError> {
+                    override fun onFailure(error: PusherCallbackError) {
+                        Log.e("BeamsAuth", "Could not login to Beams: ${error.message}");
+                    }
+
+                    override fun onSuccess(vararg values: Void) {
+                        Log.i("BeamsAuth", "Beams login success");
+                    }
                 }
-            }
-        )
-
-
-
+            )
+            return null
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -288,7 +312,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-
     //changer l'index
     fun changeIndex(newIndex: Int){
         currentIndex = newIndex
@@ -326,7 +349,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-
         return true
     }
 
@@ -339,7 +361,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val userName = pref.getString("userName", "")
         val userPic = pref.getString("userPic", "")
 
-        if (userPic != ""){
+        if (userPic != "null" && userPic != ""){
             Picasso.get().load(userPic).into(`userImageٍView`)
             Picasso.get().load(userPic).into(userPicView)
         }

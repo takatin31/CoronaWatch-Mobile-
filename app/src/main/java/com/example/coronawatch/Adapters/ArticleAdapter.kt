@@ -86,8 +86,7 @@ class ArticleAdapter(val activity: FragmentActivity, val listArticle : ArrayList
 
     fun addData(listItems: ArrayList<ArticleThumbnail>) {
         EspressoIdelingResource.increment()
-        Log.i("semaphoooo", listItems.toString())
-        Log.i("semaphoooo", "wait")
+
         var size = listArticle.size
         listArticle.addAll(listItems)
         var sizeNew = listArticle.size

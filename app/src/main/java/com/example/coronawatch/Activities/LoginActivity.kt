@@ -167,14 +167,21 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("userNom", ArabicController.decode_str(user.getString("nom")))
         editor.putString("userPrenom", ArabicController.decode_str(user.getString("prenom")))
         editor.putString("userName", ArabicController.decode_str(user.getString("username")))
-        val urlResponse = user.getString("profileImageUrl")
-        val imgUrl = resources.getString(R.string.host) + "/"+ urlResponse
-        editor.putString("userPic", imgUrl)
-        val birthDate = user.getString("dateNaissance")
-        var localDateTime: LocalDateTime = LocalDateTime.parse(birthDate.replace("Z", ""))
-        var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val birthDateS = formatter.format(localDateTime)
-        editor.putString("userBirth", birthDateS)
+        var urlResponse = user.getString("profileImageUrl")
+        if (urlResponse != "" && urlResponse != "null"){
+            urlResponse = resources.getString(R.string.host) + "/"+ urlResponse
+        }
+
+        editor.putString("userPic", urlResponse)
+
+        var birthDate = user.getString("dateNaissance")
+        if (birthDate != "null" && birthDate != ""){
+            var localDateTime: LocalDateTime = LocalDateTime.parse(birthDate.replace("Z", ""))
+            var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            birthDate = formatter.format(localDateTime)
+        }
+
+        editor.putString("userBirth", birthDate)
         editor.putString("userGender", ArabicController.decode_str(user.getString("gender")))
 
         editor.commit()

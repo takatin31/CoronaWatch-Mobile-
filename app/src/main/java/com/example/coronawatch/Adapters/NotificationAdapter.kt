@@ -3,6 +3,7 @@ package com.example.coronawatch.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +17,8 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class NotificationAdapter (val activity: FragmentActivity, val listNotifications : ArrayList<Notification>) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
     class NotificationViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        var userName = v.findViewById<TextView>(R.id.userNameView)
-        var userImage = v.findViewById<CircleImageView>(R.id.`userImageٍView`)
+        var NotificationTitle = v.findViewById<TextView>(R.id.notificationTitleView)
+        var NotificationSeen = v.findViewById<ImageView>(R.id.notificationSeenView)
         var NotificationDate = v.findViewById<TextView>(R.id.notificationDateView)
         var NotificationContent = v.findViewById<TextView>(R.id.notificationContentView)
     }
@@ -33,7 +34,14 @@ class NotificationAdapter (val activity: FragmentActivity, val listNotifications
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
-        val Notification = listNotifications[position]
+        val notification = listNotifications[position]
+        holder.NotificationContent.text = notification.contenu
+        holder.NotificationTitle.text = notification.title
+        holder.NotificationDate.text = notification.date
+        val seen= notification.seen
+        if (seen){
+            holder.NotificationSeen.visibility = View.GONE
+        }
 
     }
 

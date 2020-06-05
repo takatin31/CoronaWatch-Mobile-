@@ -131,9 +131,6 @@ class HomeFragment : Fragment() {
                 }
         }
 
-
-
-
     }
 
 
@@ -157,7 +154,6 @@ class HomeFragment : Fragment() {
                         }
 
                     }
-
 
                 },Response.ErrorListener { Log.d("Error", "Request error") })
             RequestHandler.getInstance(mContext)
