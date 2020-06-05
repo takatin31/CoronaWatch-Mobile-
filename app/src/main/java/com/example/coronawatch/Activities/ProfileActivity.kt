@@ -131,7 +131,7 @@ class ProfileActivity : AppCompatActivity() {
         val prenom = ArabicController.encode_str(userPrenomView.text.toString())
         val birthDate = userBirthDateView.text.toString()
         val gender = ArabicController.encode_str(spinnerGender.selectedItem.toString())
-        Log.i("daaaaaaaaaate", birthDate)
+
         val request = object : FileUploadRequest(
             Method.PATCH,
             postURL,

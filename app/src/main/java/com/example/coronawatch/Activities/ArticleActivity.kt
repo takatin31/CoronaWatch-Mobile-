@@ -62,7 +62,9 @@ class ArticleActivity : AppCompatActivity(), Commentable {
             if (commentEditText.text.toString() != ""){
                 val commentContent = commentEditText.text.toString()
                 Log.i("this_is_comment", commentContent)
-                addComment(commentContent, 1, articleId)
+                val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+                val userId = pref.getInt("userId", -1)
+                addComment(commentContent, userId, articleId)
                 commentEditText.text.clear()
             }
         }
@@ -188,8 +190,8 @@ class ArticleActivity : AppCompatActivity(), Commentable {
     }
 
     override fun addComment(content : String, userId : Int, itemId : Int){
-        val postURL: String = "${resources.getString(R.string.host)}/api/v0/CommentArticle"
-
+        val postURL: String =  apiManager.getApiUrl() + "CommentArticle"
+        Log.i("addedPostUrl", postURL)
         val request = object : FileUploadRequest(
             Method.POST,
             postURL,

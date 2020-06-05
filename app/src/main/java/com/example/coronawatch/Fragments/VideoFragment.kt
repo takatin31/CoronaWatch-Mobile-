@@ -74,7 +74,6 @@ class VideoFragment : Fragment() {
 
                 }else{
 
-
                     for (i in 0 until items.length()){
                         val item = items.getJSONObject(i)
                         val videoId = item.getInt("videoId")
@@ -90,11 +89,10 @@ class VideoFragment : Fragment() {
                         thumbnailVideoList.add(videoThumbnail)
                     }
 
-                    if (loadingVideoProgressBar != null){
-                        loadingVideoProgressBar.visibility = View.INVISIBLE
-                    }
-
                     adapter.notifyDataSetChanged()
+                }
+                if (loadingVideoProgressBar != null){
+                    loadingVideoProgressBar.visibility = View.INVISIBLE
                 }
                 isLoading = false
 

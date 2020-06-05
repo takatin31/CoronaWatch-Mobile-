@@ -133,12 +133,13 @@ class ArticlesFragment : Fragment() {
                         newList.add(articleThumbnail)
                     }
 
-                    if (loadingArticleProgressBar != null){
-                        loadingArticleProgressBar.visibility = View.INVISIBLE
-                    }
+
 
                     adapter.addData(newList)
 
+                }
+                if (loadingArticleProgressBar != null){
+                    loadingArticleProgressBar.visibility = View.INVISIBLE
                 }
                 currentPage = page
                 isLoading = false
