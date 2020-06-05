@@ -1,8 +1,10 @@
 package com.example.coronawatch.Activities
 
 import android.Manifest
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.os.AsyncTask
 import android.os.Bundle
@@ -21,18 +23,19 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.example.coronawatch.Fragments.*
 import com.example.coronawatch.R
+import com.example.coronawatch.Services.NotificationActions
 import com.google.android.material.navigation.NavigationView
 import com.pusher.pushnotifications.BeamsCallback
-import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.drawer_header.view.*
-import kotlinx.android.synthetic.main.home_layout.*
 import com.pusher.pushnotifications.PushNotifications
 import com.pusher.pushnotifications.PusherCallbackError
 import com.pusher.pushnotifications.auth.AuthData
 import com.pusher.pushnotifications.auth.AuthDataGetter
 import com.pusher.pushnotifications.auth.BeamsTokenProvider
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.drawer_header.view.*
+import kotlinx.android.synthetic.main.home_layout.*
 
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -202,9 +205,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
 
-
         notificationIconView.setOnClickListener {
             if (currentIndex != 5){
+                spinnerContent.visibility = View.GONE
+                fragmentTitleView.visibility = View.VISIBLE
+                seenMarkView.visibility = View.GONE
                 var notifFr: Fragment =
                     NotificationFragment()
                 if (notifFr != null) {
@@ -369,6 +374,21 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         userNameView.text = userName
 
     }
+
+
+    /*private val onEvent: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(ctxt: Context?, i: Intent) {
+            Log.i("neeee", "receiiivedNew")
+            when(i.action){
+                NotificationActions.newNotification.actionCode -> {
+                    Log.i("neeeeee", "newwwwwwwww")
+                }
+                NotificationActions.dataUserChanged.actionCode -> {
+
+                }
+            }
+        }*/
+
 
 
 }

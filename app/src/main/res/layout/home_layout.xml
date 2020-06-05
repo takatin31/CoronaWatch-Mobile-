@@ -20,15 +20,35 @@
         android:paddingTop="5dp"
         android:paddingBottom="3dp">
 
-        <ImageView
-            android:id="@+id/notificationIconView"
+        <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:layout_weight="0.07"
-            android:contentDescription="@string/logo"
-            android:src="@drawable/notification_icon_off" />
+            android:layout_weight="0.07">
+
+            <ImageView
+                android:id="@+id/notificationIconView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/logo"
+                android:src="@drawable/notification_icon_off" />
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:background="?android:attr/listDivider" />
+
+            <ImageView
+                android:id="@+id/seenMarkView"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_above="@id/divider7"
+                android:layout_alignParentEnd="true"
+                app:srcCompat="@drawable/circle_button" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/fragmentTitleView"

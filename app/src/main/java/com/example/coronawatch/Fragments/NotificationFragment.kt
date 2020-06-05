@@ -93,15 +93,15 @@ class NotificationFragment : Fragment() {
                                 notificationsList.add(notification)
                             }
 
-                            if (loadingNotifProgressBar != null){
-                                loadingNotifProgressBar.visibility = View.GONE
-                            }
-
                             adapter.notifyDataSetChanged()
                         }
                     }
+                    if (loadingNotifProgressBar != null){
+                        loadingNotifProgressBar.visibility = View.GONE
+                    }
                 },
-                Response.ErrorListener { Log.d("Error", "Request error") })
+                Response.ErrorListener {
+                    Log.d("Error", "Request error") })
 
             RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestData)
         }

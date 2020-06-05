@@ -54,7 +54,7 @@
         <item>الفيديوهات</item>
     </string-array>
     <string name="last_update">آخر تحديث : </string>
-    <string name="host">http://192.168.1.55:8081</string>
+    <string name="host">https://coronawatch-api-v0.herokuapp.com</string>
     <string name="test_host">http://192.168.1.55:3000</string>
     <string name="closestDangerZoneLabel">اقرب منطقة خطر</string>
     <string name="yourPositionLabel">موقعك</string>
