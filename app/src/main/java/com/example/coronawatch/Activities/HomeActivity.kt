@@ -359,7 +359,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_health_data -> {
-
+                val intent = Intent(this, UserSanteActivity::class.java)
+                startActivity(intent)
             }
 
             R.id.nav_how_protect -> {
