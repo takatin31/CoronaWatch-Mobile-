@@ -1,0 +1,4482 @@
+[
+  {
+    "zone": {
+      "latitude": 37.09024,
+      "longitude": -95.712891,
+      "counrtyCode": "US",
+      "country": "USA"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1703193,
+      "totalDead": 99747,
+      "totalRecovered": 460944,
+      "dailyDeaths": 447,
+      "totalActive": 1142502,
+      "totalCritical": 17103,
+      "totalConfirmedPerMillionPopulation": 5149,
+      "totalDeathsPerMillionPopulation": 302,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -14.235004,
+      "longitude": -51.92528,
+      "counrtyCode": "BR",
+      "country": "Brazil"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 370060,
+      "totalDead": 23102,
+      "totalRecovered": 149911,
+      "dailyDeaths": 386,
+      "totalActive": 197047,
+      "totalCritical": 8318,
+      "totalConfirmedPerMillionPopulation": 1742,
+      "totalDeathsPerMillionPopulation": 109,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 61.52401,
+      "longitude": 105.318756,
+      "counrtyCode": "RU",
+      "country": "Russia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 353427,
+      "totalDead": 3633,
+      "totalRecovered": 118798,
+      "dailyDeaths": 92,
+      "totalActive": 230996,
+      "totalCritical": 2300,
+      "totalConfirmedPerMillionPopulation": 2422,
+      "totalDeathsPerMillionPopulation": 25,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 40.463667,
+      "longitude": -3.74922,
+      "counrtyCode": "ES",
+      "country": "Spain"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 282480,
+      "totalDead": 26837,
+      "totalRecovered": 196958,
+      "dailyDeaths": 0,
+      "totalActive": 58685,
+      "totalCritical": 854,
+      "totalConfirmedPerMillionPopulation": 6042,
+      "totalDeathsPerMillionPopulation": 574,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 55.378051,
+      "longitude": -3.435973,
+      "counrtyCode": "GB",
+      "country": "UK"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 261184,
+      "totalDead": 36914,
+      "totalRecovered": 135,
+      "dailyDeaths": 121,
+      "totalActive": 0,
+      "totalCritical": 1559,
+      "totalConfirmedPerMillionPopulation": 3849,
+      "totalDeathsPerMillionPopulation": 544,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 41.87194,
+      "longitude": 12.56738,
+      "counrtyCode": "IT",
+      "country": "Italy"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 230158,
+      "totalDead": 32877,
+      "totalRecovered": 141981,
+      "dailyDeaths": 92,
+      "totalActive": 55300,
+      "totalCritical": 541,
+      "totalConfirmedPerMillionPopulation": 3806,
+      "totalDeathsPerMillionPopulation": 544,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 46.227638,
+      "longitude": 2.213749,
+      "counrtyCode": "FR",
+      "country": "France"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 182942,
+      "totalDead": 28432,
+      "totalRecovered": 65199,
+      "dailyDeaths": 65,
+      "totalActive": 89311,
+      "totalCritical": 1609,
+      "totalConfirmedPerMillionPopulation": 2803,
+      "totalDeathsPerMillionPopulation": 436,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 51.165691,
+      "longitude": 10.451526,
+      "counrtyCode": "DE",
+      "country": "Germany"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 180789,
+      "totalDead": 8428,
+      "totalRecovered": 161200,
+      "dailyDeaths": 57,
+      "totalActive": 11161,
+      "totalCritical": 873,
+      "totalConfirmedPerMillionPopulation": 2158,
+      "totalDeathsPerMillionPopulation": 101,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 38.963745,
+      "longitude": 35.243322,
+      "counrtyCode": "TR",
+      "country": "Turkey"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 157814,
+      "totalDead": 4369,
+      "totalRecovered": 120015,
+      "dailyDeaths": 29,
+      "totalActive": 33430,
+      "totalCritical": 756,
+      "totalConfirmedPerMillionPopulation": 1873,
+      "totalDeathsPerMillionPopulation": 52,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 20.593684,
+      "longitude": 78.96288,
+      "counrtyCode": "IN",
+      "country": "India"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 144941,
+      "totalDead": 4172,
+      "totalRecovered": 60706,
+      "dailyDeaths": 148,
+      "totalActive": 80063,
+      "totalCritical": 8944,
+      "totalConfirmedPerMillionPopulation": 105,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 32.427908,
+      "longitude": 53.688046,
+      "counrtyCode": "IR",
+      "country": "Iran"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 137724,
+      "totalDead": 7451,
+      "totalRecovered": 107713,
+      "dailyDeaths": 34,
+      "totalActive": 22560,
+      "totalCritical": 2585,
+      "totalConfirmedPerMillionPopulation": 1642,
+      "totalDeathsPerMillionPopulation": 89,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -9.189967,
+      "longitude": -75.015152,
+      "counrtyCode": "PE",
+      "country": "Peru"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 119959,
+      "totalDead": 3456,
+      "totalRecovered": 49795,
+      "dailyDeaths": 0,
+      "totalActive": 66708,
+      "totalCritical": 920,
+      "totalConfirmedPerMillionPopulation": 3644,
+      "totalDeathsPerMillionPopulation": 105,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 56.130366,
+      "longitude": -106.346771,
+      "counrtyCode": "CA",
+      "country": "Canada"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 85679,
+      "totalDead": 6538,
+      "totalRecovered": 44538,
+      "dailyDeaths": 114,
+      "totalActive": 34603,
+      "totalCritical": 502,
+      "totalConfirmedPerMillionPopulation": 2272,
+      "totalDeathsPerMillionPopulation": 173,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 35.86166,
+      "longitude": 104.195397,
+      "counrtyCode": "CN",
+      "country": "China"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 82985,
+      "totalDead": 4634,
+      "totalRecovered": 78268,
+      "dailyDeaths": 0,
+      "totalActive": 83,
+      "totalCritical": 7,
+      "totalConfirmedPerMillionPopulation": 58,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 23.885942,
+      "longitude": 45.079162,
+      "counrtyCode": "SA",
+      "country": "Saudi Arabia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 74795,
+      "totalDead": 399,
+      "totalRecovered": 45668,
+      "dailyDeaths": 9,
+      "totalActive": 28728,
+      "totalCritical": 372,
+      "totalConfirmedPerMillionPopulation": 2152,
+      "totalDeathsPerMillionPopulation": 11,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -35.675147,
+      "longitude": -71.542969,
+      "counrtyCode": "CL",
+      "country": "Chile"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 73997,
+      "totalDead": 761,
+      "totalRecovered": 29302,
+      "dailyDeaths": 43,
+      "totalActive": 43934,
+      "totalCritical": 1135,
+      "totalConfirmedPerMillionPopulation": 3874,
+      "totalDeathsPerMillionPopulation": 40,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 23.634501,
+      "longitude": -102.552784,
+      "counrtyCode": "MX",
+      "country": "Mexico"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 68620,
+      "totalDead": 7394,
+      "totalRecovered": 47424,
+      "dailyDeaths": 215,
+      "totalActive": 13802,
+      "totalCritical": 378,
+      "totalConfirmedPerMillionPopulation": 533,
+      "totalDeathsPerMillionPopulation": 57,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 50.503887,
+      "longitude": 4.469936,
+      "counrtyCode": "BE",
+      "country": "Belgium"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 57342,
+      "totalDead": 9312,
+      "totalRecovered": 15297,
+      "dailyDeaths": 32,
+      "totalActive": 32733,
+      "totalCritical": 251,
+      "totalConfirmedPerMillionPopulation": 4950,
+      "totalDeathsPerMillionPopulation": 804,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 30.375321,
+      "longitude": 69.345116,
+      "counrtyCode": "PK",
+      "country": "Pakistan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 56349,
+      "totalDead": 1167,
+      "totalRecovered": 17482,
+      "dailyDeaths": 34,
+      "totalActive": 37700,
+      "totalCritical": 111,
+      "totalConfirmedPerMillionPopulation": 256,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 25.354826,
+      "longitude": 51.183884,
+      "counrtyCode": "QA",
+      "country": "Qatar"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 45465,
+      "totalDead": 26,
+      "totalRecovered": 10363,
+      "dailyDeaths": 3,
+      "totalActive": 35076,
+      "totalCritical": 202,
+      "totalConfirmedPerMillionPopulation": 15809,
+      "totalDeathsPerMillionPopulation": 9,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 52.132633,
+      "longitude": 5.291266,
+      "counrtyCode": "NL",
+      "country": "Netherlands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 45445,
+      "totalDead": 5830,
+      "totalRecovered": 3,
+      "dailyDeaths": 8,
+      "totalActive": 0,
+      "totalCritical": 223,
+      "totalConfirmedPerMillionPopulation": 2653,
+      "totalDeathsPerMillionPopulation": 340,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -1.831239,
+      "longitude": -78.183406,
+      "counrtyCode": "EC",
+      "country": "Ecuador"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 37355,
+      "totalDead": 3203,
+      "totalRecovered": 18003,
+      "dailyDeaths": 95,
+      "totalActive": 16149,
+      "totalCritical": 211,
+      "totalConfirmedPerMillionPopulation": 2121,
+      "totalDeathsPerMillionPopulation": 182,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 53.709807,
+      "longitude": 27.953389,
+      "counrtyCode": "BY",
+      "country": "Belarus"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 37144,
+      "totalDead": 204,
+      "totalRecovered": 14449,
+      "dailyDeaths": 5,
+      "totalActive": 22491,
+      "totalCritical": 92,
+      "totalConfirmedPerMillionPopulation": 3931,
+      "totalDeathsPerMillionPopulation": 22,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 23.684994,
+      "longitude": 90.356331,
+      "counrtyCode": "BD",
+      "country": "Bangladesh"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 35585,
+      "totalDead": 501,
+      "totalRecovered": 7334,
+      "dailyDeaths": 21,
+      "totalActive": 27750,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 216,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 60.128161,
+      "longitude": 18.643501,
+      "counrtyCode": "SE",
+      "country": "Sweden"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 33843,
+      "totalDead": 4029,
+      "totalRecovered": 4971,
+      "dailyDeaths": 31,
+      "totalActive": 24843,
+      "totalCritical": 304,
+      "totalConfirmedPerMillionPopulation": 3353,
+      "totalDeathsPerMillionPopulation": 399,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 1.352083,
+      "longitude": 103.819836,
+      "counrtyCode": "SG",
+      "country": "Singapore"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 31960,
+      "totalDead": 23,
+      "totalRecovered": 15738,
+      "dailyDeaths": 0,
+      "totalActive": 16199,
+      "totalCritical": 8,
+      "totalConfirmedPerMillionPopulation": 5467,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 39.399872,
+      "longitude": -8.224454,
+      "counrtyCode": "PT",
+      "country": "Portugal"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 30788,
+      "totalDead": 1330,
+      "totalRecovered": 17822,
+      "dailyDeaths": 14,
+      "totalActive": 11636,
+      "totalCritical": 72,
+      "totalConfirmedPerMillionPopulation": 3019,
+      "totalDeathsPerMillionPopulation": 130,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 46.818188,
+      "longitude": 8.227512,
+      "counrtyCode": "CH",
+      "country": "Switzerland"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 30746,
+      "totalDead": 1913,
+      "totalRecovered": 28200,
+      "dailyDeaths": 7,
+      "totalActive": 633,
+      "totalCritical": 47,
+      "totalConfirmedPerMillionPopulation": 3555,
+      "totalDeathsPerMillionPopulation": 221,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 23.424076,
+      "longitude": 53.847818,
+      "counrtyCode": "AE",
+      "country": "UAE"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 30307,
+      "totalDead": 248,
+      "totalRecovered": 15657,
+      "dailyDeaths": 3,
+      "totalActive": 14402,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 3068,
+      "totalDeathsPerMillionPopulation": 25,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 53.41291,
+      "longitude": -8.24389,
+      "counrtyCode": "IE",
+      "country": "Ireland"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 24698,
+      "totalDead": 1606,
+      "totalRecovered": 21060,
+      "dailyDeaths": 0,
+      "totalActive": 2032,
+      "totalCritical": 54,
+      "totalConfirmedPerMillionPopulation": 5008,
+      "totalDeathsPerMillionPopulation": 326,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -30.559482,
+      "longitude": 22.937506,
+      "counrtyCode": "ZA",
+      "country": "South Africa"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 23615,
+      "totalDead": 481,
+      "totalRecovered": 11917,
+      "dailyDeaths": 52,
+      "totalActive": 11217,
+      "totalCritical": 128,
+      "totalConfirmedPerMillionPopulation": 399,
+      "totalDeathsPerMillionPopulation": 8,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -0.789275,
+      "longitude": 113.921327,
+      "counrtyCode": "ID",
+      "country": "Indonesia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 22750,
+      "totalDead": 1391,
+      "totalRecovered": 5642,
+      "dailyDeaths": 19,
+      "totalActive": 15717,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 83,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 29.31166,
+      "longitude": 47.481766,
+      "counrtyCode": "KW",
+      "country": "Kuwait"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 21967,
+      "totalDead": 165,
+      "totalRecovered": 6621,
+      "dailyDeaths": 9,
+      "totalActive": 15181,
+      "totalCritical": 182,
+      "totalConfirmedPerMillionPopulation": 5152,
+      "totalDeathsPerMillionPopulation": 39,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 51.919438,
+      "longitude": 19.145136,
+      "counrtyCode": "PL",
+      "country": "Poland"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 21631,
+      "totalDead": 1007,
+      "totalRecovered": 9276,
+      "dailyDeaths": 11,
+      "totalActive": 11348,
+      "totalCritical": 160,
+      "totalConfirmedPerMillionPopulation": 571,
+      "totalDeathsPerMillionPopulation": 27,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 48.379433,
+      "longitude": 31.16558,
+      "counrtyCode": "UA",
+      "country": "Ukraine"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 21245,
+      "totalDead": 623,
+      "totalRecovered": 7234,
+      "dailyDeaths": 6,
+      "totalActive": 13388,
+      "totalCritical": 256,
+      "totalConfirmedPerMillionPopulation": 486,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 4.570868,
+      "longitude": -74.297333,
+      "counrtyCode": "CO",
+      "country": "Colombia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 21175,
+      "totalDead": 727,
+      "totalRecovered": 5016,
+      "dailyDeaths": 0,
+      "totalActive": 15432,
+      "totalCritical": 136,
+      "totalConfirmedPerMillionPopulation": 417,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 45.943161,
+      "longitude": 24.96676,
+      "counrtyCode": "RO",
+      "country": "Romania"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18283,
+      "totalDead": 1205,
+      "totalRecovered": 11630,
+      "dailyDeaths": 20,
+      "totalActive": 5448,
+      "totalCritical": 177,
+      "totalConfirmedPerMillionPopulation": 950,
+      "totalDeathsPerMillionPopulation": 63,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 26.820553,
+      "longitude": 30.802498,
+      "counrtyCode": "EG",
+      "country": "Egypt"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 17967,
+      "totalDead": 783,
+      "totalRecovered": 4900,
+      "dailyDeaths": 19,
+      "totalActive": 12284,
+      "totalCritical": 41,
+      "totalConfirmedPerMillionPopulation": 176,
+      "totalDeathsPerMillionPopulation": 8,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 31.046051,
+      "longitude": 34.851612,
+      "counrtyCode": "IL",
+      "country": "Israel"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 16734,
+      "totalDead": 281,
+      "totalRecovered": 14307,
+      "dailyDeaths": 2,
+      "totalActive": 2146,
+      "totalCritical": 43,
+      "totalConfirmedPerMillionPopulation": 1819,
+      "totalDeathsPerMillionPopulation": 31,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 36.204824,
+      "longitude": 138.252924,
+      "counrtyCode": "JP",
+      "country": "Japan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 16550,
+      "totalDead": 820,
+      "totalRecovered": 13413,
+      "dailyDeaths": 0,
+      "totalActive": 2317,
+      "totalCritical": 168,
+      "totalConfirmedPerMillionPopulation": 131,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 47.516231,
+      "longitude": 14.550072,
+      "counrtyCode": "AT",
+      "country": "Austria"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 16539,
+      "totalDead": 641,
+      "totalRecovered": 15138,
+      "dailyDeaths": 1,
+      "totalActive": 760,
+      "totalCritical": 31,
+      "totalConfirmedPerMillionPopulation": 1837,
+      "totalDeathsPerMillionPopulation": 71,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.735693,
+      "longitude": -70.162651,
+      "counrtyCode": "DO",
+      "country": "Dominican Republic"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 15073,
+      "totalDead": 460,
+      "totalRecovered": 8285,
+      "dailyDeaths": 2,
+      "totalActive": 6328,
+      "totalCritical": 123,
+      "totalConfirmedPerMillionPopulation": 1391,
+      "totalDeathsPerMillionPopulation": 42,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.879721,
+      "longitude": 121.774017,
+      "counrtyCode": "PH",
+      "country": "Philippines"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 14319,
+      "totalDead": 873,
+      "totalRecovered": 3323,
+      "dailyDeaths": 5,
+      "totalActive": 10123,
+      "totalCritical": 81,
+      "totalConfirmedPerMillionPopulation": 131,
+      "totalDeathsPerMillionPopulation": 8,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -38.416097,
+      "longitude": -63.616672,
+      "counrtyCode": "AR",
+      "country": "Argentina"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 12076,
+      "totalDead": 456,
+      "totalRecovered": 3999,
+      "dailyDeaths": 4,
+      "totalActive": 7621,
+      "totalCritical": 171,
+      "totalConfirmedPerMillionPopulation": 267,
+      "totalDeathsPerMillionPopulation": 10,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 56.26392,
+      "longitude": 9.501785,
+      "counrtyCode": "DK",
+      "country": "Denmark"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11387,
+      "totalDead": 563,
+      "totalRecovered": 9964,
+      "dailyDeaths": 1,
+      "totalActive": 860,
+      "totalCritical": 20,
+      "totalConfirmedPerMillionPopulation": 1967,
+      "totalDeathsPerMillionPopulation": 97,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 35.907757,
+      "longitude": 127.766922,
+      "counrtyCode": "KR",
+      "country": "S. Korea"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11206,
+      "totalDead": 267,
+      "totalRecovered": 10226,
+      "dailyDeaths": 1,
+      "totalActive": 713,
+      "totalCritical": 15,
+      "totalConfirmedPerMillionPopulation": 219,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 44.016521,
+      "longitude": 21.005859,
+      "counrtyCode": "RS",
+      "country": "Serbia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11193,
+      "totalDead": 239,
+      "totalRecovered": 5920,
+      "dailyDeaths": 1,
+      "totalActive": 5034,
+      "totalCritical": 12,
+      "totalConfirmedPerMillionPopulation": 1281,
+      "totalDeathsPerMillionPopulation": 27,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 33.93911,
+      "longitude": 67.709953,
+      "counrtyCode": "AF",
+      "country": "Afghanistan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11173,
+      "totalDead": 219,
+      "totalRecovered": 1097,
+      "dailyDeaths": 1,
+      "totalActive": 9857,
+      "totalCritical": 19,
+      "totalConfirmedPerMillionPopulation": 288,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 8.537981,
+      "longitude": -80.782127,
+      "counrtyCode": "PA",
+      "country": "Panama"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 10926,
+      "totalDead": 306,
+      "totalRecovered": 6279,
+      "dailyDeaths": 0,
+      "totalActive": 4341,
+      "totalCritical": 72,
+      "totalConfirmedPerMillionPopulation": 2536,
+      "totalDeathsPerMillionPopulation": 71,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 25.930414,
+      "longitude": 50.637772,
+      "counrtyCode": "BH",
+      "country": "Bahrain"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 9171,
+      "totalDead": 14,
+      "totalRecovered": 4753,
+      "dailyDeaths": 0,
+      "totalActive": 4404,
+      "totalCritical": 8,
+      "totalConfirmedPerMillionPopulation": 5412,
+      "totalDeathsPerMillionPopulation": 8,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 49.817492,
+      "longitude": 15.472962,
+      "counrtyCode": "CZ",
+      "country": "Czechia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 8972,
+      "totalDead": 317,
+      "totalRecovered": 6180,
+      "dailyDeaths": 2,
+      "totalActive": 2475,
+      "totalCritical": 24,
+      "totalConfirmedPerMillionPopulation": 838,
+      "totalDeathsPerMillionPopulation": 30,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 48.019573,
+      "longitude": 66.923684,
+      "counrtyCode": "KZ",
+      "country": "Kazakhstan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 8531,
+      "totalDead": 35,
+      "totalRecovered": 4515,
+      "dailyDeaths": 0,
+      "totalActive": 3981,
+      "totalCritical": 31,
+      "totalConfirmedPerMillionPopulation": 455,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 28.033886,
+      "longitude": 1.659626,
+      "counrtyCode": "DZ",
+      "country": "Algeria"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 8503,
+      "totalDead": 609,
+      "totalRecovered": 4747,
+      "dailyDeaths": 9,
+      "totalActive": 3147,
+      "totalCritical": 27,
+      "totalConfirmedPerMillionPopulation": 194,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 60.472024,
+      "longitude": 8.468946,
+      "counrtyCode": "NO",
+      "country": "Norway"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 8360,
+      "totalDead": 235,
+      "totalRecovered": 7727,
+      "dailyDeaths": 0,
+      "totalActive": 398,
+      "totalCritical": 12,
+      "totalConfirmedPerMillionPopulation": 1543,
+      "totalDeathsPerMillionPopulation": 43,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 9.081999,
+      "longitude": 8.675277,
+      "counrtyCode": "NG",
+      "country": "Nigeria"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7839,
+      "totalDead": 226,
+      "totalRecovered": 2263,
+      "dailyDeaths": 0,
+      "totalActive": 5350,
+      "totalCritical": 7,
+      "totalConfirmedPerMillionPopulation": 38,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 21.512583,
+      "longitude": 55.923255,
+      "counrtyCode": "OM",
+      "country": "Oman"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7770,
+      "totalDead": 37,
+      "totalRecovered": 1933,
+      "dailyDeaths": 0,
+      "totalActive": 5800,
+      "totalCritical": 31,
+      "totalConfirmedPerMillionPopulation": 1526,
+      "totalDeathsPerMillionPopulation": 7,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 31.791702,
+      "longitude": -7.09262,
+      "counrtyCode": "MA",
+      "country": "Morocco"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7532,
+      "totalDead": 200,
+      "totalRecovered": 4774,
+      "dailyDeaths": 1,
+      "totalActive": 2558,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 204,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 4.210484,
+      "longitude": 101.975766,
+      "counrtyCode": "MY",
+      "country": "Malaysia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7417,
+      "totalDead": 115,
+      "totalRecovered": 5979,
+      "dailyDeaths": 0,
+      "totalActive": 1323,
+      "totalCritical": 8,
+      "totalConfirmedPerMillionPopulation": 229,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 47.411631,
+      "longitude": 28.369885,
+      "counrtyCode": "MD",
+      "country": "Moldova"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7147,
+      "totalDead": 261,
+      "totalRecovered": 3802,
+      "dailyDeaths": 11,
+      "totalActive": 3084,
+      "totalCritical": 286,
+      "totalConfirmedPerMillionPopulation": 1771,
+      "totalDeathsPerMillionPopulation": 65,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -25.274398,
+      "longitude": 133.775136,
+      "counrtyCode": "AU",
+      "country": "Australia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7118,
+      "totalDead": 102,
+      "totalRecovered": 6531,
+      "dailyDeaths": 0,
+      "totalActive": 485,
+      "totalCritical": 5,
+      "totalConfirmedPerMillionPopulation": 279,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 40.069099,
+      "longitude": 45.038189,
+      "counrtyCode": "AM",
+      "country": "Armenia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 7113,
+      "totalDead": 87,
+      "totalRecovered": 3145,
+      "dailyDeaths": 6,
+      "totalActive": 3881,
+      "totalCritical": 10,
+      "totalConfirmedPerMillionPopulation": 2401,
+      "totalDeathsPerMillionPopulation": 29,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 7.946527,
+      "longitude": -1.023194,
+      "counrtyCode": "GH",
+      "country": "Ghana"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 6808,
+      "totalDead": 32,
+      "totalRecovered": 2070,
+      "dailyDeaths": 0,
+      "totalActive": 4706,
+      "totalCritical": 16,
+      "totalConfirmedPerMillionPopulation": 220,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 61.92411,
+      "longitude": 25.748151,
+      "counrtyCode": "FI",
+      "country": "Finland"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 6599,
+      "totalDead": 308,
+      "totalRecovered": 5100,
+      "dailyDeaths": 1,
+      "totalActive": 1191,
+      "totalCritical": 18,
+      "totalConfirmedPerMillionPopulation": 1191,
+      "totalDeathsPerMillionPopulation": 56,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -16.290154,
+      "longitude": -63.588653,
+      "counrtyCode": "BO",
+      "country": "Bolivia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 6263,
+      "totalDead": 250,
+      "totalRecovered": 629,
+      "dailyDeaths": 10,
+      "totalActive": 5384,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 537,
+      "totalDeathsPerMillionPopulation": 21,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 7.369722,
+      "longitude": 12.354722,
+      "counrtyCode": "CM",
+      "country": "Cameroon"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 4890,
+      "totalDead": 165,
+      "totalRecovered": 1865,
+      "dailyDeaths": 0,
+      "totalActive": 2860,
+      "totalCritical": 28,
+      "totalConfirmedPerMillionPopulation": 185,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 33.223191,
+      "longitude": 43.679291,
+      "counrtyCode": "IQ",
+      "country": "Iraq"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 4632,
+      "totalDead": 163,
+      "totalRecovered": 2811,
+      "dailyDeaths": 3,
+      "totalActive": 1658,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 115,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 40.143105,
+      "longitude": 47.576927,
+      "counrtyCode": "AZ",
+      "country": "Azerbaijan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 4271,
+      "totalDead": 51,
+      "totalRecovered": 2741,
+      "dailyDeaths": 2,
+      "totalActive": 1479,
+      "totalCritical": 42,
+      "totalConfirmedPerMillionPopulation": 422,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 49.815273,
+      "longitude": 6.129583,
+      "counrtyCode": "LU",
+      "country": "Luxembourg"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3993,
+      "totalDead": 110,
+      "totalRecovered": 3781,
+      "dailyDeaths": 0,
+      "totalActive": 102,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 6390,
+      "totalDeathsPerMillionPopulation": 176,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.199999,
+      "longitude": -86.241905,
+      "counrtyCode": "HN",
+      "country": "Honduras"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3950,
+      "totalDead": 180,
+      "totalRecovered": 468,
+      "dailyDeaths": 6,
+      "totalActive": 3302,
+      "totalCritical": 13,
+      "totalConfirmedPerMillionPopulation": 399,
+      "totalDeathsPerMillionPopulation": 18,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.862807,
+      "longitude": 30.217636,
+      "counrtyCode": "SD",
+      "country": "Sudan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3820,
+      "totalDead": 165,
+      "totalRecovered": 458,
+      "dailyDeaths": 19,
+      "totalActive": 3197,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 87,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 47.162494,
+      "longitude": 19.503304,
+      "counrtyCode": "HU",
+      "country": "Hungary"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3756,
+      "totalDead": 491,
+      "totalRecovered": 1711,
+      "dailyDeaths": 5,
+      "totalActive": 1554,
+      "totalCritical": 28,
+      "totalConfirmedPerMillionPopulation": 389,
+      "totalDeathsPerMillionPopulation": 51,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.783471,
+      "longitude": -90.230759,
+      "counrtyCode": "GT",
+      "country": "Guatemala"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3424,
+      "totalDead": 58,
+      "totalRecovered": 258,
+      "dailyDeaths": 3,
+      "totalActive": 3108,
+      "totalCritical": 5,
+      "totalConfirmedPerMillionPopulation": 192,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 9.945587,
+      "longitude": -9.696645,
+      "counrtyCode": "GN",
+      "country": "Guinea"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3275,
+      "totalDead": 20,
+      "totalRecovered": 1673,
+      "dailyDeaths": 0,
+      "totalActive": 1582,
+      "totalCritical": 24,
+      "totalConfirmedPerMillionPopulation": 250,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 41.377491,
+      "longitude": 64.585262,
+      "counrtyCode": "UZ",
+      "country": "Uzbekistan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3189,
+      "totalDead": 13,
+      "totalRecovered": 2607,
+      "dailyDeaths": 0,
+      "totalActive": 569,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 95,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 14.497401,
+      "longitude": -14.452362,
+      "counrtyCode": "SN",
+      "country": "Senegal"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3130,
+      "totalDead": 35,
+      "totalRecovered": 1515,
+      "dailyDeaths": 0,
+      "totalActive": 1580,
+      "totalCritical": 12,
+      "totalConfirmedPerMillionPopulation": 187,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 38.861034,
+      "longitude": 71.276093,
+      "counrtyCode": "TJ",
+      "country": "Tajikistan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3100,
+      "totalDead": 46,
+      "totalRecovered": 1395,
+      "dailyDeaths": 0,
+      "totalActive": 1659,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 326,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.870032,
+      "longitude": 100.992541,
+      "counrtyCode": "TH",
+      "country": "Thailand"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3042,
+      "totalDead": 57,
+      "totalRecovered": 2928,
+      "dailyDeaths": 1,
+      "totalActive": 57,
+      "totalCritical": 57,
+      "totalConfirmedPerMillionPopulation": 44,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 39.074208,
+      "longitude": 21.824312,
+      "counrtyCode": "GR",
+      "country": "Greece"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2882,
+      "totalDead": 172,
+      "totalRecovered": 1374,
+      "dailyDeaths": 1,
+      "totalActive": 1336,
+      "totalCritical": 18,
+      "totalConfirmedPerMillionPopulation": 276,
+      "totalDeathsPerMillionPopulation": 16,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 11.825138,
+      "longitude": 42.590275,
+      "counrtyCode": "DJ",
+      "country": "Djibouti"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2468,
+      "totalDead": 14,
+      "totalRecovered": 1079,
+      "dailyDeaths": 4,
+      "totalActive": 1375,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 2502,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 42.733883,
+      "longitude": 25.48583,
+      "counrtyCode": "BG",
+      "country": "Bulgaria"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2433,
+      "totalDead": 130,
+      "totalRecovered": 862,
+      "dailyDeaths": 0,
+      "totalActive": 1441,
+      "totalCritical": 20,
+      "totalConfirmedPerMillionPopulation": 350,
+      "totalDeathsPerMillionPopulation": 19,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 7.54,
+      "longitude": -5.5471,
+      "counrtyCode": "CI",
+      "country": "Ivory Coast"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2423,
+      "totalDead": 30,
+      "totalRecovered": 1257,
+      "dailyDeaths": 0,
+      "totalActive": 1136,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 92,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 43.915886,
+      "longitude": 17.679076,
+      "counrtyCode": "BA",
+      "country": "Bosnia and Herzegovina"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2406,
+      "totalDead": 146,
+      "totalRecovered": 1696,
+      "dailyDeaths": 2,
+      "totalActive": 564,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 733,
+      "totalDeathsPerMillionPopulation": 44,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -4.038333,
+      "longitude": 21.758664,
+      "counrtyCode": "CD",
+      "country": "DRC"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2297,
+      "totalDead": 67,
+      "totalRecovered": 337,
+      "dailyDeaths": 4,
+      "totalActive": 1893,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 26,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 45.1,
+      "longitude": 15.2,
+      "counrtyCode": "HR",
+      "country": "Croatia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2244,
+      "totalDead": 100,
+      "totalRecovered": 2035,
+      "dailyDeaths": 1,
+      "totalActive": 109,
+      "totalCritical": 6,
+      "totalConfirmedPerMillionPopulation": 546,
+      "totalDeathsPerMillionPopulation": 24,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 41.6086,
+      "longitude": 21.7453,
+      "counrtyCode": "MK",
+      "country": "North Macedonia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1999,
+      "totalDead": 113,
+      "totalRecovered": 1439,
+      "dailyDeaths": 0,
+      "totalActive": 447,
+      "totalCritical": 21,
+      "totalConfirmedPerMillionPopulation": 959,
+      "totalDeathsPerMillionPopulation": 54,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 13.794185,
+      "longitude": -88.89653,
+      "counrtyCode": "SV",
+      "country": "El Salvador"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1983,
+      "totalDead": 35,
+      "totalRecovered": 698,
+      "dailyDeaths": 0,
+      "totalActive": 1250,
+      "totalCritical": 25,
+      "totalConfirmedPerMillionPopulation": 306,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 21.521757,
+      "longitude": -77.781167,
+      "counrtyCode": "CU",
+      "country": "Cuba"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1947,
+      "totalDead": 82,
+      "totalRecovered": 1704,
+      "dailyDeaths": 0,
+      "totalActive": 161,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 172,
+      "totalDeathsPerMillionPopulation": 7,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -0.803689,
+      "longitude": 11.609444,
+      "counrtyCode": "GA",
+      "country": "Gabon"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1934,
+      "totalDead": 12,
+      "totalRecovered": 459,
+      "dailyDeaths": 0,
+      "totalActive": 1463,
+      "totalCritical": 10,
+      "totalConfirmedPerMillionPopulation": 871,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 58.595272,
+      "longitude": 25.013607,
+      "counrtyCode": "EE",
+      "country": "Estonia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1824,
+      "totalDead": 65,
+      "totalRecovered": 1538,
+      "dailyDeaths": 1,
+      "totalActive": 221,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 1375,
+      "totalDeathsPerMillionPopulation": 49,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 64.963051,
+      "longitude": -19.020835,
+      "counrtyCode": "IS",
+      "country": "Iceland"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1804,
+      "totalDead": 10,
+      "totalRecovered": 1791,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 5290,
+      "totalDeathsPerMillionPopulation": 29,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 5.152149,
+      "longitude": 46.199616,
+      "counrtyCode": "SO",
+      "country": "Somalia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1689,
+      "totalDead": 66,
+      "totalRecovered": 235,
+      "dailyDeaths": 5,
+      "totalActive": 1388,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 107,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 55.169438,
+      "longitude": 23.881275,
+      "counrtyCode": "LT",
+      "country": "Lithuania"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1635,
+      "totalDead": 63,
+      "totalRecovered": 1138,
+      "dailyDeaths": 0,
+      "totalActive": 434,
+      "totalCritical": 17,
+      "totalConfirmedPerMillionPopulation": 600,
+      "totalDeathsPerMillionPopulation": 23,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -12.8275,
+      "longitude": 45.166244,
+      "counrtyCode": "YT",
+      "country": "Mayotte"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1609,
+      "totalDead": 20,
+      "totalRecovered": 894,
+      "dailyDeaths": 0,
+      "totalActive": 695,
+      "totalCritical": 11,
+      "totalConfirmedPerMillionPopulation": 5914,
+      "totalDeathsPerMillionPopulation": 74,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 48.669026,
+      "longitude": 19.699024,
+      "counrtyCode": "SK",
+      "country": "Slovakia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1511,
+      "totalDead": 28,
+      "totalRecovered": 1307,
+      "dailyDeaths": 0,
+      "totalActive": 176,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 277,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -40.900557,
+      "longitude": 174.885971,
+      "counrtyCode": "NZ",
+      "country": "New Zealand"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1504,
+      "totalDead": 21,
+      "totalRecovered": 1456,
+      "dailyDeaths": 0,
+      "totalActive": 27,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 312,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 46.151241,
+      "longitude": 14.995463,
+      "counrtyCode": "SI",
+      "country": "Slovenia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1469,
+      "totalDead": 107,
+      "totalRecovered": 1346,
+      "dailyDeaths": 0,
+      "totalActive": 16,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 707,
+      "totalDeathsPerMillionPopulation": 51,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 41.20438,
+      "longitude": 74.766098,
+      "counrtyCode": "KG",
+      "country": "Kyrgyzstan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1433,
+      "totalDead": 16,
+      "totalRecovered": 992,
+      "dailyDeaths": 2,
+      "totalActive": 425,
+      "totalCritical": 5,
+      "totalConfirmedPerMillionPopulation": 220,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 3.202778,
+      "longitude": 73.22068,
+      "counrtyCode": "MV",
+      "country": "Maldives"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1395,
+      "totalDead": 4,
+      "totalRecovered": 155,
+      "dailyDeaths": 0,
+      "totalActive": 1236,
+      "totalCritical": 9,
+      "totalConfirmedPerMillionPopulation": 2586,
+      "totalDeathsPerMillionPopulation": 7,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -0.023559,
+      "longitude": 37.906193,
+      "counrtyCode": "KE",
+      "country": "Kenya"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1286,
+      "totalDead": 52,
+      "totalRecovered": 402,
+      "dailyDeaths": 1,
+      "totalActive": 832,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 24,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 7.873054,
+      "longitude": 80.771797,
+      "counrtyCode": "LK",
+      "country": "Sri Lanka"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1182,
+      "totalDead": 10,
+      "totalRecovered": 695,
+      "dailyDeaths": 1,
+      "totalActive": 477,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 55,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 11.803749,
+      "longitude": -15.180413,
+      "counrtyCode": "GW",
+      "country": "Guinea-Bissau"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1178,
+      "totalDead": 7,
+      "totalRecovered": 42,
+      "dailyDeaths": 1,
+      "totalActive": 1129,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 600,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 6.42375,
+      "longitude": -66.58973,
+      "counrtyCode": "VE",
+      "country": "Venezuela"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1121,
+      "totalDead": 10,
+      "totalRecovered": 262,
+      "dailyDeaths": 0,
+      "totalActive": 849,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 39,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 33.854721,
+      "longitude": 35.862285,
+      "counrtyCode": "LB",
+      "country": "Lebanon"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1119,
+      "totalDead": 26,
+      "totalRecovered": 688,
+      "dailyDeaths": 0,
+      "totalActive": 405,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 164,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 22.396428,
+      "longitude": 114.109497,
+      "counrtyCode": "HK",
+      "country": "Hong Kong"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1066,
+      "totalDead": 4,
+      "totalRecovered": 1030,
+      "dailyDeaths": 0,
+      "totalActive": 32,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 142,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 17.570692,
+      "longitude": -3.996166,
+      "counrtyCode": "ML",
+      "country": "Mali"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1059,
+      "totalDead": 67,
+      "totalRecovered": 604,
+      "dailyDeaths": 2,
+      "totalActive": 388,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 52,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 33.886917,
+      "longitude": 9.537499,
+      "counrtyCode": "TN",
+      "country": "Tunisia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1051,
+      "totalDead": 48,
+      "totalRecovered": 917,
+      "dailyDeaths": 0,
+      "totalActive": 86,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 89,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 56.879635,
+      "longitude": 24.603189,
+      "counrtyCode": "LV",
+      "country": "Latvia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1049,
+      "totalDead": 22,
+      "totalRecovered": 712,
+      "dailyDeaths": 0,
+      "totalActive": 315,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 556,
+      "totalDeathsPerMillionPopulation": 12,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 1.650801,
+      "longitude": 10.267895,
+      "counrtyCode": "GQ",
+      "country": "Equatorial Guinea"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1043,
+      "totalDead": 12,
+      "totalRecovered": 165,
+      "dailyDeaths": 1,
+      "totalActive": 866,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 746,
+      "totalDeathsPerMillionPopulation": 9,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 41.153332,
+      "longitude": 20.168331,
+      "counrtyCode": "AL",
+      "country": "Albania"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1004,
+      "totalDead": 32,
+      "totalRecovered": 795,
+      "dailyDeaths": 0,
+      "totalActive": 177,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 349,
+      "totalDeathsPerMillionPopulation": 11,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.971187,
+      "longitude": -72.285215,
+      "counrtyCode": "HT",
+      "country": "Haiti"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 958,
+      "totalDead": 27,
+      "totalRecovered": 22,
+      "dailyDeaths": 1,
+      "totalActive": 909,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 84,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 17.607789,
+      "longitude": 8.081666,
+      "counrtyCode": "NE",
+      "country": "Niger"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 951,
+      "totalDead": 62,
+      "totalRecovered": 786,
+      "dailyDeaths": 1,
+      "totalActive": 103,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 39,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 9.748917,
+      "longitude": -83.753428,
+      "counrtyCode": "CR",
+      "country": "Costa Rica"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 951,
+      "totalDead": 10,
+      "totalRecovered": 628,
+      "dailyDeaths": 0,
+      "totalActive": 313,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 187,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 35.126413,
+      "longitude": 33.429859,
+      "counrtyCode": "CY",
+      "country": "Cyprus"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 937,
+      "totalDead": 17,
+      "totalRecovered": 594,
+      "dailyDeaths": 0,
+      "totalActive": 326,
+      "totalCritical": 10,
+      "totalConfirmedPerMillionPopulation": 777,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -13.133897,
+      "longitude": 27.849332,
+      "counrtyCode": "ZM",
+      "country": "Zambia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 920,
+      "totalDead": 7,
+      "totalRecovered": 336,
+      "dailyDeaths": 0,
+      "totalActive": 577,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 50,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -23.442503,
+      "longitude": -58.443832,
+      "counrtyCode": "PY",
+      "country": "Paraguay"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 865,
+      "totalDead": 11,
+      "totalRecovered": 344,
+      "dailyDeaths": 0,
+      "totalActive": 510,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 121,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.238333,
+      "longitude": -1.561593,
+      "counrtyCode": "BF",
+      "country": "Burkina Faso"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 832,
+      "totalDead": 52,
+      "totalRecovered": 672,
+      "dailyDeaths": 0,
+      "totalActive": 108,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 40,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -32.522779,
+      "longitude": -55.765835,
+      "counrtyCode": "UY",
+      "country": "Uruguay"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 769,
+      "totalDead": 22,
+      "totalRecovered": 618,
+      "dailyDeaths": 0,
+      "totalActive": 129,
+      "totalCritical": 5,
+      "totalConfirmedPerMillionPopulation": 221,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 42.546245,
+      "longitude": 1.601554,
+      "counrtyCode": "AD",
+      "country": "Andorra"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 763,
+      "totalDead": 51,
+      "totalRecovered": 663,
+      "dailyDeaths": 0,
+      "totalActive": 49,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 9877,
+      "totalDeathsPerMillionPopulation": 660,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 8.460555,
+      "longitude": -11.779889,
+      "counrtyCode": "SL",
+      "country": "Sierra Leone"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 735,
+      "totalDead": 42,
+      "totalRecovered": 293,
+      "dailyDeaths": 2,
+      "totalActive": 400,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 92,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 42.315407,
+      "longitude": 43.356892,
+      "counrtyCode": "GE",
+      "country": "Georgia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 731,
+      "totalDead": 12,
+      "totalRecovered": 526,
+      "dailyDeaths": 0,
+      "totalActive": 193,
+      "totalCritical": 6,
+      "totalConfirmedPerMillionPopulation": 183,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 0,
+      "longitude": 0,
+      "counrtyCode": "OT",
+      "country": "Diamond Princess"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 712,
+      "totalDead": 13,
+      "totalRecovered": 651,
+      "dailyDeaths": 0,
+      "totalActive": 48,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 30.585164,
+      "longitude": 36.238414,
+      "counrtyCode": "JO",
+      "country": "Jordan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 711,
+      "totalDead": 9,
+      "totalRecovered": 479,
+      "dailyDeaths": 0,
+      "totalActive": 223,
+      "totalCritical": 5,
+      "totalConfirmedPerMillionPopulation": 70,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.454166,
+      "longitude": 18.732207,
+      "counrtyCode": "TD",
+      "country": "Chad"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 687,
+      "totalDead": 61,
+      "totalRecovered": 244,
+      "dailyDeaths": 1,
+      "totalActive": 382,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 42,
+      "totalDeathsPerMillionPopulation": 4,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 28.394857,
+      "longitude": 84.124008,
+      "counrtyCode": "NP",
+      "country": "Nepal"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 682,
+      "totalDead": 4,
+      "totalRecovered": 112,
+      "dailyDeaths": 1,
+      "totalActive": 566,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 23,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 43.94236,
+      "longitude": 12.457777,
+      "counrtyCode": "SM",
+      "country": "San Marino"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 666,
+      "totalDead": 42,
+      "totalRecovered": 270,
+      "dailyDeaths": 0,
+      "totalActive": 354,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 19632,
+      "totalDeathsPerMillionPopulation": 1238,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 9.145,
+      "longitude": 40.489673,
+      "counrtyCode": "ET",
+      "country": "Ethiopia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 655,
+      "totalDead": 5,
+      "totalRecovered": 159,
+      "dailyDeaths": 0,
+      "totalActive": 491,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 6,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "South Sudan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 655,
+      "totalDead": 8,
+      "totalRecovered": 6,
+      "dailyDeaths": 0,
+      "totalActive": 641,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 59,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 6.611111,
+      "longitude": 20.939444,
+      "counrtyCode": "CF",
+      "country": "CAR"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 652,
+      "totalDead": 1,
+      "totalRecovered": 22,
+      "dailyDeaths": 0,
+      "totalActive": 629,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 135,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 35.937496,
+      "longitude": 14.375416,
+      "counrtyCode": "MT",
+      "country": "Malta"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 611,
+      "totalDead": 6,
+      "totalRecovered": 485,
+      "dailyDeaths": 0,
+      "totalActive": 120,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 1384,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 49.372284,
+      "longitude": -2.364351,
+      "counrtyCode": "",
+      "country": "Channel Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 558,
+      "totalDead": 45,
+      "totalRecovered": 517,
+      "dailyDeaths": 0,
+      "totalActive": -4,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 3212,
+      "totalDeathsPerMillionPopulation": 259,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.109581,
+      "longitude": -77.297508,
+      "counrtyCode": "JM",
+      "country": "Jamaica"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 552,
+      "totalDead": 9,
+      "totalRecovered": 211,
+      "dailyDeaths": 0,
+      "totalActive": 332,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 186,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -18.766947,
+      "longitude": 46.869107,
+      "counrtyCode": "MG",
+      "country": "Madagascar"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 542,
+      "totalDead": 2,
+      "totalRecovered": 147,
+      "dailyDeaths": 0,
+      "totalActive": 393,
+      "totalCritical": 6,
+      "totalConfirmedPerMillionPopulation": 20,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -6.369028,
+      "longitude": 34.888822,
+      "counrtyCode": "TZ",
+      "country": "Tanzania"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 509,
+      "totalDead": 21,
+      "totalRecovered": 183,
+      "dailyDeaths": 0,
+      "totalActive": 305,
+      "totalCritical": 7,
+      "totalConfirmedPerMillionPopulation": 9,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -21.115141,
+      "longitude": 55.536384,
+      "counrtyCode": "RE",
+      "country": "Réunion"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 452,
+      "totalDead": 1,
+      "totalRecovered": 411,
+      "dailyDeaths": 0,
+      "totalActive": 40,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 505,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 23.69781,
+      "longitude": 120.960515,
+      "counrtyCode": "TW",
+      "country": "Taiwan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 441,
+      "totalDead": 7,
+      "totalRecovered": 415,
+      "dailyDeaths": 0,
+      "totalActive": 19,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 19,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 31.9522,
+      "longitude": 35.2332,
+      "counrtyCode": "PS",
+      "country": "Palestine"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 423,
+      "totalDead": 3,
+      "totalRecovered": 357,
+      "dailyDeaths": 0,
+      "totalActive": 63,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 83,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 16.5388,
+      "longitude": 23.0418,
+      "counrtyCode": "CV",
+      "country": "Cabo Verde"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 390,
+      "totalDead": 3,
+      "totalRecovered": 155,
+      "dailyDeaths": 0,
+      "totalActive": 232,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 702,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 8.619543,
+      "longitude": 0.824782,
+      "counrtyCode": "TG",
+      "country": "Togo"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 381,
+      "totalDead": 12,
+      "totalRecovered": 141,
+      "dailyDeaths": 0,
+      "totalActive": 228,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 46,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 54.236107,
+      "longitude": -4.548056,
+      "counrtyCode": "IM",
+      "country": "Isle of Man"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 336,
+      "totalDead": 24,
+      "totalRecovered": 305,
+      "dailyDeaths": 0,
+      "totalActive": 7,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 3953,
+      "totalDeathsPerMillionPopulation": 282,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -1.940278,
+      "longitude": 29.873888,
+      "counrtyCode": "RW",
+      "country": "Rwanda"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 336,
+      "totalDead": 0,
+      "totalRecovered": 238,
+      "dailyDeaths": 0,
+      "totalActive": 98,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 26,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -20.348404,
+      "longitude": 57.552152,
+      "counrtyCode": "MU",
+      "country": "Mauritius"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 334,
+      "totalDead": 10,
+      "totalRecovered": 322,
+      "dailyDeaths": 0,
+      "totalActive": 2,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 263,
+      "totalDeathsPerMillionPopulation": 8,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 3.933889,
+      "longitude": -53.125782,
+      "counrtyCode": "GF",
+      "country": "French Guiana"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 328,
+      "totalDead": 1,
+      "totalRecovered": 145,
+      "dailyDeaths": 0,
+      "totalActive": 182,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 1101,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 14.058324,
+      "longitude": 108.277199,
+      "counrtyCode": "VN",
+      "country": "Vietnam"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 326,
+      "totalDead": 0,
+      "totalRecovered": 272,
+      "dailyDeaths": 0,
+      "totalActive": 54,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 3,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 42.708678,
+      "longitude": 19.37439,
+      "counrtyCode": "ME",
+      "country": "Montenegro"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 324,
+      "totalDead": 9,
+      "totalRecovered": 315,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 516,
+      "totalDeathsPerMillionPopulation": 14,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 0.18636,
+      "longitude": 6.613081,
+      "counrtyCode": "ST",
+      "country": "Sao Tome and Principe"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 299,
+      "totalDead": 11,
+      "totalRecovered": 4,
+      "dailyDeaths": 3,
+      "totalActive": 284,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 1367,
+      "totalDeathsPerMillionPopulation": 50,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.865416,
+      "longitude": -85.207229,
+      "counrtyCode": "NI",
+      "country": "Nicaragua"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 279,
+      "totalDead": 17,
+      "totalRecovered": 199,
+      "dailyDeaths": 0,
+      "totalActive": 63,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 42,
+      "totalDeathsPerMillionPopulation": 3,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 6.428055,
+      "longitude": -9.429499,
+      "counrtyCode": "LR",
+      "country": "Liberia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 265,
+      "totalDead": 26,
+      "totalRecovered": 141,
+      "dailyDeaths": 0,
+      "totalActive": 98,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 53,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 21.00789,
+      "longitude": -10.940835,
+      "counrtyCode": "MR",
+      "country": "Mauritania"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 262,
+      "totalDead": 9,
+      "totalRecovered": 15,
+      "dailyDeaths": 3,
+      "totalActive": 238,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 57,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -26.5225,
+      "longitude": 31.4659,
+      "counrtyCode": "SZ",
+      "country": "Eswatini"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 256,
+      "totalDead": 2,
+      "totalRecovered": 158,
+      "dailyDeaths": 0,
+      "totalActive": 96,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 221,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.552727,
+      "longitude": 48.516388,
+      "counrtyCode": "YE",
+      "country": "Yemen"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 233,
+      "totalDead": 44,
+      "totalRecovered": 10,
+      "dailyDeaths": 2,
+      "totalActive": 179,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 8,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 1.373333,
+      "longitude": 32.290275,
+      "counrtyCode": "UG",
+      "country": "Uganda"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 222,
+      "totalDead": 0,
+      "totalRecovered": 69,
+      "dailyDeaths": 0,
+      "totalActive": 153,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 5,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -18.665695,
+      "longitude": 35.529562,
+      "counrtyCode": "MZ",
+      "country": "Mozambique"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 209,
+      "totalDead": 1,
+      "totalRecovered": 71,
+      "dailyDeaths": 1,
+      "totalActive": 137,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 7,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 21.9162,
+      "longitude": 95.956,
+      "counrtyCode": "MM",
+      "country": "Myanmar"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 203,
+      "totalDead": 6,
+      "totalRecovered": 123,
+      "dailyDeaths": 0,
+      "totalActive": 74,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 4,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 14.641528,
+      "longitude": -61.024174,
+      "counrtyCode": "MQ",
+      "country": "Martinique"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 197,
+      "totalDead": 14,
+      "totalRecovered": 91,
+      "dailyDeaths": 0,
+      "totalActive": 92,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 525,
+      "totalDeathsPerMillionPopulation": 37,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 9.30769,
+      "longitude": 2.315834,
+      "counrtyCode": "BJ",
+      "country": "Benin"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 191,
+      "totalDead": 3,
+      "totalRecovered": 84,
+      "dailyDeaths": 0,
+      "totalActive": 104,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 16,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 61.8926,
+      "longitude": 6.9118,
+      "counrtyCode": "FO",
+      "country": "Faeroe Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 187,
+      "totalDead": 0,
+      "totalRecovered": 187,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 3829,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 16.995971,
+      "longitude": -62.067641,
+      "counrtyCode": "GP",
+      "country": "Guadeloupe"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 161,
+      "totalDead": 14,
+      "totalRecovered": 115,
+      "dailyDeaths": 0,
+      "totalActive": 32,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 402,
+      "totalDeathsPerMillionPopulation": 35,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 36.137741,
+      "longitude": -5.345374,
+      "counrtyCode": "GI",
+      "country": "Gibraltar"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 154,
+      "totalDead": 0,
+      "totalRecovered": 147,
+      "dailyDeaths": 0,
+      "totalActive": 7,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 4571,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 4.535277,
+      "longitude": 114.727669,
+      "counrtyCode": "BN",
+      "country": "Brunei"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 141,
+      "totalDead": 1,
+      "totalRecovered": 137,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 323,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 46.862496,
+      "longitude": 103.846656,
+      "counrtyCode": "MN",
+      "country": "Mongolia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 141,
+      "totalDead": 0,
+      "totalRecovered": 33,
+      "dailyDeaths": 0,
+      "totalActive": 108,
+      "totalCritical": 25,
+      "totalConfirmedPerMillionPopulation": 43,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "United Arab Emirates"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T23:13:09.000Z",
+      "totalConfirmed": 140,
+      "totalDead": 2,
+      "totalRecovered": 31,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 4.860416,
+      "longitude": -58.93018,
+      "counrtyCode": "GY",
+      "country": "Guyana"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 135,
+      "totalDead": 10,
+      "totalRecovered": 62,
+      "dailyDeaths": 0,
+      "totalActive": 63,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 172,
+      "totalDeathsPerMillionPopulation": 13,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 19.513469,
+      "longitude": -80.566956,
+      "counrtyCode": "KY",
+      "country": "Cayman Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 134,
+      "totalDead": 1,
+      "totalRecovered": 61,
+      "dailyDeaths": 0,
+      "totalActive": 72,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 2041,
+      "totalDeathsPerMillionPopulation": 15,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 32.321384,
+      "longitude": -64.75737,
+      "counrtyCode": "BM",
+      "country": "Bermuda"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 133,
+      "totalDead": 9,
+      "totalRecovered": 89,
+      "dailyDeaths": 0,
+      "totalActive": 35,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 2135,
+      "totalDeathsPerMillionPopulation": 144,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.565679,
+      "longitude": 104.990963,
+      "counrtyCode": "KH",
+      "country": "Cambodia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 124,
+      "totalDead": 0,
+      "totalRecovered": 122,
+      "dailyDeaths": 0,
+      "totalActive": 2,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 7,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 10.691803,
+      "longitude": -61.222503,
+      "counrtyCode": "TT",
+      "country": "Trinidad and Tobago"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 116,
+      "totalDead": 8,
+      "totalRecovered": 108,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 83,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 34.802075,
+      "longitude": 38.996815,
+      "counrtyCode": "SY",
+      "country": "Syria"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 106,
+      "totalDead": 4,
+      "totalRecovered": 41,
+      "dailyDeaths": 0,
+      "totalActive": 61,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 6,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.52111,
+      "longitude": -69.968338,
+      "counrtyCode": "AW",
+      "country": "Aruba"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 101,
+      "totalDead": 3,
+      "totalRecovered": 95,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 3,
+      "totalConfirmedPerMillionPopulation": 946,
+      "totalDeathsPerMillionPopulation": 28,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -13.254308,
+      "longitude": 34.301525,
+      "counrtyCode": "MW",
+      "country": "Malawi"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 101,
+      "totalDead": 4,
+      "totalRecovered": 33,
+      "dailyDeaths": 0,
+      "totalActive": 64,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 5,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 25.03428,
+      "longitude": -77.39628,
+      "counrtyCode": "BS",
+      "country": "Bahamas"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 100,
+      "totalDead": 11,
+      "totalRecovered": 46,
+      "dailyDeaths": 0,
+      "totalActive": 43,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 255,
+      "totalDeathsPerMillionPopulation": 28,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 43.750298,
+      "longitude": 7.412841,
+      "counrtyCode": "MC",
+      "country": "Monaco"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 98,
+      "totalDead": 4,
+      "totalRecovered": 90,
+      "dailyDeaths": 0,
+      "totalActive": 4,
+      "totalCritical": 2,
+      "totalConfirmedPerMillionPopulation": 2499,
+      "totalDeathsPerMillionPopulation": 102,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 13.193887,
+      "longitude": -59.543198,
+      "counrtyCode": "BB",
+      "country": "Barbados"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 92,
+      "totalDead": 7,
+      "totalRecovered": 71,
+      "dailyDeaths": 0,
+      "totalActive": 14,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 320,
+      "totalDeathsPerMillionPopulation": 24,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -11.875001,
+      "longitude": 43.872219,
+      "counrtyCode": "KM",
+      "country": "Comoros"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 87,
+      "totalDead": 1,
+      "totalRecovered": 21,
+      "dailyDeaths": 0,
+      "totalActive": 65,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 100,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 47.166,
+      "longitude": 9.555373,
+      "counrtyCode": "LI",
+      "country": "Liechtenstein"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 82,
+      "totalDead": 1,
+      "totalRecovered": 55,
+      "dailyDeaths": 0,
+      "totalActive": 26,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 2151,
+      "totalDeathsPerMillionPopulation": 26,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 26.3351,
+      "longitude": 17.228331,
+      "counrtyCode": "LY",
+      "country": "Libya"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 75,
+      "totalDead": 3,
+      "totalRecovered": 40,
+      "dailyDeaths": 0,
+      "totalActive": 32,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 11,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -11.202692,
+      "longitude": 17.873887,
+      "counrtyCode": "AO",
+      "country": "Angola"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 69,
+      "totalDead": 4,
+      "totalRecovered": 18,
+      "dailyDeaths": 0,
+      "totalActive": 47,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 2,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -17.679742,
+      "longitude": -149.406843,
+      "counrtyCode": "PF",
+      "country": "French Polynesia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 60,
+      "totalDead": 0,
+      "totalRecovered": 60,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 214,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -19.015438,
+      "longitude": 29.154857,
+      "counrtyCode": "ZW",
+      "country": "Zimbabwe"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 56,
+      "totalDead": 4,
+      "totalRecovered": 25,
+      "dailyDeaths": 0,
+      "totalActive": 27,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 4,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 22.198745,
+      "longitude": 113.543873,
+      "counrtyCode": "MO",
+      "country": "Macao"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 45,
+      "totalDead": 0,
+      "totalRecovered": 45,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 69,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -3.373056,
+      "longitude": 29.918886,
+      "counrtyCode": "BI",
+      "country": "Burundi"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 42,
+      "totalDead": 1,
+      "totalRecovered": 20,
+      "dailyDeaths": 0,
+      "totalActive": 21,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 4,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.0708,
+      "longitude": 63.0501,
+      "counrtyCode": "MF",
+      "country": "Saint Martin"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 40,
+      "totalDead": 3,
+      "totalRecovered": 33,
+      "dailyDeaths": 0,
+      "totalActive": 4,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 1036,
+      "totalDeathsPerMillionPopulation": 78,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.179384,
+      "longitude": 39.782334,
+      "counrtyCode": "ER",
+      "country": "Eritrea"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 39,
+      "totalDead": 0,
+      "totalRecovered": 39,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 11,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.220833,
+      "longitude": -66.590149,
+      "counrtyCode": "PR",
+      "country": "Puerto Rico"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-25T08:50:37.000Z",
+      "totalConfirmed": 39,
+      "totalDead": 2,
+      "totalRecovered": 1,
+      "dailyDeaths": 0,
+      "totalActive": 36,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 14,
+      "totalDeathsPerMillionPopulation": 1,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -22.328474,
+      "longitude": 24.684866,
+      "counrtyCode": "BW",
+      "country": "Botswana"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 35,
+      "totalDead": 1,
+      "totalRecovered": 19,
+      "dailyDeaths": 0,
+      "totalActive": 15,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 15,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 13.444304,
+      "longitude": 144.793731,
+      "counrtyCode": "GU",
+      "country": "Guam"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-25T08:50:37.000Z",
+      "totalConfirmed": 32,
+      "totalDead": 1,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 31,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 190,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 27.514162,
+      "longitude": 90.433601,
+      "counrtyCode": "BT",
+      "country": "Bhutan"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 27,
+      "totalDead": 0,
+      "totalRecovered": 6,
+      "dailyDeaths": 0,
+      "totalActive": 21,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 35,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 17.060816,
+      "longitude": -61.796428,
+      "counrtyCode": "AG",
+      "country": "Antigua and Barbuda"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 25,
+      "totalDead": 3,
+      "totalRecovered": 19,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 1,
+      "totalConfirmedPerMillionPopulation": 256,
+      "totalDeathsPerMillionPopulation": 31,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 13.443182,
+      "longitude": -15.310139,
+      "counrtyCode": "GM",
+      "country": "Gambia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 25,
+      "totalDead": 1,
+      "totalRecovered": 17,
+      "dailyDeaths": 0,
+      "totalActive": 7,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 10,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -8.874217,
+      "longitude": 125.727539,
+      "counrtyCode": "TL",
+      "country": "Timor-Leste"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 24,
+      "totalDead": 0,
+      "totalRecovered": 24,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 18,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.262776,
+      "longitude": -61.604171,
+      "counrtyCode": "GD",
+      "country": "Grenada"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 23,
+      "totalDead": 0,
+      "totalRecovered": 18,
+      "dailyDeaths": 0,
+      "totalActive": 5,
+      "totalCritical": 4,
+      "totalConfirmedPerMillionPopulation": 204,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -22.95764,
+      "longitude": 18.49041,
+      "counrtyCode": "NA",
+      "country": "Namibia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 21,
+      "totalDead": 0,
+      "totalRecovered": 14,
+      "dailyDeaths": 0,
+      "totalActive": 7,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 8,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 19.85627,
+      "longitude": 102.495496,
+      "counrtyCode": "LA",
+      "country": "Laos"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 19,
+      "totalDead": 0,
+      "totalRecovered": 14,
+      "dailyDeaths": 0,
+      "totalActive": 5,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 3,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -20.904305,
+      "longitude": 165.618042,
+      "counrtyCode": "NC",
+      "country": "New Caledonia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18,
+      "totalDead": 0,
+      "totalRecovered": 18,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 63,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 13.909444,
+      "longitude": -60.978893,
+      "counrtyCode": "LC",
+      "country": "Saint Lucia"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18,
+      "totalDead": 0,
+      "totalRecovered": 18,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 98,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 17.189877,
+      "longitude": -88.49765,
+      "counrtyCode": "BZ",
+      "country": "Belize"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18,
+      "totalDead": 2,
+      "totalRecovered": 16,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 45,
+      "totalDeathsPerMillionPopulation": 5,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -16.578193,
+      "longitude": 179.414413,
+      "counrtyCode": "FJ",
+      "country": "Fiji"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18,
+      "totalDead": 0,
+      "totalRecovered": 15,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 20,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.1696,
+      "longitude": 68.99,
+      "counrtyCode": "CW",
+      "country": "Curaçao"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18,
+      "totalDead": 1,
+      "totalRecovered": 14,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 110,
+      "totalDeathsPerMillionPopulation": 6,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.9843,
+      "longitude": 61.2872,
+      "counrtyCode": "VC",
+      "country": "St. Vincent Grenadines"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 18,
+      "totalDead": 0,
+      "totalRecovered": 14,
+      "dailyDeaths": 0,
+      "totalActive": 4,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 162,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.335765,
+      "longitude": -64.896335,
+      "counrtyCode": "VI",
+      "country": "U.S. Virgin Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-25T08:50:38.000Z",
+      "totalConfirmed": 17,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 17,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 163,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 15.414999,
+      "longitude": -61.370976,
+      "counrtyCode": "DM",
+      "country": "Dominica"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 16,
+      "totalDead": 0,
+      "totalRecovered": 16,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 222,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 17.357822,
+      "longitude": -62.782998,
+      "counrtyCode": "KN",
+      "country": "Saint Kitts and Nevis"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 15,
+      "totalDead": 0,
+      "totalRecovered": 15,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 282,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "Falkland Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 13,
+      "totalDead": 0,
+      "totalRecovered": 13,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 3749,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 71.706936,
+      "longitude": -42.604303,
+      "counrtyCode": "GL",
+      "country": "Greenland"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 12,
+      "totalDead": 0,
+      "totalRecovered": 11,
+      "dailyDeaths": 0,
+      "totalActive": 1,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 211,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 21.694,
+      "longitude": 71.7979,
+      "counrtyCode": "TC",
+      "country": "Turks and Caicos"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 12,
+      "totalDead": 1,
+      "totalRecovered": 10,
+      "dailyDeaths": 0,
+      "totalActive": 1,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 310,
+      "totalDeathsPerMillionPopulation": 26,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 41.902916,
+      "longitude": 12.453389,
+      "counrtyCode": "VA",
+      "country": "Vatican City"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 12,
+      "totalDead": 0,
+      "totalRecovered": 2,
+      "dailyDeaths": 0,
+      "totalActive": 10,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 14981,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -4.679574,
+      "longitude": 55.491977,
+      "counrtyCode": "SC",
+      "country": "Seychelles"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11,
+      "totalDead": 0,
+      "totalRecovered": 11,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 112,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 16.742498,
+      "longitude": -62.187366,
+      "counrtyCode": "MS",
+      "country": "Montserrat"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11,
+      "totalDead": 1,
+      "totalRecovered": 10,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 2204,
+      "totalDeathsPerMillionPopulation": 200,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 3.919305,
+      "longitude": -56.027783,
+      "counrtyCode": "SR",
+      "country": "Suriname"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 11,
+      "totalDead": 1,
+      "totalRecovered": 9,
+      "dailyDeaths": 0,
+      "totalActive": 1,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 19,
+      "totalDeathsPerMillionPopulation": 2,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 24.215527,
+      "longitude": -12.885834,
+      "counrtyCode": "EH",
+      "country": "Western Sahara"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 9,
+      "totalDead": 0,
+      "totalRecovered": 6,
+      "dailyDeaths": 0,
+      "totalActive": 3,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 15,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 7.539989,
+      "longitude": -5.54708,
+      "counrtyCode": "CI",
+      "country": "Côte d'Ivoire"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T00:00:00.000Z",
+      "totalConfirmed": 9,
+      "totalDead": 0,
+      "totalRecovered": 1,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "MS Zaandam"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 9,
+      "totalDead": 2,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 7,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -6.314993,
+      "longitude": 143.95555,
+      "counrtyCode": "PG",
+      "country": "Papua New Guinea"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 8,
+      "totalDead": 0,
+      "totalRecovered": 8,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 1,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.420695,
+      "longitude": -64.639968,
+      "counrtyCode": "VG",
+      "country": "British Virgin Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 8,
+      "totalDead": 1,
+      "totalRecovered": 6,
+      "dailyDeaths": 0,
+      "totalActive": 1,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 265,
+      "totalDeathsPerMillionPopulation": 33,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "Caribbean Netherlands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 6,
+      "totalDead": 0,
+      "totalRecovered": 6,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 229,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 17.9,
+      "longitude": 62.8333,
+      "counrtyCode": "BL",
+      "country": "St. Barth"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 6,
+      "totalDead": 0,
+      "totalRecovered": 6,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 608,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 18.220554,
+      "longitude": -63.068615,
+      "counrtyCode": "AI",
+      "country": "Anguilla"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 3,
+      "totalDead": 0,
+      "totalRecovered": 3,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 200,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "Central African Republic"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T20:43:03.000Z",
+      "totalConfirmed": 3,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": -29.609988,
+      "longitude": 28.233608,
+      "counrtyCode": "LS",
+      "country": "Lesotho"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 2,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 2,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 1,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 61.892635,
+      "longitude": -6.911806,
+      "counrtyCode": "FO",
+      "country": "Faroe Islands"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-10T00:00:00.000Z",
+      "totalConfirmed": 2,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 42.602636,
+      "longitude": 20.902977,
+      "counrtyCode": "XK",
+      "country": "Kosovo"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T00:00:00.000Z",
+      "totalConfirmed": 2,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": null,
+      "longitude": null,
+      "counrtyCode": null,
+      "country": "Saint Pierre Miquelon"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-05-25T21:35:00.000Z",
+      "totalConfirmed": 1,
+      "totalDead": 0,
+      "totalRecovered": 1,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 173,
+      "totalDeathsPerMillionPopulation": 0,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 12.984305,
+      "longitude": -61.287228,
+      "counrtyCode": "VC",
+      "country": "Saint Vincent and the Grenadines"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T00:00:00.000Z",
+      "totalConfirmed": 1,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 49.214439,
+      "longitude": -2.13125,
+      "counrtyCode": "JE",
+      "country": "Jersey"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T00:00:00.000Z",
+      "totalConfirmed": 0,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  },
+  {
+    "zone": {
+      "latitude": 49.465691,
+      "longitude": -2.585278,
+      "counrtyCode": "GG",
+      "country": "Guernsey"
+    },
+    "dataZone": {
+      "dateDataZone": "2020-03-20T00:00:00.000Z",
+      "totalConfirmed": 0,
+      "totalDead": 0,
+      "totalRecovered": 0,
+      "dailyDeaths": 0,
+      "totalActive": 0,
+      "totalCritical": 0,
+      "totalConfirmedPerMillionPopulation": 0,
+      "totalDeathsPerMillionPopulation": null,
+      "valide": false
+    }
+  }
+]

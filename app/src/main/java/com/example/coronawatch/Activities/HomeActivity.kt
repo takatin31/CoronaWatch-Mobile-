@@ -107,7 +107,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                                 transaction.commit()
                             }
                         }
-
+                        2 -> {
+                            var postFr: Fragment =
+                                PostsFragment()
+                            if (postFr != null) {
+                                val transaction = supportFragmentManager.beginTransaction()
+                                transaction.replace(R.id.mainFragmentView, postFr)
+                                transaction.commit()
+                            }
+                        }
                     }
                 }
             }

@@ -52,6 +52,7 @@
     <string-array name="spinner_content">
         <item>المقالات</item>
         <item>الفيديوهات</item>
+        <item>المنشورات</item>
     </string-array>
     <string name="last_update">آخر تحديث : </string>
     <string name="host">https://coronawatch-api-v0.herokuapp.com</string>
