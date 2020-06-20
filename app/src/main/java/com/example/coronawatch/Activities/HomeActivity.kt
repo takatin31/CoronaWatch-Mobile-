@@ -25,7 +25,9 @@ import com.example.coronawatch.Fragments.*
 import com.example.coronawatch.R
 import com.example.coronawatch.Services.NotificationActions
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.messaging.RemoteMessage
 import com.pusher.pushnotifications.BeamsCallback
+import com.pusher.pushnotifications.PushNotificationReceivedListener
 import com.pusher.pushnotifications.PushNotifications
 import com.pusher.pushnotifications.PusherCallbackError
 import com.pusher.pushnotifications.auth.AuthData
@@ -52,6 +54,13 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         PushNotifications.start(applicationContext, "ee628110-0089-4e78-b871-8a5b43cdc248")
         PushNotifications.addDeviceInterest("NEWCONTENTPUBLISHED")
+
+        /*
+        PushNotifications.setOnMessageReceivedListenerForVisibleActivity(this, object:
+            PushNotificationReceivedListener {
+            override fun onMessageReceived(remoteMessage: RemoteMessage) {
+                // do something wonderful 🌈
+            } })*/
 
         RegisterMeWithPusher(this).execute()
 
@@ -346,7 +355,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_how_protect -> {
-
+                val intent = Intent(this, HowProtectActivity::class.java)
+                startActivity(intent)
             }
 
             R.id.nav_logout -> {
