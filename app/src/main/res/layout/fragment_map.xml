@@ -59,6 +59,20 @@
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/countriesStatsFloatingBtn"
+        android:layout_width="@dimen/standard_45"
+        android:layout_height="@dimen/standard_45"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_equalizer_black_24dp"
+        mapbox:backgroundTint="#FFFFFF" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/dangerZoneFloatingBtn"
         android:layout_width="@dimen/standard_45"
         android:layout_height="@dimen/standard_45"

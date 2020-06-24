@@ -21,6 +21,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
+import com.example.coronawatch.Activities.CountriesActivity
 import com.example.coronawatch.Activities.StatsActivity
 import com.example.coronawatch.Adapters.FilterAdapter
 import com.example.coronawatch.DataClasses.*
@@ -180,6 +181,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             showDataOnMap(layers[6], mapboxMap.style!!)
         }
 
+        countriesStatsFloatingBtn.setOnClickListener {
+            val intent = Intent(activity, CountriesActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val searchCountry = searchCountryView
         val adapter = ArrayAdapter<String>(activity!!, android.R.layout.simple_list_item_1, listCountries)
@@ -198,22 +204,20 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
         }
 
-
-
-
-
     }
 
     private fun showFABMenu(){
         isFABOpen=true;
         algeriaFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_65))
         dangerZoneFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_125))
+        countriesStatsFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_185))
     }
 
     private fun closeFABMenu(){
         isFABOpen=false;
         algeriaFloatingBtn.animate().translationY(0f)
         dangerZoneFloatingBtn.animate().translationY(0f)
+        countriesStatsFloatingBtn.animate().translationY(0f)
     }
 
     //afficher les data dans la map
