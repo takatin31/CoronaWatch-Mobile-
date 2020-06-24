@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.coronawatch.Activities.VideoActivity
 import com.example.coronawatch.DataClasses.VideoThumbnail
 import com.example.coronawatch.R
@@ -56,7 +57,7 @@ class VideoAdapter(val activity: FragmentActivity, val listArticle : ArrayList<V
 
         holder.descriptinoVideo.text = videoDescription
 
-
+        Glide.with(activity).load(video.videoUrl).into(holder.imageVideo);
 
         /*if (videoImage != null){
             loadBitmapByPicasso(activity, videoImage, holder.imageVideo)

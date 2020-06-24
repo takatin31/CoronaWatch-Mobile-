@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.io.DataOutputStream
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -39,42 +40,50 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id_google_auth))
-                .requestEmail()
-                .build()
+        val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+        val connected = pref.getBoolean("isConnected", false)
+
+        if (connected){
+            var home_intent = Intent(this, HomeActivity::class.java)
+            startActivity(home_intent)
+        }else{
+            gso =
+                GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id_google_auth))
+                    .requestEmail()
+                    .build()
 
 
-        var facebook_btn = facebook_login
-        var google_btn = google_login
+            var facebook_btn = facebook_login
+            var google_btn = google_login
 
-        google_btn.setOnClickListener {
-            googleSignIn()
-        }
+            google_btn.setOnClickListener {
+                googleSignIn()
+            }
 
 
-        facebook_btn.setOnClickListener {
-            // Login
-            callbackManager = CallbackManager.Factory.create()
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
-            LoginManager.getInstance().registerCallback(callbackManager,
-                object : FacebookCallback<LoginResult> {
-                    override fun onSuccess(loginResult: LoginResult) {
-                        val accessToken = AccessToken.getCurrentAccessToken()
-                        Log.i("tooooooken", accessToken.token)
-                        loginUser(accessToken.token, "facebook")
-                    }
+            facebook_btn.setOnClickListener {
+                // Login
+                callbackManager = CallbackManager.Factory.create()
+                LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+                LoginManager.getInstance().registerCallback(callbackManager,
+                    object : FacebookCallback<LoginResult> {
+                        override fun onSuccess(loginResult: LoginResult) {
+                            val accessToken = AccessToken.getCurrentAccessToken()
+                            Log.i("tooooooken", accessToken.token)
+                            loginUserFacebook(accessToken.token)
+                        }
 
-                    override fun onCancel() {
-                        Log.d("MainActivity", "Facebook onCancel.")
-                    }
+                        override fun onCancel() {
+                            Log.d("MainActivity", "Facebook onCancel.")
+                        }
 
-                    override fun onError(error: FacebookException) {
-                        Log.i("erroooor", error.toString())
-                        Toast.makeText(this@LoginActivity, "Hi there! This is a Error", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                        override fun onError(error: FacebookException) {
+                            Log.i("erroooor", error.toString())
+                            Toast.makeText(this@LoginActivity, "Hi there! This is a Error", Toast.LENGTH_SHORT).show()
+                        }
+                    })
+            }
         }
     }
 
@@ -113,9 +122,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun loginUser(extern_token : String, method : String){
-        val postURL = "${resources.getString(R.string.host)}/api/v0/auth/authUtilisateur/$method/login"
-
+    private fun loginUserFacebook(extern_token : String){
+        var postURL = "${resources.getString(R.string.host)}/api/v0/auth/authUtilisateur/facebook/login"
 
         val request = object : FileUploadRequest(
             Method.POST,
@@ -126,7 +134,7 @@ class LoginActivity : AppCompatActivity() {
                 var jsonResponse = JSONObject(responseString)
                 var auth = jsonResponse.getBoolean("auth")
                 if (auth){
-                    saveUser(jsonResponse)
+                    saveUser(jsonResponse, "facebook")
                     var home_intent = Intent(this, HomeActivity::class.java)
                     startActivity(home_intent)
                 }
@@ -155,10 +163,54 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun saveUser(userJsonObject : JSONObject){
+    private fun loginUserGoogle(extern_token : String){
+        var postURL = "${resources.getString(R.string.host)}/api/v0/auth/authUtilisateur/google/login-id"
+
+
+        val request = object : FileUploadRequest(
+            Method.POST,
+            postURL,
+            Response.Listener {
+                Log.i("success", "user Loged in")
+                var responseString = String(it.data)
+                var jsonResponse = JSONObject(responseString)
+                var auth = jsonResponse.getBoolean("auth")
+                if (auth){
+                    saveUser(jsonResponse, "google")
+                    var home_intent = Intent(this, HomeActivity::class.java)
+                    startActivity(home_intent)
+                }
+            },
+            Response.ErrorListener {
+                //val err = String(it.networkResponse.data)
+                Log.i("response", it.toString())
+                Log.i("error", "error while logging")
+            }
+        ){
+
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+
+            override fun getBody(): ByteArray {
+                val byteArrayOutputStream = ByteArrayOutputStream()
+                val dataOutputStream = DataOutputStream(byteArrayOutputStream)
+                val jsonUser = JSONObject()
+                jsonUser.put("id_token", extern_token)
+                dataOutputStream.writeBytes(jsonUser.toString())
+                return byteArrayOutputStream.toByteArray()
+            }
+        }
+        Volley.newRequestQueue(this).add(request)
+    }
+
+    private fun saveUser(userJsonObject : JSONObject, method: String){
 
         val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
         val editor = pref.edit()
+
+        editor.putBoolean("isConnected", true)
+        editor.putString("method", method)
 
         editor.putString("token", userJsonObject.getString("token"))
         val user = userJsonObject.getJSONObject("user")
@@ -169,7 +221,9 @@ class LoginActivity : AppCompatActivity() {
         editor.putString("userName", ArabicController.decode_str(user.getString("username")))
         var urlResponse = user.getString("profileImageUrl")
         if (urlResponse != "" && urlResponse != "null"){
-            urlResponse = resources.getString(R.string.host) + "/"+ urlResponse
+            if (!urlResponse.contains("https")){
+                urlResponse = resources.getString(R.string.host) + "/"+ urlResponse
+            }
         }
 
         editor.putString("userPic", urlResponse)
@@ -195,6 +249,12 @@ class LoginActivity : AppCompatActivity() {
             // Signed in successfully, show authenticated UI.
             Log.i("accouuuuu", account.toString())
             Log.i("token", account!!.idToken)
+            val token = account!!.idToken
+
+            if (token != null){
+                loginUserGoogle(token)
+            }
+
         } catch (e: ApiException) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.

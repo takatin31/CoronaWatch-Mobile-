@@ -24,6 +24,12 @@ import androidx.fragment.app.Fragment
 import com.example.coronawatch.Fragments.*
 import com.example.coronawatch.R
 import com.example.coronawatch.Services.NotificationActions
+import com.facebook.login.Login
+import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInApi
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.messaging.RemoteMessage
 import com.pusher.pushnotifications.BeamsCallback
@@ -369,7 +375,26 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_logout -> {
+                val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+                var methode = pref.getString("method", "")
+                if (methode == "facebook"){
+                    LoginManager.getInstance().logOut()
+                }else{
+                    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken(getString(R.string.default_web_client_id_google_auth))
+                        .requestEmail()
+                        .build()
 
+
+                    GoogleSignIn.getClient(this, gso)?.signOut()
+                }
+                PushNotifications.stop()
+                val editor = pref.edit()
+                editor.putBoolean("isConnected", false)
+                editor.commit()
+                var login_intent = Intent(this, LoginActivity::class.java)
+                startActivity(login_intent)
+                finish()
             }
         }
 

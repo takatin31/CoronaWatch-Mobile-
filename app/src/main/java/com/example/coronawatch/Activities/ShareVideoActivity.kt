@@ -1,9 +1,12 @@
 package com.example.coronawatch.Activities
 
+import android.R.attr.bitmap
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -19,7 +22,9 @@ import com.example.coronawatch.R
 import com.example.coronawatch.Request.FileDataPart
 import com.example.coronawatch.Request.FileUploadRequest
 import kotlinx.android.synthetic.main.activity_share_video.*
+import org.json.JSONObject
 import java.io.IOException
+import java.nio.ByteBuffer
 
 
 class ShareVideoActivity : AppCompatActivity() {
@@ -153,15 +158,17 @@ class ShareVideoActivity : AppCompatActivity() {
             postURL,
             Response.Listener {
                 Log.i("response", it.statusCode.toString() + "   "+it.data)
-                progressBarSending.visibility = View.GONE
-                if (cpt == 0){
-                    cpt++
+                val responseString = String(it.data)
+                val responseObject = JSONObject(responseString)
+                if (responseObject.getString("message") == "success"){
+                    progressBarSending.visibility = View.GONE
 
+                    Toast.makeText(this, "تم رفع الفيديو بنجاح", Toast.LENGTH_LONG).show()
+                    val homeIntent = Intent(this, HomeActivity::class.java)
+                    startActivity(homeIntent)
+                    finish()
                 }
-                Toast.makeText(this, "تم رفع الفيديو بنجاح", Toast.LENGTH_LONG).show()
-                val homeIntent = Intent(this, HomeActivity::class.java)
-                startActivity(homeIntent)
-                finish()
+
             },
             Response.ErrorListener {
 
@@ -200,11 +207,66 @@ class ShareVideoActivity : AppCompatActivity() {
         Volley.newRequestQueue(this).add(request)
     }
 
+    fun uploadThumbnail(urlVideo : String, idVideo : Int){
+        val postURL: String = "${resources.getString(R.string.host)}/api/v0/video/upload-thambnial/$idVideo"
+        Log.i("videoUrlll", urlVideo)
+        val imgBitmap = retriveVideoFrameFromVideo(urlVideo)
+        if (imgBitmap != null){
+
+            val size: Int = imgBitmap.getRowBytes() * imgBitmap.getHeight()
+            val byteBuffer: ByteBuffer = ByteBuffer.allocate(size)
+            imgBitmap.copyPixelsToBuffer(byteBuffer)
+            val byteArray = byteBuffer.array()
+
+            val request = object : FileUploadRequest(
+                Method.POST,
+                postURL,
+                Response.Listener {
+
+                },
+                Response.ErrorListener {
+                }
+            ) {
+                override fun getByteData(): MutableMap<String, FileDataPart> {
+                    var params = HashMap<String, FileDataPart>()
+                    params["videoFile"] =
+                        FileDataPart(
+                            "image.png",
+                            byteArray,
+                            "png"
+                        )
+                    return params
+                }
+            }
+            Volley.newRequestQueue(this).add(request)
+        }
+
+
+    }
+
     @Throws(IOException::class)
     private fun createImageData(uri: Uri) {
         val inputStream = contentResolver.openInputStream(uri)
         inputStream?.buffered()?.use {
             imageData = it.readBytes()
         }
+    }
+
+    @Throws(Throwable::class)
+    fun retriveVideoFrameFromVideo(videoPath: String?): Bitmap? {
+        var bitmap: Bitmap? = null
+        var mediaMetadataRetriever: MediaMetadataRetriever? = null
+        try {
+            mediaMetadataRetriever = MediaMetadataRetriever()
+            mediaMetadataRetriever.setDataSource(videoPath, HashMap())
+            //   mediaMetadataRetriever.setDataSource(videoPath);
+            bitmap = mediaMetadataRetriever.frameAtTime
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw Throwable("Exception in retriveVideoFrameFromVideo(String videoPath)" + e.message)
+        } finally {
+            mediaMetadataRetriever?.release()
+        }
+        return bitmap
     }
 }
