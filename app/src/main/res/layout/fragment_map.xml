@@ -114,5 +114,41 @@
         android:src="@drawable/ic_menu"
         mapbox:backgroundTint="#FFFFFF" />
 
+    <TextView
+        android:id="@+id/titleStatsCountries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_toStartOf="@id/dangerZoneFloatingBtn"
+        android:fontFamily="@font/almarai_bold"
+        android:text="احصائيات بلدان العالم"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/titleDangerZone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_toStartOf="@id/dangerZoneFloatingBtn"
+        android:fontFamily="@font/almarai_bold"
+        android:text="مناطق الخطر"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/titleAlgeriaZone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_toStartOf="@id/dangerZoneFloatingBtn"
+        android:fontFamily="@font/almarai_bold"
+        android:text="توزيع الحالات في الجزائر"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
 
 </RelativeLayout>

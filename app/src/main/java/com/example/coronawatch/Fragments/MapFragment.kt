@@ -211,6 +211,14 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         algeriaFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_65))
         dangerZoneFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_125))
         countriesStatsFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_185))
+
+        titleAlgeriaZone.animate().translationY(-resources.getDimension(R.dimen.standard_65))
+        titleDangerZone.animate().translationY(-resources.getDimension(R.dimen.standard_125))
+        titleStatsCountries.animate().translationY(-resources.getDimension(R.dimen.standard_185))
+
+        titleAlgeriaZone.visibility = View.VISIBLE
+        titleDangerZone.visibility = View.VISIBLE
+        titleStatsCountries.visibility = View.VISIBLE
     }
 
     private fun closeFABMenu(){
@@ -218,6 +226,14 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         algeriaFloatingBtn.animate().translationY(0f)
         dangerZoneFloatingBtn.animate().translationY(0f)
         countriesStatsFloatingBtn.animate().translationY(0f)
+
+        titleAlgeriaZone.animate().translationY(0f)
+        titleDangerZone.animate().translationY(0f)
+        titleStatsCountries.animate().translationY(0f)
+
+        titleAlgeriaZone.visibility = View.GONE
+        titleDangerZone.visibility = View.GONE
+        titleStatsCountries.visibility = View.GONE
     }
 
     //afficher les data dans la map

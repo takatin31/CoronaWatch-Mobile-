@@ -179,6 +179,7 @@ class LoginActivity : AppCompatActivity() {
                     saveUser(jsonResponse, "google")
                     var home_intent = Intent(this, HomeActivity::class.java)
                     startActivity(home_intent)
+                    finish()
                 }
             },
             Response.ErrorListener {
