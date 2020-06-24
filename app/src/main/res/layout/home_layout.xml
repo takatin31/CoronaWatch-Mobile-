@@ -47,6 +47,7 @@
                 android:layout_height="10dp"
                 android:layout_above="@id/divider7"
                 android:layout_alignParentEnd="true"
+                android:visibility="gone"
                 app:srcCompat="@drawable/circle_button" />
         </RelativeLayout>
 

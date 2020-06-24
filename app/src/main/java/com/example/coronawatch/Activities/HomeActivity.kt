@@ -61,12 +61,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         PushNotifications.start(applicationContext, "ee628110-0089-4e78-b871-8a5b43cdc248")
         PushNotifications.addDeviceInterest("NEWCONTENTPUBLISHED")
 
-        /*
+
         PushNotifications.setOnMessageReceivedListenerForVisibleActivity(this, object:
             PushNotificationReceivedListener {
             override fun onMessageReceived(remoteMessage: RemoteMessage) {
-                // do something wonderful 🌈
-            } })*/
+                seenMarkView.visibility = View.VISIBLE
+            } })
 
         RegisterMeWithPusher(this).execute()
 

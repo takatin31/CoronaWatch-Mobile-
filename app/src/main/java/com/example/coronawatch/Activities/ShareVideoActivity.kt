@@ -178,9 +178,10 @@ class ShareVideoActivity : AppCompatActivity() {
 
             override fun getParams(): MutableMap<String, String> {
                 var params = HashMap<String, String>()
+                val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
+                val userId = pref.getInt("userId", 0)
 
-
-                val theString = "{\"utilisateurUtilisateurId\":\"1\"," +
+                val theString = "{\"utilisateurUtilisateurId\":\"$userId\"," +
                         "\"titre\":\"${ArabicController.encode_str(aVideoTitle.text.toString())}\"," +
                         "\"description\":\"${ArabicController.encode_str(descriptionVideo.text.toString())}\"" +
                         "}"

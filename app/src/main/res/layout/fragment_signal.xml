@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,75 +11,92 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/divider3"
-        android:layout_marginBottom="20dp">
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/signalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/successResult"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#2196F3"
+            android:ems="10"
+            android:hint="العنوان"
+            android:inputType="textPersonName"
+            android:textDirection="rtl" />
+
+        <EditText
+            android:id="@+id/descriptionSignal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/signalTitle"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#2196F3"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="الوصف"
+            android:inputType="textMultiLine"
+            android:maxLines="10"
+            android:textDirection="rtl" />
 
         <Button
             android:id="@+id/pictureBtnView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/descriptionSignal"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/rounded_start_button"
             android:fontFamily="@font/almarai_bold"
             android:text="@string/takePhoto"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/divider3"
-        android:layout_marginTop="20dp"
-        android:layout_weight="0.3">
 
         <Button
             android:id="@+id/videoBtnView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/pictureBtnView"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/rounded_start_button"
             android:fontFamily="@font/almarai_bold"
             android:text="@string/recordVideo"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/successResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/almarai_bold"
+            android:padding="10dp"
+            android:text="تم الابلاغ بنجاح"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/successResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/almarai_bold"
-        android:padding="10dp"
-        android:text="تم الابلاغ بنجاح"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:visibility="gone" />
-
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        android:background="?android:attr/listDivider" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
-
-</RelativeLayout>
+</ScrollView>
