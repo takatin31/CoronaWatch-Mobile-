@@ -82,9 +82,9 @@ class NotificationFragment : Fragment() {
                             for (i in 0 until items.length()){
                                 val item = items.getJSONObject(i)
                                 val notificationId = item.getInt("notificationId")
-                                var notificationTitle = item.getString("title")
+                                var notificationTitle = ArabicController.decode_str(item.getString("title"))
                                 val notificationContent = ArabicController.decode_str(item.getString("contenu"))
-                                var notificationDate = ArabicController.decode_str(item.getString("createdAt"))
+                                var notificationDate = item.getString("createdAt")
 
                                 var localDateTime: LocalDateTime = LocalDateTime.parse(notificationDate.replace("Z", ""))
                                 var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")

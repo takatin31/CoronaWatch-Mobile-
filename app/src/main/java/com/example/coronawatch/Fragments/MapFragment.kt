@@ -379,7 +379,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             Response.Listener { response ->
                 val count : Int = response.getInt("count")
                 val items = response.getJSONArray("items")
-                for (i in 0 until count){
+                for (i in 0 until items.length()){
                     val item = items.getJSONObject(i)
                     val nbrCases : Int = item.getInt("totalActive")
                     val nbrDeaths : Int = item.getInt("totalDead")
@@ -415,28 +415,32 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             Response.Listener { response ->
                 val count : Int = response.getInt("count")
                 val items = response.getJSONArray("rows")
-                for (i in 0 until count) {
+                for (i in 0 until items.length()) {
                     val item = items.getJSONObject(i)
                     val id = item.getInt("zoneId")
-                    val datazone = item.getJSONArray("dataZones").getJSONObject(0)
-                    val nbrCases: Int = datazone.getInt("totalConfirmed")
-                    val nbrDeaths: Int = datazone.getInt("totalDead")
-                    val nbrRecovered: Int = datazone.getInt("totalRecovered")
-                    val latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
-                    val zoneData = ZoneData(
-                        id,
-                        latLng,
-                        nbrCases,
-                        nbrDeaths,
-                        nbrRecovered
-                    )
-                    zonesAlgeriaData.add(zoneData)
-                    val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
-                    val feature: Feature = Feature.fromGeometry(geometry)
-                    feature.addNumberProperty(layers[3], nbrCases)
-                    feature.addNumberProperty(layers[4], nbrDeaths)
-                    feature.addNumberProperty(layers[5], nbrRecovered)
-                    features.add(feature)
+                    Log.i("itemmm", item.toString())
+                    if (item.getJSONArray("dataZones").length() > 0){
+                        val datazone = item.getJSONArray("dataZones").getJSONObject(0)
+                        val nbrCases: Int = datazone.getInt("totalConfirmed")
+                        val nbrDeaths: Int = datazone.getInt("totalDead")
+                        val nbrRecovered: Int = datazone.getInt("totalRecovered")
+                        val latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
+                        val zoneData = ZoneData(
+                            id,
+                            latLng,
+                            nbrCases,
+                            nbrDeaths,
+                            nbrRecovered
+                        )
+                        zonesAlgeriaData.add(zoneData)
+                        val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
+                        val feature: Feature = Feature.fromGeometry(geometry)
+                        feature.addNumberProperty(layers[3], nbrCases)
+                        feature.addNumberProperty(layers[4], nbrDeaths)
+                        feature.addNumberProperty(layers[5], nbrRecovered)
+                        features.add(feature)
+                    }
+
                 }
 
                 addCountryCasesOnMap(features, loadedMapStyle)
@@ -462,8 +466,6 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                     }
                 }
 
-
-
             },
             Response.ErrorListener { Log.d("Error", "Request error") })
 
@@ -481,7 +483,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 val items = response.getJSONObject("items")
                 val count = items.getInt("count")
                 val zones = items.getJSONArray("rows")
-                for (i in 0 until count){
+                for (i in 0 until items.length()){
                     val zoneRisk = zones.getJSONObject(i)
                     val zoneRiskId = zoneRisk.getInt("zoneRisqueId")
                     val zoneRiskDiameter = 20f//zoneRisk.getDouble("diametre").toFloat()

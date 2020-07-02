@@ -40,7 +40,7 @@ class ShareVideoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_video)
-        val postURL = "http://192.168.1.55:8081/api/v0/video/upload-video"
+        val postURL = "${resources.getString(R.string.host)}/api/v0/video/upload-video"
 
         returnBtn.setOnClickListener {
             val homeIntent = Intent(this, HomeActivity::class.java)

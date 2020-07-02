@@ -207,6 +207,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveUser(userJsonObject : JSONObject, method: String){
 
+        Log.i("userToken", userJsonObject.getString("token"))
+
         val pref = getSharedPreferences(resources.getString(R.string.shared_pref),0)
         val editor = pref.edit()
 
