@@ -63,7 +63,7 @@ class VideoFragment : Fragment() {
 
 
     fun getListVideosThumbnail(){
-        val urlData = "http://192.168.1.55:8081/api/v0/video"
+        val urlData = "${resources.getString(R.string.host)}/api/v0/video"
 
         // Request a string response from the provided URL.
         val jsonRequestData = JsonObjectRequest(
@@ -80,7 +80,7 @@ class VideoFragment : Fragment() {
                         var dateVideo = item.getString("dateVideo")
                         val videoTitle = ArabicController.decode_str(item.getString("titre"))
                         val videoDesc = ArabicController.decode_str(item.getString("description"))
-                        val videoUrl = "http://192.168.1.55:8081/"+item.getString("videoUrl")
+                        val videoUrl = "${resources.getString(R.string.host)}/"+item.getString("videoUrl")
 
                         var localDateTime: LocalDateTime = LocalDateTime.parse(dateVideo.replace("Z", ""))
                         var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")

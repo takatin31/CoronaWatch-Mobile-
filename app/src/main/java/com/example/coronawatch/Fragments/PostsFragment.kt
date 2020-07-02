@@ -8,14 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.Adapters.PostAdapter
+import com.example.coronawatch.Controllers.ArabicController
 import com.example.coronawatch.DataClasses.Post
+import com.example.coronawatch.DataClasses.VideoThumbnail
 import com.example.coronawatch.R
+import com.example.coronawatch.Request.RequestHandler
 import kotlinx.android.synthetic.main.fragment_posts.*
+import kotlinx.android.synthetic.main.fragment_video.*
 import org.json.JSONArray
 import java.io.InputStream
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -52,37 +60,46 @@ class PostsFragment : Fragment() {
     }
 
     fun getData(){
-        val sourceArray = arrayOf("facebook.json", "news.json", "youtube.json")
 
-        for (src in sourceArray){
-            val jsonString = loadJson(activity!!, src)
+        val urlData = "${resources.getString(R.string.host)}/api/v0/publication"
 
-            val jsonArray = JSONArray(jsonString)
+        // Request a string response from the provided URL.
+        val jsonRequestData = JsonObjectRequest(
+            Request.Method.GET, urlData, null,
+            Response.Listener { response ->
+                val items = response.getJSONArray("rows")
 
-            for (i in 0 until jsonArray.length()){
-                val post = jsonArray.getJSONObject(i)
-                val title = post.getString("titre")
-                val source = post.getString("source")
-                val resume = post.getString("resume")
-                val lien = post.getString("lien")
-                if (source == "Facebook"){
-                    postsList.add(Post(title, resume, source, lien, null, null))
-                }else{
-                    var date = post.getString("datePublication")
-                    val df1: DateFormat = SimpleDateFormat("yyyy-MM-dd")
-                    val result: Date = df1.parse(date)
-                    val formatter = SimpleDateFormat("yyyy-MM-dd")
-                    //var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                    date = formatter.format(result)
-                    //date = result.toString()
-                    val img = post.getString("imageUrl")
-                    postsList.add(Post(title, resume, source, lien, img, date))
+                for (i in 0 until items.length()){
+                    val post = items.getJSONObject(i)
+                    val title = post.getString("titre")
+                    val source = post.getString("source")
+                    val resume = post.getString("resume")
+                    val lien = post.getString("lien")
+                    if (source == "Facebook"){
+                        postsList.add(Post(title, resume, source, lien, null, null))
+                    }else{
+                        var date = post.getString("datePublication")
+                        val df1: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+                        val result: Date = df1.parse(date)
+                        val formatter = SimpleDateFormat("yyyy-MM-dd")
+                        //var formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        date = formatter.format(result)
+                        //date = result.toString()
+                        val img = post.getString("imageUrl")
+                        postsList.add(Post(title, resume, source, lien, img, date))
+                    }
                 }
-            }
-        }
-        Log.i("liiiiiiiiiii", postsList.size.toString())
-        loadingPostsProgressBar.visibility = View.GONE
-        adapter.notifyDataSetChanged()
+
+                if (loadingPostsProgressBar != null){
+                    loadingPostsProgressBar.visibility = View.INVISIBLE
+                }
+                adapter.notifyDataSetChanged()
+
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") })
+
+        RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestData)
+
     }
 
     private fun loadJson(context: Context, file : String): String? {

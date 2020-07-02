@@ -199,6 +199,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         searchCountry.setOnItemClickListener { parent, view, position, id ->
             val geocoder = Geocoder(activity, Locale("ar"))
             val adresses = geocoder.getFromLocationName(parent.getItemAtPosition(position).toString(), 1)
+
             val position = CameraPosition.Builder()
                 .target(LatLng(adresses[0].latitude, adresses[0].longitude))
                 .zoom(3.0)
@@ -409,6 +410,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                         maxValueRecovered = nbrRecovered
                     }
                     val countryCode : String = item.getString("counrtyCode")
+                    Log.i("countryCode", "Code is : $countryCode")
                     val latLng = CountryInfo.getLatLng(countryCode)
                     val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
                     val feature : Feature = Feature.fromGeometry(geometry)
@@ -523,7 +525,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 val items = response.getJSONObject("items")
                 val count = items.getInt("count")
                 val zones = items.getJSONArray("rows")
-                for (i in 0 until items.length()){
+                for (i in 0 until zones.length()){
                     val zoneRisk = zones.getJSONObject(i)
                     val zoneRiskId = zoneRisk.getInt("zoneRisqueId")
                     val zoneRiskDiameter = 20f//zoneRisk.getDouble("diametre").toFloat()
