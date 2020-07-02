@@ -90,7 +90,7 @@ class StatsActivity : AppCompatActivity() {
                     var date = LocalDate.of(stringDate[0].toInt(), stringDate[1].toInt(), stringDate[2].toInt())
                     Log.i("date date", date.toString())
                     var data = item.getJSONArray("items").getJSONObject(0)
-                    var nbrCases = data.getInt("totalActive")
+                    var nbrCases = data.getInt("totalConfirmed")
                     var nbrDeaths = data.getInt("totalDead")
                     var nbrRecovered = data.getInt("totalRecovered")
                     var dailyData =

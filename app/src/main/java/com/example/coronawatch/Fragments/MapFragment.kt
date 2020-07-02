@@ -73,6 +73,12 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     var filterList = arrayListOf<Filter>()
     var riskZoneList = arrayListOf<Zone>()
     var dangerZoneMode : Boolean = false
+    var maxValueCases = 0
+    var maxValueDeaths = 0
+    var maxValueRecovered = 0
+    var maxValueCasesAlgeria = 0
+    var maxValueDeathsAlgeria = 0
+    var maxValueRecoveredAlgeria = 0
 
     private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
@@ -239,13 +245,10 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     //afficher les data dans la map
     private fun showDataOnMap(type : String, loadedMapStyle : Style){
 
-
         for (layer in layers){
-
             if (loadedMapStyle.getLayer(layer) != null){
                 loadedMapStyle.getLayer(layer)!!.setProperties(visibility(NONE))
             }
-
         }
 
         if (loadedMapStyle.getLayer(type) != null)
@@ -276,12 +279,13 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             circleStrokeWidth(2f),
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
-                interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 1, 10)),
-                    stop(1, normalize(get(layer), abs(1), 1, 10)),
-                    stop(6, normalize(get(layer), abs(3), 1, 10)),
-                    stop(10, normalize(get(layer), abs(5), 1, 10)),
-                    stop(12, normalize(get(layer), abs(6), 1, 10))
+                interpolate(
+                    linear(), zoom(),
+                    stop(0, mapV(get(layer), 0, maxValueCases, 5, 10)),
+                    stop(1, mapV(get(layer), 0, maxValueCases, 6, 12)),
+                    stop(3, mapV(get(layer), 0, maxValueCases, 10, 50)),
+                    stop(5, mapV(get(layer), 0, maxValueCases, 15, 70)),
+                    stop(10, mapV(get(layer), 0, maxValueCases, 20, 85))
                 )
             )
         )
@@ -312,11 +316,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             circleStrokeColor(Color.parseColor("#d1482e7c")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 3, 10)),
-                    stop(1, normalize(get(layer), abs(1), 3, 10)),
-                    stop(6, normalize(get(layer), abs(3), 3, 10)),
-                    stop(10, normalize(get(layer), abs(5), 3, 10)),
-                    stop(12, normalize(get(layer), abs(6), 3, 10))
+                    stop(0, mapV(get(layer), 0, maxValueDeaths, 5, 10)),
+                    stop(1, mapV(get(layer), 0, maxValueDeaths, 6, 12)),
+                    stop(3, mapV(get(layer), 0, maxValueDeaths, 10, 50)),
+                    stop(5, mapV(get(layer), 0, maxValueDeaths, 15, 70)),
+                    stop(10, mapV(get(layer), 0, maxValueDeaths, 20, 85))
                 )
             )
         )
@@ -347,11 +351,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             circleStrokeColor(Color.parseColor("#d1159a39")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 3, 10)),
-                    stop(1, normalize(get(layer), abs(1), 3, 10)),
-                    stop(6, normalize(get(layer), abs(3), 3, 10)),
-                    stop(10, normalize(get(layer), abs(5), 3, 10)),
-                    stop(12, normalize(get(layer), abs(6), 3, 10))
+                    stop(0, mapV(get(layer), 0, maxValueRecovered, 5, 10)),
+                    stop(1, mapV(get(layer), 0, maxValueRecovered, 6, 12)),
+                    stop(3, mapV(get(layer), 0, maxValueRecovered, 10, 50)),
+                    stop(5, mapV(get(layer), 0, maxValueRecovered, 15, 70)),
+                    stop(10, mapV(get(layer), 0, maxValueRecovered, 20, 85))
                 )
             )
         )
@@ -361,12 +365,20 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
 
     fun normalize (value : Expression, zoom : Expression, min : Int, max : Int)  : Expression
     {
-
-
         val newVal : Expression = division(abs(subtract(sqrt(value), abs(min))), subtract(abs(max), abs(min)))
         return product(newVal, pow(abs(2), zoom))
     }
 
+
+    fun mapV(oldValue : Expression, oldMin : Int, oldMax : Int, newMin : Int, newMax : Int) : Expression{
+        val part1 = subtract(oldValue, abs(oldMin))
+        val part2 = subtract(abs(newMax), abs(newMin))
+        val part3 = product(part1, part2)
+        val part4 = subtract(abs(oldMax), abs(oldMin))
+        val newV = sum(abs(newMin), division(part3, part4))
+        //val NewValue = (((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin)) + newMin
+        return newV
+    }
 
     //recupere les données relatives a tous les pays
     private fun getCountriesData(loadedMapStyle: Style){
@@ -381,9 +393,21 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                 val items = response.getJSONArray("items")
                 for (i in 0 until items.length()){
                     val item = items.getJSONObject(i)
-                    val nbrCases : Int = item.getInt("totalActive")
+                    val nbrCases : Int = item.getInt("totalConfirmed")
                     val nbrDeaths : Int = item.getInt("totalDead")
                     val nbrRecovered : Int = item.getInt("totalRecovered")
+
+                    if (nbrCases > maxValueCases){
+                        maxValueCases = nbrCases
+                    }
+
+                    if (nbrDeaths > maxValueDeaths){
+                        maxValueDeaths = nbrDeaths
+                    }
+
+                    if (nbrRecovered > maxValueRecovered){
+                        maxValueRecovered = nbrRecovered
+                    }
                     val countryCode : String = item.getString("counrtyCode")
                     val latLng = CountryInfo.getLatLng(countryCode)
                     val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
@@ -424,6 +448,19 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                         val nbrCases: Int = datazone.getInt("totalConfirmed")
                         val nbrDeaths: Int = datazone.getInt("totalDead")
                         val nbrRecovered: Int = datazone.getInt("totalRecovered")
+
+                        if (nbrCases > maxValueCasesAlgeria){
+                            maxValueCasesAlgeria = nbrCases
+                        }
+
+                        if (nbrDeaths > maxValueDeathsAlgeria){
+                            maxValueDeathsAlgeria = nbrDeaths
+                        }
+
+                        if (nbrRecovered > maxValueRecoveredAlgeria){
+                            maxValueRecoveredAlgeria = nbrRecovered
+                        }
+
                         val latLng = LatLng(item.getDouble("latitude"), item.getDouble("longitude"))
                         val zoneData = ZoneData(
                             id,
@@ -474,8 +511,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
 
     fun getDangerZone(loadedMapStyle: Style){
         val urlCountriesData = "${resources.getString(R.string.host)}/api/v0/zoneRisque"
-        val features = arrayListOf<Feature>()
+        val pref = mContext.getSharedPreferences(resources.getString(R.string.shared_pref),0)
+        val token = pref.getString("token", "")
 
+        val features = arrayListOf<Feature>()
+        Log.i("getDangerZone", "we will get data here")
         // Request a string response from the provided URL.
         val jsonRequestNbrDeaths = object : JsonObjectRequest(
             Request.Method.GET, urlCountriesData, null,
@@ -502,7 +542,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
                     feature.addNumberProperty(layers[6], zoneRiskDiameter)
                     features.add(feature)
                 }
-
+                Log.i("featuresDangerZone", features.size.toString())
                 addCountryDangerZoneOnMap(features, loadedMapStyle)
 
                 showDataOnMap(layers[0], loadedMapStyle)
@@ -511,7 +551,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             @Throws(AuthFailureError::class)
             override fun getHeaders(): Map<String, String> {
                 val headers = HashMap<String, String>()
-                headers.put("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoidGVzdDRAZ21haWwuY29tIiwidXNlcm5hbWUiOm51bGwsIm5vbSI6bnVsbCwicHJlbm9tIjpudWxsLCJyb2xlIjoiVVRJTElTQVRFVVIifSwicm9sZSI6IlVUSUxJU0FURVVSIiwiaWF0IjoxNTg5MTA4NzM2LCJleHAiOjE1OTE3MDA3MzZ9.vph74KKOBZIq3eV4RDN2KB2PQl6JO4diJQ9RzWI7Mk4")
+                headers.put("Authorization", "Bearer $token")
                 return headers
             }
         }
@@ -545,11 +585,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             circleStrokeColor(Color.parseColor("#90B10000")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 1, 25)),
-                    stop(1, normalize(get(layer), abs(1), 1, 25)),
-                    stop(6, normalize(get(layer), abs(4), 1, 25)),
-                    stop(10, normalize(get(layer), abs(8), 1, 25)),
-                    stop(12, normalize(get(layer), abs(10), 1, 25))
+                    stop(0, mapV(get(layer), 0, maxValueCasesAlgeria, 3, 3)),
+                    stop(1, mapV(get(layer), 0, maxValueCasesAlgeria, 4, 5)),
+                    stop(3, mapV(get(layer), 0, maxValueCasesAlgeria, 10, 10)),
+                    stop(5, mapV(get(layer), 0, maxValueCasesAlgeria, 15, 30)),
+                    stop(10, mapV(get(layer), 0, maxValueCasesAlgeria, 20, 45))
                 )
             )
         )
@@ -583,11 +623,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             circleStrokeColor(Color.parseColor("#d1482e7c")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 1, 20)),
-                    stop(1, normalize(get(layer), abs(1), 1, 20)),
-                    stop(6, normalize(get(layer), abs(6), 1, 20)),
-                    stop(10, normalize(get(layer), abs(10), 1, 20)),
-                    stop(12, normalize(get(layer), abs(12), 1, 20))
+                    stop(0, mapV(get(layer), 0, maxValueDeathsAlgeria, 3, 3)),
+                    stop(1, mapV(get(layer), 0, maxValueDeathsAlgeria, 4, 5)),
+                    stop(3, mapV(get(layer), 0, maxValueDeathsAlgeria, 10, 10)),
+                    stop(5, mapV(get(layer), 0, maxValueDeathsAlgeria, 15, 30)),
+                    stop(10, mapV(get(layer), 0, maxValueDeathsAlgeria, 20, 45))
                 )
             )
         )
@@ -619,11 +659,11 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             circleStrokeColor(Color.parseColor("#d1159a39")),
             circleRadius(
                 interpolate(linear(), zoom(),
-                    stop(0, normalize(get(layer), abs(1), 1, 20)),
-                    stop(1, normalize(get(layer), abs(1), 1, 20)),
-                    stop(6, normalize(get(layer), abs(6), 1, 20)),
-                    stop(10, normalize(get(layer), abs(10), 1, 20)),
-                    stop(12, normalize(get(layer), abs(12), 1, 20))
+                    stop(0, mapV(get(layer), 0, maxValueRecoveredAlgeria, 3, 3)),
+                    stop(1, mapV(get(layer), 0, maxValueRecoveredAlgeria, 4, 5)),
+                    stop(3, mapV(get(layer), 0, maxValueRecoveredAlgeria, 10, 10)),
+                    stop(5, mapV(get(layer), 0, maxValueRecoveredAlgeria, 15, 30)),
+                    stop(10, mapV(get(layer), 0, maxValueRecoveredAlgeria, 20, 45))
                 )
             )
         )
@@ -715,6 +755,8 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             permissionsManager.requestLocationPermissions(activity)
         }
     }
+
+
 
     fun initFilterList(){
         filterList.add(Filter(resources.getString(R.string.place_nbr_infected), R.color.cases_color))
