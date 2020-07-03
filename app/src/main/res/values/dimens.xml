@@ -6,4 +6,5 @@
     <dimen name="standard_125">125dp</dimen>
     <dimen name="standard_155">155dp</dimen>
     <dimen name="standard_185">185dp</dimen>
+    <dimen name="standard_245">245dp</dimen>
 </resources>

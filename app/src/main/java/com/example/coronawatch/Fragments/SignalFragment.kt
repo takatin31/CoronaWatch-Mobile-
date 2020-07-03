@@ -99,7 +99,7 @@ class SignalFragment : Fragment() {
     }
 
     private fun uploadImage() {
-        val postURL: String = "http://192.168.1.55:8081/api/v0/signalement/"
+        val postURL: String = "${resources.getString(R.string.host)}/api/v0/signalement/"
         imageData?: return
         val request = object : FileUploadRequest(
             Method.POST,
@@ -113,6 +113,13 @@ class SignalFragment : Fragment() {
                 progressBar.visibility = View.GONE
                 successResult.visibility = View.VISIBLE
                 Toast.makeText(activity, "يبدو ان هناك خطبا ما", Toast.LENGTH_SHORT).show()
+                if (it.networkResponse != null){
+                    if (it.networkResponse.data !=null){
+                        val err = String(it.networkResponse.data)
+                        Log.i("networkError", err)
+                    }
+                }
+
             }
         ) {
             override fun getByteData(): MutableMap<String, FileDataPart> {

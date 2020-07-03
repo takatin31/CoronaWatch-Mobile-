@@ -58,6 +58,126 @@
 
     </RelativeLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/centreAcceulsInfoCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toStartOf="@id/menuFloatingBtn"
+        android:visibility="gone"
+        mapbox:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/centreTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/almarai_regular"
+                android:text="الاسم :"
+                android:textColor="#404040" />
+
+            <TextView
+                android:id="@+id/centerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/centreTitleLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:textColor="@color/darkblue"
+                android:textDirection="rtl" />
+
+            <TextView
+                android:id="@+id/centerInfoLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerTitle"
+                android:fontFamily="@font/almarai_regular"
+                android:text="معلومات :"
+                android:textColor="#404040" />
+
+            <TextView
+                android:id="@+id/centerInfo"
+                android:layout_width="259dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerTitle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="63dp"
+                android:layout_toEndOf="@id/centerInfoLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:textColor="@color/darkblue"
+                android:textDirection="rtl" />
+
+            <TextView
+                android:id="@+id/centerCityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerInfoLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:text="الولاية :"
+                android:textColor="#404040" />
+
+            <TextView
+                android:id="@+id/centerCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerInfo"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/centerCityLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:textColor="@color/darkblue"
+                android:textDirection="rtl" />
+
+            <TextView
+                android:id="@+id/centerNbrLitLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerCityLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:text="العدد الاجمالي للاسرة :"
+                android:textColor="#404040" />
+
+            <TextView
+                android:id="@+id/centerNbrLits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerCity"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/centerNbrLitLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:textColor="@color/darkblue"
+                android:textDirection="rtl" />
+
+            <TextView
+                android:id="@+id/centerNbrLitLibreLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerNbrLitLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:text="عدد الاسرة الفارغة :"
+                android:textColor="#404040" />
+
+            <TextView
+                android:id="@+id/centerNbrLitLibre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/centerNbrLits"
+                android:layout_alignParentEnd="true"
+                android:layout_toEndOf="@id/centerNbrLitLibreLabel"
+                android:fontFamily="@font/almarai_regular"
+                android:textColor="@color/darkblue"
+                android:textDirection="rtl" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/countriesStatsFloatingBtn"
         android:layout_width="@dimen/standard_45"
@@ -70,6 +190,20 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:src="@drawable/ic_equalizer_black_24dp"
+        mapbox:backgroundTint="#FFFFFF" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/centersFloatingBtn"
+        android:layout_width="@dimen/standard_45"
+        android:layout_height="@dimen/standard_45"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_centers"
         mapbox:backgroundTint="#FFFFFF" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -123,6 +257,18 @@
         android:layout_toStartOf="@id/dangerZoneFloatingBtn"
         android:fontFamily="@font/almarai_bold"
         android:text="احصائيات بلدان العالم"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/titleCenters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_toStartOf="@id/dangerZoneFloatingBtn"
+        android:fontFamily="@font/almarai_bold"
+        android:text="مراكز الاستقبال"
         android:textSize="16sp"
         android:visibility="gone" />
 

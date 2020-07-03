@@ -3,7 +3,9 @@ package com.example.coronawatch.Fragments
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.PointF
 import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +21,6 @@ import androidx.fragment.app.Fragment
 import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyLog
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.coronawatch.Activities.CountriesActivity
 import com.example.coronawatch.Activities.StatsActivity
@@ -48,12 +49,13 @@ import com.mapbox.mapboxsdk.style.expressions.Expression.*
 import com.mapbox.mapboxsdk.style.layers.CircleLayer
 import com.mapbox.mapboxsdk.style.layers.Property.NONE
 import com.mapbox.mapboxsdk.style.layers.Property.VISIBLE
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
 import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import kotlinx.android.synthetic.main.fragment_map.*
-import org.json.JSONObject
 import java.net.URISyntaxException
 import java.util.*
 import kotlin.collections.ArrayList
@@ -67,7 +69,8 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     var detached : Boolean = true
     var countriesData = true
     var features = arrayListOf<Feature>()
-    val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered", "algeriaDangerZone")
+    var centerFeatures = arrayListOf<Feature>()
+    val layers = arrayListOf("cases", "deaths", "recovered", "algeriaCases", "algeriaDeaths", "algeriaRecovered", "algeriaDangerZone", "centers")
     var zonesAlgeriaData = arrayListOf<Zone>()
     var isFABOpen = false
     var filterList = arrayListOf<Filter>()
@@ -79,6 +82,7 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
     var maxValueCasesAlgeria = 0
     var maxValueDeathsAlgeria = 0
     var maxValueRecoveredAlgeria = 0
+    var isCentersShown = false
 
     private val listCountries = arrayListOf("آروبا", "أذربيجان", "أرمينيا", "أسبانيا", "أستراليا", "أفغانستان", "ألبانيا", "ألمانيا", "أنتيجوا وبربودا", "أنجولا", "أنجويلا", "أندورا", "أورجواي", "أوزبكستان", "أوغندا", "أوكرانيا", "أيرلندا", "أيسلندا", "اثيوبيا", "اريتريا", "استونيا", "اسرائيل", "الأرجنتين", "الأردن", "الاكوادور", "الامارات العربية المتحدة", "الباهاما", "البحرين", "البرازيل", "البرتغال", "البوسنة والهرسك", "الجابون", "الجبل الأسود", "الجزائر", "الدانمرك", "الرأس الأخضر", "السلفادور", "السنغال", "السودان", "السويد", "الصحراء الغربية", "الصومال", "الصين", "العراق", "الفاتيكان", "الفيلبين", "القطب الجنوبي", "الكاميرون", "الكونغو - برازافيل", "الكويت", "المجر", "المحيط الهندي البريطاني", "المغرب", "المقاطعات الجنوبية الفرنسية", "المكسيك", "المملكة العربية السعودية", "المملكة المتحدة", "النرويج", "النمسا", "النيجر", "الهند", "الولايات المتحدة الأمريكية", "اليابان", "اليمن", "اليونان", "اندونيسيا", "ايران", "ايطاليا", "بابوا غينيا الجديدة", "باراجواي", "باكستان", "بالاو", "بتسوانا", "بتكايرن", "بربادوس", "برمودا", "بروناي", "بلجيكا", "بلغاريا", "بليز", "بنجلاديش", "بنما", "بنين", "بوتان", "بورتوريكو", "بوركينا فاسو", "بوروندي", "بولندا", "بوليفيا", "بولينيزيا الفرنسية", "بيرو", "تانزانيا", "تايلند", "تايوان", "تركمانستان", "تركيا", "ترينيداد وتوباغو", "تشاد", "توجو", "توفالو", "توكيلو", "تونجا", "تونس", "تيمور الشرقية", "جامايكا", "جبل طارق", "جرينادا", "جرينلاند", "جزر أولان", "جزر الأنتيل الهولندية", "جزر الترك وجايكوس", "جزر القمر", "جزر الكايمن", "جزر المارشال", "جزر الملديف", "جزر الولايات المتحدة البعيدة الصغيرة", "جزر سليمان", "جزر فارو", "جزر فرجين الأمريكية", "جزر فرجين البريطانية", "جزر فوكلاند", "جزر كوك", "جزر كوكوس", "جزر ماريانا الشمالية", "جزر والس وفوتونا", "جزيرة الكريسماس", "جزيرة بوفيه", "جزيرة مان", "جزيرة نورفوك", "جزيرة هيرد وماكدونالد", "جمهورية افريقيا الوسطى", "جمهورية التشيك", "جمهورية الدومينيك", "جمهورية الكونغو الديمقراطية", "جمهورية جنوب افريقيا", "جواتيمالا", "جوادلوب", "جوام", "جورجيا", "جورجيا الجنوبية وجزر ساندويتش الجنوبية", "جيبوتي", "جيرسي", "دومينيكا", "رواندا", "روسيا", "روسيا البيضاء", "رومانيا", "روينيون", "زامبيا", "زيمبابوي", "ساحل العاج", "ساموا", "ساموا الأمريكية", "سان مارينو", "سانت بيير وميكولون", "سانت فنسنت وغرنادين", "سانت كيتس ونيفيس", "سانت لوسيا", "سانت مارتين", "سانت هيلنا", "ساو تومي وبرينسيبي", "سريلانكا", "سفالبارد وجان مايان", "سلوفاكيا", "سلوفينيا", "سنغافورة", "سوازيلاند", "سوريا", "سورينام", "سويسرا", "سيراليون", "سيشل", "شيلي", "صربيا", "صربيا والجبل الأسود", "طاجكستان", "عمان", "غامبيا", "غانا", "غويانا", "غيانا", "غينيا", "غينيا الاستوائية", "غينيا بيساو", "فانواتو", "فرنسا", "فلسطين", "فنزويلا", "فنلندا", "فيتنام", "فيجي", "قبرص", "قرغيزستان", "قطر", "كازاخستان", "كاليدونيا الجديدة", "كرواتيا", "كمبوديا", "كندا", "كوبا", "كوريا الجنوبية", "كوريا الشمالية", "كوستاريكا", "كولومبيا", "كيريباتي", "كينيا", "لاتفيا", "لاوس", "لبنان", "لوكسمبورج", "ليبيا", "ليبيريا", "ليتوانيا", "ليختنشتاين", "ليسوتو", "مارتينيك", "ماكاو الصينية", "مالطا", "مالي", "ماليزيا", "مايوت", "مدغشقر", "مصر", "مقدونيا", "ملاوي", "منطقة غير معرفة", "منغوليا", "موريتانيا", "موريشيوس", "موزمبيق", "مولدافيا", "موناكو", "مونتسرات", "ميانمار", "ميكرونيزيا", "ناميبيا", "نورو", "نيبال", "نيجيريا", "نيكاراجوا", "نيوزيلاندا", "نيوي", "هايتي", "هندوراس", "هولندا", "هونج كونج الصينية")
     override fun onCreateView(
@@ -98,52 +102,69 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
             this.mapboxMap = mapboxMap
             mapboxMap.setStyle(Style.Builder().fromUri("mapbox://styles/ali31/ck8sx67n92lia1io8cl38v9fi")) {
 
-        // Custom map style has been loaded and map is now ready
-            Log.i("Succes", "Map loaded Succefully")
-            //enableLocationComponent(it)
+                // Custom map style has been loaded and map is now ready
+                Log.i("Succes", "Map loaded Succefully")
+                //enableLocationComponent(it)
 
-            getCountriesData(it)
-            getCountryData("DZ", it)
+
+
+                getCountriesData(it)
+                getCountryData("DZ", it)
+                getCentersData(it)
+
+
+                it.addImage(("marker_icon"), BitmapFactory.decodeResource(
+                    resources, R.drawable.center_png));
+
 
         }
 
             mapboxMap.addOnMapClickListener {
-                if (dangerZoneMode){
-                    val zoneClicked : Int = zoneClicked(it, riskZoneList)
-                    if (zoneClicked != -1){
-                        Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
-                        val intent = Intent(activity, StatsActivity::class.java)
-                        val dangerZone = riskZoneList[zoneClicked] as RiskZone
-                        intent.putExtra("riskZoneId", dangerZone.zoneRiskId)
-                        intent.putExtra("degre", dangerZone.degre)
-                        intent.putExtra("reason", dangerZone.cause)
-                        intent.putExtra("isCountry", false)
-                        intent.putExtra("isDangerZone", true)
-                        startActivity(intent)
-                    }
-                }else{
-                    if (countriesData){
-                        val geocoder = Geocoder(activity, Locale("ar"))
-                        val adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
-                        Log.i("adresses", adresses.toString())
-                        if (!adresses.isEmpty() && adresses[0].countryCode != null){
-                            Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG).show()
+                if (isCentersShown){
+                    handleClickIcon(mapboxMap.projection.toScreenLocation(it))
+                }else {
+                    if (dangerZoneMode) {
+                        val zoneClicked: Int = zoneClicked(it, riskZoneList)
+                        if (zoneClicked != -1) {
+                            Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG)
+                                .show()
                             val intent = Intent(activity, StatsActivity::class.java)
-                            intent.putExtra("isCountry", true)
-                            intent.putExtra("countryCode", adresses[0].countryCode)
-                            intent.putExtra("countryName", adresses[0].countryName)
-                            intent.putExtra("isDangerZone", false)
+                            val dangerZone = riskZoneList[zoneClicked] as RiskZone
+                            intent.putExtra("riskZoneId", dangerZone.zoneRiskId)
+                            intent.putExtra("degre", dangerZone.degre)
+                            intent.putExtra("reason", dangerZone.cause)
+                            intent.putExtra("isCountry", false)
+                            intent.putExtra("isDangerZone", true)
                             startActivity(intent)
                         }
-                    }else{
-                        val zoneClicked : Int = zoneClicked(it, zonesAlgeriaData)
-                        if (zoneClicked != -1){
-                            Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG).show()
-                            val intent = Intent(activity, StatsActivity::class.java)
-                            intent.putExtra("zoneId", zonesAlgeriaData[zoneClicked].id)
-                            intent.putExtra("isCountry", false)
-                            intent.putExtra("isDangerZone", false)
-                            startActivity(intent)
+                    } else {
+                        if (countriesData) {
+                            val geocoder = Geocoder(activity, Locale("ar"))
+                            val adresses = geocoder.getFromLocation(it.latitude, it.longitude, 1)
+                            Log.i("adresses", adresses.toString())
+                            if (!adresses.isEmpty() && adresses[0].countryCode != null) {
+                                Toast.makeText(activity, adresses[0].countryCode, Toast.LENGTH_LONG)
+                                    .show()
+                                val intent = Intent(activity, StatsActivity::class.java)
+                                intent.putExtra("isCountry", true)
+                                intent.putExtra("countryCode", adresses[0].countryCode)
+                                intent.putExtra("countryName", adresses[0].countryName)
+                                intent.putExtra("isDangerZone", false)
+                                startActivity(intent)
+                            }
+                        } else {
+
+                            val zoneClicked: Int = zoneClicked(it, zonesAlgeriaData)
+                            if (zoneClicked != -1) {
+                                Toast.makeText(mContext, zoneClicked.toString(), Toast.LENGTH_LONG)
+                                    .show()
+                                val intent = Intent(activity, StatsActivity::class.java)
+                                intent.putExtra("zoneId", zonesAlgeriaData[zoneClicked].id)
+                                intent.putExtra("isCountry", false)
+                                intent.putExtra("isDangerZone", false)
+                                startActivity(intent)
+                            }
+
                         }
                     }
                 }
@@ -171,7 +192,9 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         val showAlgeriaData = algeriaFloatingBtn
 
         showAlgeriaData.setOnClickListener{
+            isCentersShown = false
             dangerZoneMode = false
+            centreAcceulsInfoCardView.visibility = View.GONE
             countriesData = !countriesData
             if (countriesData){
                 showDataOnMap(layers[0], mapboxMap.style!!)
@@ -183,13 +206,22 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         }
 
         dangerZoneFloatingBtn.setOnClickListener {
+            isCentersShown = false
             dangerZoneMode = true
+            centreAcceulsInfoCardView.visibility = View.GONE
             showDataOnMap(layers[6], mapboxMap.style!!)
         }
 
         countriesStatsFloatingBtn.setOnClickListener {
             val intent = Intent(activity, CountriesActivity::class.java)
             startActivity(intent)
+        }
+
+        centersFloatingBtn.setOnClickListener {
+            isCentersShown = true
+            dangerZoneMode = false
+            showDataOnMap(layers[7], mapboxMap.style!!)
+            centreAcceulsInfoCardView.visibility = View.VISIBLE
         }
 
 
@@ -217,14 +249,17 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         isFABOpen=true;
         algeriaFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_65))
         dangerZoneFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_125))
-        countriesStatsFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_185))
+        centersFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_185))
+        countriesStatsFloatingBtn.animate().translationY(-resources.getDimension(R.dimen.standard_245))
 
         titleAlgeriaZone.animate().translationY(-resources.getDimension(R.dimen.standard_65))
         titleDangerZone.animate().translationY(-resources.getDimension(R.dimen.standard_125))
-        titleStatsCountries.animate().translationY(-resources.getDimension(R.dimen.standard_185))
+        titleCenters.animate().translationY(-resources.getDimension(R.dimen.standard_185))
+        titleStatsCountries.animate().translationY(-resources.getDimension(R.dimen.standard_245))
 
         titleAlgeriaZone.visibility = View.VISIBLE
         titleDangerZone.visibility = View.VISIBLE
+        titleCenters.visibility = View.VISIBLE
         titleStatsCountries.visibility = View.VISIBLE
     }
 
@@ -232,14 +267,17 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         isFABOpen=false;
         algeriaFloatingBtn.animate().translationY(0f)
         dangerZoneFloatingBtn.animate().translationY(0f)
+        centersFloatingBtn.animate().translationY(0f)
         countriesStatsFloatingBtn.animate().translationY(0f)
 
         titleAlgeriaZone.animate().translationY(0f)
         titleDangerZone.animate().translationY(0f)
+        titleCenters.animate().translationY(0f)
         titleStatsCountries.animate().translationY(0f)
 
         titleAlgeriaZone.visibility = View.GONE
         titleDangerZone.visibility = View.GONE
+        titleCenters.visibility = View.GONE
         titleStatsCountries.visibility = View.GONE
     }
 
@@ -755,6 +793,97 @@ class MapFragment : Fragment(), PermissionsListener, RapidFloatingActionContentL
         } else {
             permissionsManager = PermissionsManager(this)
             permissionsManager.requestLocationPermissions(activity)
+        }
+    }
+
+    fun getCentersData(style: Style) {
+        val urlData = "${resources.getString(R.string.host)}/api/v0/centreAcceuil"
+
+        // Request a string response from the provided URL.
+        val jsonRequestData = JsonObjectRequest(
+            Request.Method.GET, urlData, null,
+            Response.Listener { response ->
+                val items = response.getJSONArray("rows")
+                if (items.length() == 0){
+                    Toast.makeText(mContext, "There is no centers yet", Toast.LENGTH_SHORT).show()
+                }else{
+
+                    for (i in 0 until items.length()){
+                        val item = items.getJSONObject(i)
+                        val idCentre = item.getInt("centreAcceuilId")
+                        val nomCentre = item.getString("nom")
+                        val infoCentre = item.getString("information")
+                        val cityCentre = item.getString("city")
+                        val nbrLitCentre = item.getInt("nbrLitsTotal")
+                        val nbrEmptyLitCentre = item.getInt("nbrLitsLibre")
+                        val lat = item.getDouble("latitude")
+                        val lng = item.getDouble("longitude")
+                        val latLng = LatLng(lat, lng)
+
+                        val geometry = Point.fromLngLat(latLng.longitude, latLng.latitude)
+                        val feature : Feature = Feature.fromGeometry(geometry)
+                        feature.addStringProperty("nom", nomCentre)
+                        feature.addStringProperty("info", infoCentre)
+                        feature.addStringProperty("city", cityCentre)
+                        feature.addNumberProperty("nbrLit", nbrLitCentre)
+                        feature.addNumberProperty("nbrLitLibre", nbrEmptyLitCentre)
+
+                        centerFeatures.add(feature)
+                    }
+
+                    addMarkers(style)
+                    showDataOnMap(layers[0], style)
+                }
+            },
+            Response.ErrorListener { Log.d("Error", "Request error") })
+
+        RequestHandler.getInstance(mContext).addToRequestQueue(jsonRequestData)
+    }
+
+    fun addMarkers(style: Style){
+
+        val layer = layers[7]
+
+        val features = FeatureCollection.fromFeatures(centerFeatures)
+
+
+        try {
+            style.addSource(
+                GeoJsonSource(
+                    layer,
+                    features
+                )
+            )
+        } catch (uriSyntaxException: URISyntaxException) {
+            Log.i("Check the URL %s", uriSyntaxException.message)
+        }
+
+        style.addLayer(
+            SymbolLayer(layer, layer)
+                .withProperties(
+                    PropertyFactory.iconImage("marker_icon"),
+                    iconAllowOverlap(true),
+                    iconOffset(arrayOf(0f, -8f))
+                )
+        )
+    }
+
+    private fun handleClickIcon(screenPoint: PointF): Boolean {
+        val layer = layers[7]
+        val features: List<Feature> =
+            mapboxMap.queryRenderedFeatures(screenPoint, layer)
+        Log.i("feature", features.toString())
+        return if (features.isNotEmpty()) {
+            // Show the Feature in the TextView to show that the icon is based on the ICON_PROPERTY key/value
+            centerTitle.text = features[0].getStringProperty("nom")
+            centerInfo.text = features[0].getStringProperty("info")
+            centerCity.text = features[0].getStringProperty("city")
+            centerNbrLits.text = features[0].getStringProperty("nbrLit")
+            centerNbrLitLibre.text = features[0].getStringProperty("nbrLitLibre")
+
+            true
+        } else {
+            false
         }
     }
 
